@@ -1,0 +1,100 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_route_scale.yaml file that needs to be updated and added to your project files, if you want to include route scale related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_ROUTE_SCALE
+# BASELINE_IPV6_ROUTE_SCALE
+#
+#     Which are used in these keywords from keywords/baseline_route_scale.resource
+#
+# baseline route_scale validate minimum routing table scale is present as per defined baseline
+# baseline route_scale validate ipv6 minimum routing table scale is present as per defined baseline
+#
+################################################################################
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_ROUTE_SCALE
+#     used in: baseline route_scale validate minimum routing table scale is present as per defined baseline
+#
+# BASELINE_ROUTE_SCALE:               # This data structure holds the minimum expected routing table scale
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     <VRF_NAME>:                     # VRF name or 'global'
+#       <ROUTE_SOURCE>: <number>      # Examples: connected: 10 , static: 50 , isis CORE: 2000 , Total: 2060
+#                                     #   For IOSXR, use the Route source and Routes values from command 'show route summary' or 'show route vrf xxxxx summary'
+#                                     #   For IOSXE, use the Route source and Subnets values from command 'show ip route summary' or 'show ip route vrf xxxxx summary'
+#
+#
+#     Example for BASELINE_ROUTE_SCALE
+#
+# BASELINE_ROUTE_SCALE:
+#   PE4:
+#     global:
+#       connected: 403
+#       isis CORE: 2000
+#       Total: 2500
+#     INTERNET:
+#       bgp 15897: 500
+#       Total: 500
+#
+
+
+BASELINE_ROUTE_SCALE:
+  mnbas-pe-1a:
+    global:
+      connected: 2
+      isis O2NGN: 40
+      Total: 49
+  mnbas-pe-1b:
+    global:
+      connected: 2
+      isis O2NGN: 40
+      Total: 49
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_IPV6_ROUTE_SCALE
+#     used in: baseline route_scale validate ipv6 minimum routing table scale is present as per defined baseline
+#
+# BASELINE_IPV6_ROUTE_SCALE:               # This data structure holds the minimum expected routing table scale
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     <VRF_NAME>:                     # VRF name or 'global'
+#       <ROUTE_SOURCE>: <number>      # Examples: connected: 10 , static: 50 , isis CORE: 2000 , Total: 2060
+#                                     #   For IOSXR, use the Route source and Routes values from command 'show route ipv6 summary' or 'show route vrf xxxxx ipv6 summary'
+#                                     #   For IOSXE, use the Route source and Subnets values from command 'show ipv6 route summary' or 'show ipv6 route vrf xxxxx summary'
+#
+#
+#     Example for BASELINE_IPV6_ROUTE_SCALE
+#
+# BASELINE_IPV6_ROUTE_SCALE:
+#   PE4:
+#     global:
+#       connected: 403
+#       isis CORE: 2000
+#       Total: 2500
+#     INTERNET:
+#       bgp 15897: 500
+#       Total: 500
+#
+################################################################################
+
+
+BASELINE_IPV6_ROUTE_SCALE:
+  mnbas-pe-1a:
+    global:
+      connected: 2
+      isis O2NGN: 40
+      Total: 49
+  mnbas-pe-1b:
+    global:
+      connected: 2
+      isis O2NGN: 40
+      Total: 49

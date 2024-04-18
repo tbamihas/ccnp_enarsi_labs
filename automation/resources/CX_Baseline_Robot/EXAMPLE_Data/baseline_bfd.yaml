@@ -1,0 +1,78 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_bfd.yaml file that needs to be updated and added to your project files, if you want to run BFD related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_BFD_IPV4_SCALE
+# BASELINE_BFD_IPV6_SCALE
+#
+#
+#     Which are used in these keywords from keywords/baseline_bfd.resource
+#
+# baseline bfd validate minimum bfd ipv4 scale as per defined baseline
+# baseline bfd validate minimum bfd ipv6 scale as per defined baseline
+#
+################################################################################
+
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_BFD_IPV4_SCALE
+#     used in: baseline bfd validate minimum bfd ipv4 scale as per defined baseline
+#
+# BASELINE_BFD_IPV4_SCALE:         # This data structure holds the minimum expected BFD IPV4 sessions
+#   <DEVICE_HOSTNAME>: <number>    # Example: PEERZ02: 9
+#                                  #   For IOSXR, use the command: 'show bfd ipv4' , and use the Up value
+#
+#     Example for BASELINE_BFD_IPV4_SCALE
+#
+# BASELINE_BFD_IPV4_SCALE:
+#  PEERZ02: 9
+#
+#
+#    Example CLI output, for IOSXR
+#
+# RP/0/RSP0/CPU0:PEERZ02#show bfd ipv4
+# Fri Oct 29 12:57:18.126 UTC
+# IPV4 Sessions Up: 9, Down: 0, Unknown/Retry: 0, Total: 9
+#
+
+
+BASELINE_BFD_IPV4_SCALE:
+  PEERZ01: 9
+  PEERZ02: 9
+
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_BFD_IPV6_SCALE
+#     used in: baseline bfd validate minimum bfd ipv6 scale as per defined baseline
+#
+# BASELINE_BFD_IPV6_SCALE:         # This data structure holds the minimum expected BFD IPV6 sessions
+#   <DEVICE_HOSTNAME>: <number>    # Example: PEERZ02: 9
+#                                  #   For IOSXR, use the command: 'show bfd ipv6' , and use the Up value
+#
+#     Example for BASELINE_BFD_IPV6_SCALE
+#
+# BASELINE_BFD_IPV6_SCALE:
+#  R1_NCS-5516_P1: 50
+#
+#
+#    Example CLI output, for IOSXR
+#
+# RP/0/RP0/CPU0:R1_NCS-5516_P1#show bfd ipv6
+# Fri Oct 29 10:51:13.337 UTC
+# IPV6 Sessions Up: 50, Down: 0, Unknown/Retry: 0, Total: 50#
+#
+
+BASELINE_BFD_IPV6_SCALE:
+  PEERZ01: 9
+  PEERZ02: 9

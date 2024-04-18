@@ -1,0 +1,174 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_srte.yaml file that needs to be updated and added to your project files, if you want to include SRTE related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_SRTE_SCALE
+#
+#
+#     Which are used in these keywords from keywords/baseline_srte.resource
+#
+# baseline srte validate minimum SRTE scale as per defined baseline
+# baseline srte validate pce ipv4 peers are up as per defined baseline
+# baseline srte validate segment routing pcc ipv4 peers are up as per defined baseline
+#
+################################################################################
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_SRTE_SCALE
+#     used in: baseline srte validate minimum SRTE scale as per defined baseline
+#
+# BASELINE_SRTE_SCALE:               # This data structure holds the expected minimum up SRTE policies
+#   <DEVICE_HOSTNAME>: <number>      # Example: PE4: 300
+#                                    #   For IOSXR, use the command 'show segment-routing traffic-eng policy summary'
+#
+#
+#     Example for BASELINE_SRTE_SCALE
+#
+# BASELINE_SRTE_SCALE:
+#   PE4: 265
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:PE4#show segment-routing traffic-eng policy summary
+# Tue Jul  6 23:23:42.266 UTC
+#
+# SR-TE policy database summary:
+# ----------------------------
+#
+# Total policies: 265
+#   Operational: up 265 down 0
+#
+# Total candidate paths: 475
+#   State: active 265 inactive 210
+#
+
+BASELINE_SRTE_SCALE:
+  PE4: 265
+  PE5: 265
+  PEERZ01: 265
+  PEERZ02: 265
+  PEDYB01: 265
+  PEDYB02: 265
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_PCE_PEERS
+#     used in: baseline srte validate pce ipv4 peers are up as per defined baseline
+#
+# BASELINE_PCE_PEERS:                # This data structure holds the expected PCE neighbors
+#   <DEVICE_HOSTNAME>: <number>      # Example: PE4
+#     - <NEIGHBOR_IP>                # Example: 10.135.0.1
+#     - <NEIGHBOR_IP>
+#                                    #   For IOSXR, use the command 'show pce ipv4 peer'
+#
+#
+#     Example for BASELINE_PCE_PEERS
+#
+# BASELINE_PCE_PEERS:
+#  XTC1:
+#    - 10.135.0.1
+#    - 10.135.0.2
+#
+#
+#    Example CLI
+#
+# RP/0/RP0/CPU0:XTC1#show pce ipv4 peer
+# Tue Oct 26 14:53:11.540 UTC
+#
+# PCE's peer database:
+# --------------------
+# Peer address: 10.135.0.1
+#   State: Up
+#   Capabilities: Stateful, Segment-Routing, Update, Instantiation
+#
+# Peer address: 10.135.0.2
+#   State: Up
+#   Capabilities: Stateful, Segment-Routing, Update, Instantiation
+#
+
+BASELINE_PCE_PEERS:
+  XTC1:
+    - 10.135.0.1
+    - 10.135.0.2
+    - 10.135.0.22
+    - 10.135.0.78
+    - 10.135.0.79
+    - 10.135.0.104
+    - 10.135.0.105
+    - 10.135.0.222
+    - 10.135.0.223
+  XTC2:
+    - 10.135.0.1
+    - 10.135.0.2
+    - 10.135.0.21
+    - 10.135.0.78
+    - 10.135.0.79
+    - 10.135.0.104
+    - 10.135.0.105
+    - 10.135.0.222
+    - 10.135.0.223
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_PCC_PEERS
+#     used in: baseline srte validate segment routing pcc ipv4 peers are up as per defined baseline
+#
+# BASELINE_PCC_PEERS:                # This data structure holds the expected PCC neighbors
+#   <DEVICE_HOSTNAME>: <number>      # Example: PE4
+#     - <NEIGHBOR_IP>                # Example: 10.135.0.1
+#     - <NEIGHBOR_IP>
+#                                    #   For IOSXR, use the command 'show segment-routing traffic-eng pcc ipv4 peer brief'
+#
+#
+#     Example for BASELINE_PCC_PEERS
+#
+# BASELINE_PCC_PEERS:
+#  PE4:
+#    - 10.135.0.21
+#    - 10.135.0.22
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:PE4#show segment-routing traffic-eng pcc ipv4 peer brief
+# Tue Oct 26 14:54:23.355 UTC
+#
+#              Address   Precedence        State    Learned From
+# -------------------- ------------ ------------ ---------------
+#          10.135.0.21          255           up          config
+#          10.135.0.22          255           up          config
+#
+
+
+BASELINE_PCC_PEERS:
+  PE4:
+    - 10.135.0.21
+    - 10.135.0.22
+  PE5:
+    - 10.135.0.21
+    - 10.135.0.22
+  PEERZ01:
+    - 10.135.0.21
+    - 10.135.0.22
+  PEERZ02:
+    - 10.135.0.21
+    - 10.135.0.22
+  PEDYB01:
+    - 10.135.0.21
+    - 10.135.0.22
+  PEDYB02:
+    - 10.135.0.21
+    - 10.135.0.22

@@ -1,0 +1,2712 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0 (Python 3.10.12 on linux)" generated="2024-03-25T17:26:29.226739" rpa="false" schemaversion="5">
+<suite id="s1" name="Lab Config Backup" source="/home/cisco/cxta/automation/jobfiles/lab_config_backup.robot">
+<kw name="Setup" owner="keywords" type="SETUP">
+<msg time="2024-03-25T17:26:33.952431" level="TRACE">Arguments: [  ]</msg>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:33.955947" level="TRACE">Arguments: [ '/home/cisco/cxta/automation/resources/testbed.yaml' ]</msg>
+<msg time="2024-03-25T17:26:33.956218" level="TRACE">Return: '/home/cisco/cxta/automation/resources/testbed.yaml'</msg>
+<msg time="2024-03-25T17:26:33.956325" level="INFO">${TESTBED} = /home/cisco/cxta/automation/resources/testbed.yaml</msg>
+<var>${TESTBED}</var>
+<arg>${EXECDIR}/automation/resources/testbed.yaml</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:33.955473" elapsed="0.000925"/>
+</kw>
+<kw name="Load Testbed &quot;${TESTBED}&quot;" owner="CXTA.robot.Testbed" source_name="load testbed &quot;${testbed:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:33.958420" level="TRACE">Arguments: [ '/home/cisco/cxta/automation/resources/testbed.yaml' ]</msg>
+<msg time="2024-03-25T17:26:33.958551" level="INFO">Loading testbed from file /home/cisco/cxta/automation/resources/testbed.yaml</msg>
+<msg time="2024-03-25T17:26:34.009935" level="DEBUG">Credential credentials not found, trying default ...</msg>
+<msg time="2024-03-25T17:26:34.010901" level="DEBUG">Credential credentials not found, trying default ...</msg>
+<msg time="2024-03-25T17:26:34.011568" level="DEBUG">Credential credentials not found, trying default ...</msg>
+<msg time="2024-03-25T17:26:34.012155" level="DEBUG">Credential credentials not found, trying default ...</msg>
+<msg time="2024-03-25T17:26:34.012729" level="DEBUG">Credential credentials not found, trying default ...</msg>
+<msg time="2024-03-25T17:26:34.013398" level="DEBUG">Credential credentials not found, trying default ...</msg>
+<msg time="2024-03-25T17:26:34.014981" level="INFO">+------------------------------------------------------------------------------+
+|                            Genie datafiles used:                             |
++------------------------------------------------------------------------------+</msg>
+<msg time="2024-03-25T17:26:34.015133" level="INFO">Trigger datafile          | </msg>
+<msg time="2024-03-25T17:26:34.015234" level="INFO">Verification  datafile    | </msg>
+<msg time="2024-03-25T17:26:34.015339" level="INFO">Pts datafile              | /venv/lib/python3.10/site-packages/genie/libs/sdk/genie_yamls/pts_datafile.yaml</msg>
+<msg time="2024-03-25T17:26:34.015444" level="INFO">Subsection datafile       | /venv/lib/python3.10/site-packages/genie/libs/sdk/genie_yamls/subsection_datafile.yaml</msg>
+<msg time="2024-03-25T17:26:34.015538" level="INFO">Config datafile           | None</msg>
+<msg time="2024-03-25T17:26:34.015756" level="DEBUG">loading yaml file /venv/lib/python3.10/site-packages/genie/libs/sdk/genie_yamls/pts_datafile.yaml</msg>
+<msg time="2024-03-25T17:26:34.028712" level="TRACE">Return: &lt;Testbed object 'tbamihas-enarsi-lab' at 0x7f4c69ddc460&gt;</msg>
+<doc>Sets the current testbed to the file specified in the testbed parameter</doc>
+<status status="PASS" start="2024-03-25T17:26:33.957949" elapsed="0.070965"/>
+</kw>
+<kw name="Call home set customer pid to &quot;1&quot;" owner="CXTA.robot.CallHome" source_name="call home set customer pid to &quot;${pid}&quot;">
+<msg time="2024-03-25T17:26:34.031085" level="TRACE">Arguments: [ '1' ]</msg>
+<msg time="2024-03-25T17:26:34.031266" level="INFO">Call Home customer pid set to 1</msg>
+<msg time="2024-03-25T17:26:34.031360" level="TRACE">Return: None</msg>
+<doc>By default CXTA will fetch the project PID from the environment variable
+CUSTOMER_PID (if set). The PID can also be set from the test suite using this
+keyword.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.030629" elapsed="0.000796"/>
+</kw>
+<msg time="2024-03-25T17:26:34.031819" level="TRACE">Return: None</msg>
+<status status="PASS" start="2024-03-25T17:26:33.951879" elapsed="0.080024"/>
+</kw>
+<test id="s1-t1" name="Backup Lab Configuration" line="9">
+<kw name="Create Backup Directory" owner="keywords">
+<msg time="2024-03-25T17:26:34.034960" level="TRACE">Arguments: [  ]</msg>
+<kw name="Get Environment Variable" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:34.036424" level="TRACE">Arguments: [ 'DIR_ID' | default='Backup_generic' ]</msg>
+<msg time="2024-03-25T17:26:34.036577" level="TRACE">Return: 'ospfv6_almost_complete'</msg>
+<msg time="2024-03-25T17:26:34.036681" level="INFO">${dir_id} = ospfv6_almost_complete</msg>
+<var>${dir_id}</var>
+<arg>DIR_ID</arg>
+<arg>default=Backup_generic</arg>
+<doc>Returns the value of an environment variable with the given name.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.036039" elapsed="0.000709"/>
+</kw>
+<kw name="Get Current Date" owner="DateTime">
+<msg time="2024-03-25T17:26:34.038222" level="TRACE">Arguments: [ result_format='%d-%m-%Y' ]</msg>
+<msg time="2024-03-25T17:26:34.038395" level="TRACE">Return: '25-03-2024'</msg>
+<msg time="2024-03-25T17:26:34.038495" level="INFO">${date} = 25-03-2024</msg>
+<var>${date}</var>
+<arg>result_format=%d-%m-%Y</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.037861" elapsed="0.000701"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:34.039856" level="TRACE">Arguments: [ 'lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<msg time="2024-03-25T17:26:34.039964" level="TRACE">Return: 'lab_backup_25-03-2024_ospfv6_almost_complete'</msg>
+<msg time="2024-03-25T17:26:34.040054" level="INFO">${directory_name} = lab_backup_25-03-2024_ospfv6_almost_complete</msg>
+<var>${directory_name}</var>
+<arg>lab_backup_${date}_${dir_id}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.039495" elapsed="0.000621"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:34.041406" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<msg time="2024-03-25T17:26:34.041516" level="TRACE">Return: '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete'</msg>
+<msg time="2024-03-25T17:26:34.041604" level="INFO">${backup_dir} = /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete</msg>
+<var>${backup_dir}</var>
+<arg>${EXECDIR}/labs/backup_configs/${directory_name}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.041030" elapsed="0.000666"/>
+</kw>
+<kw name="Create Directory" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:34.042895" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<msg time="2024-03-25T17:26:34.043179" level="INFO" html="true">Created directory '&lt;a href="file:///home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete"&gt;/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete&lt;/a&gt;'.</msg>
+<msg time="2024-03-25T17:26:34.043267" level="TRACE">Return: None</msg>
+<arg>${backup_dir}</arg>
+<doc>Creates the specified directory.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.042580" elapsed="0.000755"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:34.044528" level="TRACE">Arguments: [ 'chmod 775 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<msg time="2024-03-25T17:26:34.044633" level="TRACE">Return: 'chmod 775 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete'</msg>
+<msg time="2024-03-25T17:26:34.044721" level="INFO">${command} = chmod 775 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete</msg>
+<var>${command}</var>
+<arg>chmod 775 ${backup_dir}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.044176" elapsed="0.000648"/>
+</kw>
+<kw name="Run" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:34.045931" level="TRACE">Arguments: [ 'chmod 775 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<msg time="2024-03-25T17:26:34.046475" level="INFO">Running command 'chmod 775 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete 2&gt;&amp;1'.</msg>
+<msg time="2024-03-25T17:26:34.048209" level="TRACE">Return: ''</msg>
+<arg>${command}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.045614" elapsed="0.002690"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:34.049693" level="TRACE">Arguments: [ 'Created backup directory: ~/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' | console=True ]</msg>
+<msg time="2024-03-25T17:26:34.049810" level="INFO">Created backup directory: ~/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete</msg>
+<msg time="2024-03-25T17:26:34.049909" level="TRACE">Return: None</msg>
+<arg>Created backup directory: ~/labs/backup_configs/${directory_name}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.049248" elapsed="0.000816"/>
+</kw>
+<return>
+<value>${backup_dir}</value>
+<status status="PASS" start="2024-03-25T17:26:34.050505" elapsed="0.000297"/>
+</return>
+<msg time="2024-03-25T17:26:34.051165" level="TRACE">Return: '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete'</msg>
+<msg time="2024-03-25T17:26:34.051295" level="INFO">${backup_dir} = /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete</msg>
+<var>${backup_dir}</var>
+<doc>Creates a backup directory to store the device configs.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.034494" elapsed="0.016865"/>
+</kw>
+<for flavor="IN">
+<iter>
+<kw name="Take Device Config Backup and Store to Git Repo" owner="keywords">
+<msg time="2024-03-25T17:26:34.053775" level="TRACE">Arguments: [ ${device}='R1' | ${backup_dir}='/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:34.055322" level="TRACE">Arguments: [ 'Backing up current configuration on R1' | console=True ]</msg>
+<msg time="2024-03-25T17:26:34.055493" level="INFO">Backing up current configuration on R1</msg>
+<msg time="2024-03-25T17:26:34.055628" level="TRACE">Return: None</msg>
+<arg>Backing up current configuration on ${device}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.054857" elapsed="0.000958"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:34.057447" level="TRACE">Arguments: [ 'R1_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:34.057574" level="TRACE">Return: 'R1_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:34.057672" level="INFO">${device_backup_filename} = R1_cfg.txt</msg>
+<var>${device_backup_filename}</var>
+<arg>${device}_cfg.txt</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.056863" elapsed="0.000881"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:34.059202" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:34.059320" level="TRACE">Return: '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:34.059422" level="INFO">${backup_file_path} = /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt</msg>
+<var>${backup_file_path}</var>
+<arg>${backup_dir}/${device_backup_filename}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.058773" elapsed="0.000732"/>
+</kw>
+<kw name="Connect to device &quot;${device}&quot;" owner="CXTA.robot.DeviceCli" source_name="connect to device &quot;${device:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:34.061139" level="TRACE">Arguments: [ 'R1' ]</msg>
+<msg time="2024-03-25T17:26:34.061696" level="INFO">Connecting to R1 via vty</msg>
+<msg time="2024-03-25T17:26:34.061894" level="INFO">Connecting to device 'Device R1, type router'</msg>
+<msg time="2024-03-25T17:26:34.062053" level="INFO">kwargs: {'via': 'vty', 'alias': None, 'init_config_commands': [], 'learn_hostname': False, 'settings': {'POST_DISCONNECT_WAIT_SEC': 0, 'ESCAPE_CHAR_PROMPT_WAIT': 2, 'IGNORE_CHATTY_TERM_OUTPUT': True}, 'logfile': '/home/cisco/cxta/out/device_logs/R1-20240325T172634061.log'}</msg>
+<msg time="2024-03-25T17:26:34.065766" level="DEBUG">Connection manager added new connection via vty with alias cli</msg>
+<msg time="2024-03-25T17:26:35.778731" level="INFO">2024-03-25 17:26:34,064: %UNICON-INFO: +++ R1 logfile /home/cisco/cxta/out/device_logs/R1-20240325T172634061.log +++
+
+2024-03-25 17:26:34,064: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+protocol identification string lack carriage return
+
+
+2024-03-25 17:26:34,099: %UNICON-INFO: +++ connection to spawn: ssh -l cisco 10.53.217.18, id: 139966144732640 +++
+
+2024-03-25 17:26:34,099: %UNICON-INFO: connection to R1
+Warning: Permanently added '10.53.217.18' (RSA) to the list of known hosts.
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************(cisco@10.53.217.18) Password: 
+
+
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+R1#
+
+2024-03-25 17:26:34,409: %UNICON-INFO: +++ initializing handle +++
+
+2024-03-25 17:26:34,738: %UNICON-INFO: +++ R1 with via 'vty': executing command 'term length 0' +++
+term length 0
+R1#
+
+2024-03-25 17:26:35,171: %UNICON-INFO: +++ R1 with via 'vty': executing command 'term width 0' +++
+term width 0
+R1#
+
+2024-03-25 17:26:35,601: %UNICON-INFO: +++ R1 with via 'vty': executing command 'show version' +++
+show version
+Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), Version 15.9(3)M6, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2022 by Cisco Systems, Inc.
+Compiled Mon 08-Aug-22 15:22 by mcpre
+
+
+ROM: Bootstrap program is IOSv
+
+R1 uptime is 23 hours, 2 minutes
+System returned to ROM by reload
+System image file is "flash0:/vios-adventerprisek9-m"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco IOSv (revision 1.0) with  with 410849K/111616K bytes of memory.
+Processor board ID 9VT5G04SPXWIP4O1KS95W
+8 Gigabit Ethernet interfaces
+DRAM configuration is 72 bits wide with parity disabled.
+256K bytes of non-volatile configuration memory.
+2097152K bytes of ATA System CompactFlash 0 (Read/Write)
+0K bytes of ATA CompactFlash 1 (Read/Write)
+11217K bytes of ATA CompactFlash 2 (Read/Write)
+0K bytes of ATA CompactFlash 3 (Read/Write)
+
+
+
+Configuration register is 0x0
+
+R1#</msg>
+<msg time="2024-03-25T17:26:35.779347" level="TRACE">Return: &lt;Device R1 at 0x7f4c69dde440&gt;</msg>
+<doc>Connects to the device identified by name (from the testbed file) using the connection information
+specified in the connections-&gt;vty header in the testbed file.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.060729" elapsed="1.718856"/>
+</kw>
+<kw name="run &quot;terminal length 0&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:35.783970" level="TRACE">Arguments: [ 'terminal length 0' ]</msg>
+<msg time="2024-03-25T17:26:36.113573" level="INFO">Executing "terminal length 0" on device "R1" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:36.114093" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:36.557510" level="INFO">2024-03-25 17:26:36,445: %UNICON-INFO: +++ R1 with via 'vty': executing command 'terminal length 0' +++
+terminal length 0
+R1#</msg>
+<msg time="2024-03-25T17:26:36.557716" level="TRACE">Return: ''</msg>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:35.782860" elapsed="0.774954"/>
+</kw>
+<kw name="run &quot;show run&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:36.560177" level="TRACE">Arguments: [ 'show run' ]</msg>
+<msg time="2024-03-25T17:26:36.561229" level="INFO">Executing "show run" on device "R1" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:36.561510" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:38.536970" level="INFO">2024-03-25 17:26:36,888: %UNICON-INFO: +++ R1 with via 'vty': executing command 'show run' +++
+show run
+Building configuration...
+
+  
+Current configuration : 4601 bytes
+!
+! Last configuration change at 17:23:32 UTC Mon Mar 25 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name cisco.com
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username cisco privilege 15 password 0 cisco
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ no ip address
+ ipv6 address 1:1:1:1::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface Loopback2
+ no ip address
+ ipv6 address 1:1:1:2::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface Loopback3
+ no ip address
+ ipv6 address 1:1:1:3::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface Loopback4
+ no ip address
+ ipv6 address 1:1:1:4::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:1::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:2::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ ip address 3.1.100.1 255.255.0.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/4
+ ip address 10.53.217.18 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/5
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/6
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/7
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router ospfv3 1
+ router-id 1.1.1.1
+ area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1
+ !
+ address-family ipv6 unicast
+  distribute-list route-map deny_R2_prf_lst in
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 10.0.0.0 255.0.0.0 10.53.217.1
+ip ssh version 2
+ip scp server enable
+!
+ipv6 ioam timestamp
+!
+!
+ipv6 prefix-list deny_R2_loopback seq 5 deny 77::1/128
+route-map deny_R2_prf_lst deny 10
+ match ipv6 address prefix-list deny_R2_loopback
+!
+route-map deny_R2_prf_lst permit 20
+!
+route-map deny_R2_lo deny 10
+ match ipv6 address deny_R2_77
+!
+route-map deny_R2_lo permit 20
+!
+!
+!
+ipv6 access-list deny_R2_77
+ sequence 20 permit ipv6 host 77::1 any
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ logging synchronous
+ login local
+ transport input ssh
+!
+no scheduler allocate
+!
+end
+
+R1#</msg>
+<msg time="2024-03-25T17:26:38.537242" level="TRACE">Return: "Building configuration...\r\n\r\n  \r\nCurrent configuration : 4601 bytes\r\n!\r\n! Last configuration change at 17:23:32 UTC Mon Mar 25 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R1\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 1:1:1:1::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface Loopback2\r\n no ip address\r\n ipv6 address 1:1:1:2::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface Loopback3\r\n no ip address\r\n ipv6 address 1:1:1:3::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface Loopback4\r\n no ip address\r\n ipv6 address 1:1:1:4::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:1::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:2::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.1 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.18 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\nrouter ospfv3 1\r\n router-id 1.1.1.1\r\n area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n !\r\n address-family ipv6 unicast\r\n  distribute-list route-map deny_R2_prf_lst in\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 ioam timestamp\r\n!\r\n!\r\nipv6 prefix-list deny_R2_loopback seq 5 deny 77::1/128\r\nroute-map deny_R2_prf_lst deny 10\r\n match ipv6 address prefix-list deny_R2_loopback\r\n!\r\nroute-map deny_R2_prf_lst permit 20\r\n!\r\nroute-map deny_R2_lo deny 10\r\n match ipv6 address deny_R2_77\r\n!\r\nroute-map deny_R2_lo permit 20\r\n!\r\n!\r\n!\r\nipv6 access-list deny_R2_77\r\n sequence 20 permit ipv6 host 77::1 any\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend"</msg>
+<msg time="2024-03-25T17:26:38.537522" level="INFO">${cfg} = Building configuration...
+
+  
+Current configuration : 4601 bytes
+!
+! Last configuration change at 17:23:32 UTC Mon Mar 25 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+s...</msg>
+<var>${cfg}</var>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:36.559647" elapsed="1.977949"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:38.539770" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt' | content="Building configuration...\r\n\r\n  \r\nCurrent configuration : 4601 bytes\r\n!\r\n! Last configuration change at 17:23:32 UTC Mon Mar 25 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R1\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 1:1:1:1::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface Loopback2\r\n no ip address\r\n ipv6 address 1:1:1:2::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface Loopback3\r\n no ip address\r\n ipv6 address 1:1:1:3::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface Loopback4\r\n no ip address\r\n ipv6 address 1:1:1:4::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:1::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:2::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.1 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.18 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\nrouter ospfv3 1\r\n router-id 1.1.1.1\r\n area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n !\r\n address-family ipv6 unicast\r\n  distribute-list route-map deny_R2_prf_lst in\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 ioam timestamp\r\n!\r\n!\r\nipv6 prefix-list deny_R2_loopback seq 5 deny 77::1/128\r\nroute-map deny_R2_prf_lst deny 10\r\n match ipv6 address prefix-list deny_R2_loopback\r\n!\r\nroute-map deny_R2_prf_lst permit 20\r\n!\r\nroute-map deny_R2_lo deny 10\r\n match ipv6 address deny_R2_77\r\n!\r\nroute-map deny_R2_lo permit 20\r\n!\r\n!\r\n!\r\nipv6 access-list deny_R2_77\r\n sequence 20 permit ipv6 host 77::1 any\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend" ]</msg>
+<msg time="2024-03-25T17:26:38.540213" level="INFO" html="true">Created file '&lt;a href="file:///home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt"&gt;/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt&lt;/a&gt;'.</msg>
+<msg time="2024-03-25T17:26:38.540328" level="TRACE">Return: None</msg>
+<arg>${backup_file_path}</arg>
+<arg>content=${cfg}</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2024-03-25T17:26:38.539125" elapsed="0.001271"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:38.542024" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:38.542155" level="TRACE">Return: 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:38.542251" level="INFO">${command} = chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt</msg>
+<var>${command}</var>
+<arg>chmod 664 ${backup_file_path}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:38.541628" elapsed="0.000691"/>
+</kw>
+<kw name="Run" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:38.543720" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:38.544344" level="INFO">Running command 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt 2&gt;&amp;1'.</msg>
+<msg time="2024-03-25T17:26:38.545991" level="TRACE">Return: ''</msg>
+<arg>${command}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<status status="PASS" start="2024-03-25T17:26:38.543327" elapsed="0.002764"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:38.547875" level="TRACE">Arguments: [ 'Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt' | console=True ]</msg>
+<msg time="2024-03-25T17:26:38.548012" level="INFO">Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R1_cfg.txt</msg>
+<msg time="2024-03-25T17:26:38.548140" level="TRACE">Return: None</msg>
+<arg>Created backup cfg file: ${backup_file_path}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:38.547358" elapsed="0.000842"/>
+</kw>
+<msg time="2024-03-25T17:26:38.548666" level="TRACE">Return: None</msg>
+<arg>${device}</arg>
+<arg>${backup_dir}</arg>
+<doc>Grabs the current configuration from each device and creates a directory
+based on the current date to store it.</doc>
+<status status="PASS" start="2024-03-25T17:26:34.053104" elapsed="4.495639"/>
+</kw>
+<var name="${device}">R1</var>
+<status status="PASS" start="2024-03-25T17:26:34.052413" elapsed="4.496641"/>
+</iter>
+<iter>
+<kw name="Take Device Config Backup and Store to Git Repo" owner="keywords">
+<msg time="2024-03-25T17:26:38.550721" level="TRACE">Arguments: [ ${device}='R2' | ${backup_dir}='/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:38.552122" level="TRACE">Arguments: [ 'Backing up current configuration on R2' | console=True ]</msg>
+<msg time="2024-03-25T17:26:38.552246" level="INFO">Backing up current configuration on R2</msg>
+<msg time="2024-03-25T17:26:38.552358" level="TRACE">Return: None</msg>
+<arg>Backing up current configuration on ${device}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:38.551632" elapsed="0.000783"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:38.553895" level="TRACE">Arguments: [ 'R2_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:38.554006" level="TRACE">Return: 'R2_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:38.554105" level="INFO">${device_backup_filename} = R2_cfg.txt</msg>
+<var>${device_backup_filename}</var>
+<arg>${device}_cfg.txt</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:38.553480" elapsed="0.000694"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:38.556009" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:38.556187" level="TRACE">Return: '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:38.556348" level="INFO">${backup_file_path} = /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt</msg>
+<var>${backup_file_path}</var>
+<arg>${backup_dir}/${device_backup_filename}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:38.555429" elapsed="0.001025"/>
+</kw>
+<kw name="Connect to device &quot;${device}&quot;" owner="CXTA.robot.DeviceCli" source_name="connect to device &quot;${device:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:38.558556" level="TRACE">Arguments: [ 'R2' ]</msg>
+<msg time="2024-03-25T17:26:38.558978" level="INFO">Connecting to R2 via vty</msg>
+<msg time="2024-03-25T17:26:38.559255" level="INFO">Connecting to device 'Device R2, type router'</msg>
+<msg time="2024-03-25T17:26:38.559446" level="INFO">kwargs: {'via': 'vty', 'alias': None, 'init_config_commands': [], 'learn_hostname': False, 'settings': {'POST_DISCONNECT_WAIT_SEC': 0, 'ESCAPE_CHAR_PROMPT_WAIT': 2, 'IGNORE_CHATTY_TERM_OUTPUT': True}, 'logfile': '/home/cisco/cxta/out/device_logs/R2-20240325T172638558.log'}</msg>
+<msg time="2024-03-25T17:26:38.564078" level="DEBUG">Connection manager added new connection via vty with alias cli</msg>
+<msg time="2024-03-25T17:26:40.263855" level="INFO">2024-03-25 17:26:38,561: %UNICON-INFO: +++ R2 logfile /home/cisco/cxta/out/device_logs/R2-20240325T172638558.log +++
+
+2024-03-25 17:26:38,561: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+protocol identification string lack carriage return
+
+
+2024-03-25 17:26:38,600: %UNICON-INFO: +++ connection to spawn: ssh -l cisco 10.53.217.19, id: 139967187751200 +++
+
+2024-03-25 17:26:38,600: %UNICON-INFO: connection to R2
+Warning: Permanently added '10.53.217.19' (RSA) to the list of known hosts.
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************(cisco@10.53.217.19) Password: 
+
+
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+R2#
+
+2024-03-25 17:26:38,898: %UNICON-INFO: +++ initializing handle +++
+
+2024-03-25 17:26:39,226: %UNICON-INFO: +++ R2 with via 'vty': executing command 'term length 0' +++
+term length 0
+R2#
+
+2024-03-25 17:26:39,657: %UNICON-INFO: +++ R2 with via 'vty': executing command 'term width 0' +++
+term width 0
+R2#
+
+2024-03-25 17:26:40,089: %UNICON-INFO: +++ R2 with via 'vty': executing command 'show version' +++
+show version
+Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), Version 15.9(3)M6, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2022 by Cisco Systems, Inc.
+Compiled Mon 08-Aug-22 15:22 by mcpre
+
+
+ROM: Bootstrap program is IOSv
+
+R2 uptime is 23 hours, 2 minutes
+System returned to ROM by reload
+System image file is "flash0:/vios-adventerprisek9-m"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco IOSv (revision 1.0) with  with 410849K/111616K bytes of memory.
+Processor board ID 9XQH7RP8N2A9ZTM8BPS47
+8 Gigabit Ethernet interfaces
+DRAM configuration is 72 bits wide with parity disabled.
+256K bytes of non-volatile configuration memory.
+2097152K bytes of ATA System CompactFlash 0 (Read/Write)
+0K bytes of ATA CompactFlash 1 (Read/Write)
+11217K bytes of ATA CompactFlash 2 (Read/Write)
+0K bytes of ATA CompactFlash 3 (Read/Write)
+
+
+
+Configuration register is 0x0
+
+R2#</msg>
+<msg time="2024-03-25T17:26:40.264462" level="TRACE">Return: &lt;Device R2 at 0x7f4c69dde200&gt;</msg>
+<doc>Connects to the device identified by name (from the testbed file) using the connection information
+specified in the connections-&gt;vty header in the testbed file.</doc>
+<status status="PASS" start="2024-03-25T17:26:38.558002" elapsed="1.706662"/>
+</kw>
+<kw name="run &quot;terminal length 0&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:40.269334" level="TRACE">Arguments: [ 'terminal length 0' ]</msg>
+<msg time="2024-03-25T17:26:40.271041" level="INFO">Executing "terminal length 0" on device "R2" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:40.271367" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:40.713098" level="INFO">2024-03-25 17:26:40,599: %UNICON-INFO: +++ R2 with via 'vty': executing command 'terminal length 0' +++
+terminal length 0
+R2#</msg>
+<msg time="2024-03-25T17:26:40.713285" level="TRACE">Return: ''</msg>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:40.268538" elapsed="0.444839"/>
+</kw>
+<kw name="run &quot;show run&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:40.715472" level="TRACE">Arguments: [ 'show run' ]</msg>
+<msg time="2024-03-25T17:26:40.716848" level="INFO">Executing "show run" on device "R2" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:40.717130" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:42.503631" level="INFO">2024-03-25 17:26:41,045: %UNICON-INFO: +++ R2 with via 'vty': executing command 'show run' +++
+show run
+Building configuration...
+
+  
+Current configuration : 4019 bytes
+!
+! Last configuration change at 17:23:38 UTC Mon Mar 25 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name cisco.com
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username cisco privilege 15 password 0 cisco
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ no ip address
+ ipv6 address 77::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:1::2/64
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:5::1/64
+ ospfv3 network point-to-point
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/2
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:3::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/3
+ ip address 3.1.100.2 255.255.0.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/4
+ ip address 10.53.217.19 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/5
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/6
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/7
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router ospfv3 1
+ router-id 2.2.2.2
+ area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1
+ !
+ address-family ipv6 unicast
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 10.0.0.0 255.0.0.0 10.53.217.1
+ip ssh version 2
+ip scp server enable
+!
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ logging synchronous
+ login local
+ transport input ssh
+!
+no scheduler allocate
+!
+end
+
+R2#</msg>
+<msg time="2024-03-25T17:26:42.503936" level="TRACE">Return: "Building configuration...\r\n\r\n  \r\nCurrent configuration : 4019 bytes\r\n!\r\n! Last configuration change at 17:23:38 UTC Mon Mar 25 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R2\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 77::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:1::2/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:5::1/64\r\n ospfv3 network point-to-point\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:3::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.2 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.19 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\nrouter ospfv3 1\r\n router-id 2.2.2.2\r\n area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n !\r\n address-family ipv6 unicast\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 ioam timestamp\r\n!\r\n!\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend"</msg>
+<msg time="2024-03-25T17:26:42.504260" level="INFO">${cfg} = Building configuration...
+
+  
+Current configuration : 4019 bytes
+!
+! Last configuration change at 17:23:38 UTC Mon Mar 25 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+s...</msg>
+<var>${cfg}</var>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:40.714998" elapsed="1.789340"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:42.506779" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt' | content="Building configuration...\r\n\r\n  \r\nCurrent configuration : 4019 bytes\r\n!\r\n! Last configuration change at 17:23:38 UTC Mon Mar 25 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R2\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 77::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:1::2/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:5::1/64\r\n ospfv3 network point-to-point\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:3::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.2 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.19 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\nrouter ospfv3 1\r\n router-id 2.2.2.2\r\n area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n !\r\n address-family ipv6 unicast\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 ioam timestamp\r\n!\r\n!\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend" ]</msg>
+<msg time="2024-03-25T17:26:42.507329" level="INFO" html="true">Created file '&lt;a href="file:///home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt"&gt;/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt&lt;/a&gt;'.</msg>
+<msg time="2024-03-25T17:26:42.507448" level="TRACE">Return: None</msg>
+<arg>${backup_file_path}</arg>
+<arg>content=${cfg}</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2024-03-25T17:26:42.506020" elapsed="0.001497"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:42.509348" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:42.509494" level="TRACE">Return: 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:42.509592" level="INFO">${command} = chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt</msg>
+<var>${command}</var>
+<arg>chmod 664 ${backup_file_path}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:42.508929" elapsed="0.000728"/>
+</kw>
+<kw name="Run" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:42.511083" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:42.511825" level="INFO">Running command 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt 2&gt;&amp;1'.</msg>
+<msg time="2024-03-25T17:26:42.513448" level="TRACE">Return: ''</msg>
+<arg>${command}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<status status="PASS" start="2024-03-25T17:26:42.510691" elapsed="0.002833"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:42.515019" level="TRACE">Arguments: [ 'Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt' | console=True ]</msg>
+<msg time="2024-03-25T17:26:42.515153" level="INFO">Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R2_cfg.txt</msg>
+<msg time="2024-03-25T17:26:42.515285" level="TRACE">Return: None</msg>
+<arg>Created backup cfg file: ${backup_file_path}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:42.514548" elapsed="0.000797"/>
+</kw>
+<msg time="2024-03-25T17:26:42.515699" level="TRACE">Return: None</msg>
+<arg>${device}</arg>
+<arg>${backup_dir}</arg>
+<doc>Grabs the current configuration from each device and creates a directory
+based on the current date to store it.</doc>
+<status status="PASS" start="2024-03-25T17:26:38.550103" elapsed="3.965663"/>
+</kw>
+<var name="${device}">R2</var>
+<status status="PASS" start="2024-03-25T17:26:38.549540" elapsed="3.966535"/>
+</iter>
+<iter>
+<kw name="Take Device Config Backup and Store to Git Repo" owner="keywords">
+<msg time="2024-03-25T17:26:42.517664" level="TRACE">Arguments: [ ${device}='R3' | ${backup_dir}='/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:42.518996" level="TRACE">Arguments: [ 'Backing up current configuration on R3' | console=True ]</msg>
+<msg time="2024-03-25T17:26:42.519111" level="INFO">Backing up current configuration on R3</msg>
+<msg time="2024-03-25T17:26:42.519240" level="TRACE">Return: None</msg>
+<arg>Backing up current configuration on ${device}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:42.518560" elapsed="0.000738"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:42.520560" level="TRACE">Arguments: [ 'R3_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:42.520666" level="TRACE">Return: 'R3_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:42.520759" level="INFO">${device_backup_filename} = R3_cfg.txt</msg>
+<var>${device_backup_filename}</var>
+<arg>${device}_cfg.txt</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:42.520214" elapsed="0.000610"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:42.522339" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:42.522486" level="TRACE">Return: '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:42.522597" level="INFO">${backup_file_path} = /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt</msg>
+<var>${backup_file_path}</var>
+<arg>${backup_dir}/${device_backup_filename}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:42.521691" elapsed="0.001000"/>
+</kw>
+<kw name="Connect to device &quot;${device}&quot;" owner="CXTA.robot.DeviceCli" source_name="connect to device &quot;${device:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:42.524238" level="TRACE">Arguments: [ 'R3' ]</msg>
+<msg time="2024-03-25T17:26:42.524670" level="INFO">Connecting to R3 via vty</msg>
+<msg time="2024-03-25T17:26:42.524910" level="INFO">Connecting to device 'Device R3, type router'</msg>
+<msg time="2024-03-25T17:26:42.525041" level="INFO">kwargs: {'via': 'vty', 'alias': None, 'init_config_commands': [], 'learn_hostname': False, 'settings': {'POST_DISCONNECT_WAIT_SEC': 0, 'ESCAPE_CHAR_PROMPT_WAIT': 2, 'IGNORE_CHATTY_TERM_OUTPUT': True}, 'logfile': '/home/cisco/cxta/out/device_logs/R3-20240325T172642524.log'}</msg>
+<msg time="2024-03-25T17:26:42.529906" level="DEBUG">Connection manager added new connection via vty with alias cli</msg>
+<msg time="2024-03-25T17:26:44.243461" level="INFO">2024-03-25 17:26:42,527: %UNICON-INFO: +++ R3 logfile /home/cisco/cxta/out/device_logs/R3-20240325T172642524.log +++
+
+2024-03-25 17:26:42,527: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+protocol identification string lack carriage return
+
+
+2024-03-25 17:26:42,563: %UNICON-INFO: +++ connection to spawn: ssh -l cisco 10.53.217.20, id: 139967187881936 +++
+
+2024-03-25 17:26:42,563: %UNICON-INFO: connection to R3
+Warning: Permanently added '10.53.217.20' (RSA) to the list of known hosts.
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************(cisco@10.53.217.20) Password: 
+
+
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+R3#
+
+2024-03-25 17:26:42,869: %UNICON-INFO: +++ initializing handle +++
+
+2024-03-25 17:26:43,198: %UNICON-INFO: +++ R3 with via 'vty': executing command 'term length 0' +++
+term length 0
+R3#
+
+2024-03-25 17:26:43,632: %UNICON-INFO: +++ R3 with via 'vty': executing command 'term width 0' +++
+term width 0
+R3#
+
+2024-03-25 17:26:44,066: %UNICON-INFO: +++ R3 with via 'vty': executing command 'show version' +++
+show version
+Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), Version 15.9(3)M6, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2022 by Cisco Systems, Inc.
+Compiled Mon 08-Aug-22 15:22 by mcpre
+
+
+ROM: Bootstrap program is IOSv
+
+R3 uptime is 23 hours, 2 minutes
+System returned to ROM by reload
+System image file is "flash0:/vios-adventerprisek9-m"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco IOSv (revision 1.0) with  with 361697K/160768K bytes of memory.
+Processor board ID 9MR16ZOC24HFV2UIHH81S
+12 Gigabit Ethernet interfaces
+DRAM configuration is 72 bits wide with parity disabled.
+256K bytes of non-volatile configuration memory.
+2097152K bytes of ATA System CompactFlash 0 (Read/Write)
+0K bytes of ATA CompactFlash 1 (Read/Write)
+11217K bytes of ATA CompactFlash 2 (Read/Write)
+0K bytes of ATA CompactFlash 3 (Read/Write)
+
+
+
+Configuration register is 0x0
+
+R3#</msg>
+<msg time="2024-03-25T17:26:44.243941" level="TRACE">Return: &lt;Device R3 at 0x7f4c69dde2c0&gt;</msg>
+<doc>Connects to the device identified by name (from the testbed file) using the connection information
+specified in the connections-&gt;vty header in the testbed file.</doc>
+<status status="PASS" start="2024-03-25T17:26:42.523797" elapsed="1.720317"/>
+</kw>
+<kw name="run &quot;terminal length 0&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:44.247731" level="TRACE">Arguments: [ 'terminal length 0' ]</msg>
+<msg time="2024-03-25T17:26:44.249136" level="INFO">Executing "terminal length 0" on device "R3" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:44.249409" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:44.694481" level="INFO">2024-03-25 17:26:44,578: %UNICON-INFO: +++ R3 with via 'vty': executing command 'terminal length 0' +++
+terminal length 0
+R3#</msg>
+<msg time="2024-03-25T17:26:44.694783" level="TRACE">Return: ''</msg>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:44.246991" elapsed="0.447959"/>
+</kw>
+<kw name="run &quot;show run&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:44.697654" level="TRACE">Arguments: [ 'show run' ]</msg>
+<msg time="2024-03-25T17:26:44.699449" level="INFO">Executing "show run" on device "R3" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:44.699886" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:46.813038" level="INFO">2024-03-25 17:26:45,028: %UNICON-INFO: +++ R3 with via 'vty': executing command 'show run' +++
+show run
+Building configuration...
+
+  
+Current configuration : 4818 bytes
+!
+! Last configuration change at 17:11:03 UTC Mon Mar 25 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R3
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name cisco.com
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username cisco privilege 15 password 0 cisco
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ no ip address
+ ipv6 address 99::1/64
+ ospfv3 1 ipv6 area 1
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:4::1/64
+ ospfv3 priority 2
+ ospfv3 1 ipv6 area 1
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:2::2/64
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/2
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:3::2/64
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/3
+ ip address 3.1.100.3 255.255.0.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/4
+ ip address 10.53.217.20 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/5
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/6
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/7
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/8
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/9
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/10
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/11
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 1000:1::1/64
+ ospfv3 network point-to-point
+ ospfv3 1 ipv6 area 1
+!
+router ospfv3 1
+ router-id 3.3.3.3
+ area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1
+ area 1 nssa
+ area 1 encryption ipsec spi 257 esp aes-cbc 256 3402ABF6FD6A4D11BCC93D68C0848C4BB515DBF2359AF8507C884125B839595C sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1
+ !
+ address-family ipv6 unicast
+  area 0 range 1:1:1::/48
+  area 1 filter-list prefix deny_R3_lo out
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 10.0.0.0 255.0.0.0 10.53.217.1
+ip ssh version 2
+ip scp server enable
+!
+ipv6 ioam timestamp
+!
+!
+ipv6 prefix-list deny_R3_lo seq 5 deny 99::1/128
+ipv6 prefix-list deny_R3_lo seq 10 permit ::/0 le 128
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ logging synchronous
+ login local
+ transport input ssh
+!
+no scheduler allocate
+!
+end
+
+R3#</msg>
+<msg time="2024-03-25T17:26:46.813304" level="TRACE">Return: "Building configuration...\r\n\r\n  \r\nCurrent configuration : 4818 bytes\r\n!\r\n! Last configuration change at 17:11:03 UTC Mon Mar 25 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R3\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 99::1/64\r\n ospfv3 1 ipv6 area 1\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:4::1/64\r\n ospfv3 priority 2\r\n ospfv3 1 ipv6 area 1\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:2::2/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:3::2/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.3 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.20 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/8\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/9\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/10\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/11\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 1000:1::1/64\r\n ospfv3 network point-to-point\r\n ospfv3 1 ipv6 area 1\r\n!\r\nrouter ospfv3 1\r\n router-id 3.3.3.3\r\n area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n area 1 nssa\r\n area 1 encryption ipsec spi 257 esp aes-cbc 256 3402ABF6FD6A4D11BCC93D68C0848C4BB515DBF2359AF8507C884125B839595C sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n !\r\n address-family ipv6 unicast\r\n  area 0 range 1:1:1::/48\r\n  area 1 filter-list prefix deny_R3_lo out\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 ioam timestamp\r\n!\r\n!\r\nipv6 prefix-list deny_R3_lo seq 5 deny 99::1/128\r\nipv6 prefix-list deny_R3_lo seq 10 permit ::/0 le 128\r\n!\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend"</msg>
+<msg time="2024-03-25T17:26:46.813620" level="INFO">${cfg} = Building configuration...
+
+  
+Current configuration : 4818 bytes
+!
+! Last configuration change at 17:11:03 UTC Mon Mar 25 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+s...</msg>
+<var>${cfg}</var>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:44.696934" elapsed="2.116759"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:46.815840" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt' | content="Building configuration...\r\n\r\n  \r\nCurrent configuration : 4818 bytes\r\n!\r\n! Last configuration change at 17:11:03 UTC Mon Mar 25 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R3\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 99::1/64\r\n ospfv3 1 ipv6 area 1\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:4::1/64\r\n ospfv3 priority 2\r\n ospfv3 1 ipv6 area 1\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:2::2/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:3::2/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.3 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.20 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/8\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/9\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/10\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/11\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 1000:1::1/64\r\n ospfv3 network point-to-point\r\n ospfv3 1 ipv6 area 1\r\n!\r\nrouter ospfv3 1\r\n router-id 3.3.3.3\r\n area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n area 1 nssa\r\n area 1 encryption ipsec spi 257 esp aes-cbc 256 3402ABF6FD6A4D11BCC93D68C0848C4BB515DBF2359AF8507C884125B839595C sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n !\r\n address-family ipv6 unicast\r\n  area 0 range 1:1:1::/48\r\n  area 1 filter-list prefix deny_R3_lo out\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 ioam timestamp\r\n!\r\n!\r\nipv6 prefix-list deny_R3_lo seq 5 deny 99::1/128\r\nipv6 prefix-list deny_R3_lo seq 10 permit ::/0 le 128\r\n!\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend" ]</msg>
+<msg time="2024-03-25T17:26:46.816298" level="INFO" html="true">Created file '&lt;a href="file:///home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt"&gt;/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt&lt;/a&gt;'.</msg>
+<msg time="2024-03-25T17:26:46.816418" level="TRACE">Return: None</msg>
+<arg>${backup_file_path}</arg>
+<arg>content=${cfg}</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2024-03-25T17:26:46.815200" elapsed="0.001285"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:46.817958" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:46.818090" level="TRACE">Return: 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:46.818183" level="INFO">${command} = chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt</msg>
+<var>${command}</var>
+<arg>chmod 664 ${backup_file_path}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:46.817578" elapsed="0.000670"/>
+</kw>
+<kw name="Run" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:46.819483" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:46.820101" level="INFO">Running command 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt 2&gt;&amp;1'.</msg>
+<msg time="2024-03-25T17:26:46.821610" level="TRACE">Return: ''</msg>
+<arg>${command}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<status status="PASS" start="2024-03-25T17:26:46.819142" elapsed="0.002536"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:46.823050" level="TRACE">Arguments: [ 'Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt' | console=True ]</msg>
+<msg time="2024-03-25T17:26:46.823178" level="INFO">Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R3_cfg.txt</msg>
+<msg time="2024-03-25T17:26:46.823295" level="TRACE">Return: None</msg>
+<arg>Created backup cfg file: ${backup_file_path}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:46.822581" elapsed="0.000802"/>
+</kw>
+<msg time="2024-03-25T17:26:46.823727" level="TRACE">Return: None</msg>
+<arg>${device}</arg>
+<arg>${backup_dir}</arg>
+<doc>Grabs the current configuration from each device and creates a directory
+based on the current date to store it.</doc>
+<status status="PASS" start="2024-03-25T17:26:42.517091" elapsed="4.306704"/>
+</kw>
+<var name="${device}">R3</var>
+<status status="PASS" start="2024-03-25T17:26:42.516503" elapsed="4.307583"/>
+</iter>
+<iter>
+<kw name="Take Device Config Backup and Store to Git Repo" owner="keywords">
+<msg time="2024-03-25T17:26:46.825749" level="TRACE">Arguments: [ ${device}='R4' | ${backup_dir}='/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:46.826882" level="TRACE">Arguments: [ 'Backing up current configuration on R4' | console=True ]</msg>
+<msg time="2024-03-25T17:26:46.826991" level="INFO">Backing up current configuration on R4</msg>
+<msg time="2024-03-25T17:26:46.827094" level="TRACE">Return: None</msg>
+<arg>Backing up current configuration on ${device}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:46.826470" elapsed="0.000680"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:46.828315" level="TRACE">Arguments: [ 'R4_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:46.828416" level="TRACE">Return: 'R4_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:46.828509" level="INFO">${device_backup_filename} = R4_cfg.txt</msg>
+<var>${device_backup_filename}</var>
+<arg>${device}_cfg.txt</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:46.827992" elapsed="0.000577"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:46.830302" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:46.830445" level="TRACE">Return: '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:46.830542" level="INFO">${backup_file_path} = /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt</msg>
+<var>${backup_file_path}</var>
+<arg>${backup_dir}/${device_backup_filename}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:46.829888" elapsed="0.000720"/>
+</kw>
+<kw name="Connect to device &quot;${device}&quot;" owner="CXTA.robot.DeviceCli" source_name="connect to device &quot;${device:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:46.832369" level="TRACE">Arguments: [ 'R4' ]</msg>
+<msg time="2024-03-25T17:26:46.832712" level="INFO">Connecting to R4 via vty</msg>
+<msg time="2024-03-25T17:26:46.832906" level="INFO">Connecting to device 'Device R4, type router'</msg>
+<msg time="2024-03-25T17:26:46.833019" level="INFO">kwargs: {'via': 'vty', 'alias': None, 'init_config_commands': [], 'learn_hostname': False, 'settings': {'POST_DISCONNECT_WAIT_SEC': 0, 'ESCAPE_CHAR_PROMPT_WAIT': 2, 'IGNORE_CHATTY_TERM_OUTPUT': True}, 'logfile': '/home/cisco/cxta/out/device_logs/R4-20240325T172646832.log'}</msg>
+<msg time="2024-03-25T17:26:46.836309" level="DEBUG">Connection manager added new connection via vty with alias cli</msg>
+<msg time="2024-03-25T17:26:48.552221" level="INFO">2024-03-25 17:26:46,834: %UNICON-INFO: +++ R4 logfile /home/cisco/cxta/out/device_logs/R4-20240325T172646832.log +++
+
+2024-03-25 17:26:46,835: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+protocol identification string lack carriage return
+
+
+2024-03-25 17:26:46,870: %UNICON-INFO: +++ connection to spawn: ssh -l cisco 10.53.217.21, id: 139967188062928 +++
+
+2024-03-25 17:26:46,870: %UNICON-INFO: connection to R4
+Warning: Permanently added '10.53.217.21' (RSA) to the list of known hosts.
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************(cisco@10.53.217.21) Password: 
+
+
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+R4#
+
+2024-03-25 17:26:47,183: %UNICON-INFO: +++ initializing handle +++
+
+2024-03-25 17:26:47,511: %UNICON-INFO: +++ R4 with via 'vty': executing command 'term length 0' +++
+term length 0
+R4#
+
+2024-03-25 17:26:47,945: %UNICON-INFO: +++ R4 with via 'vty': executing command 'term width 0' +++
+term width 0
+R4#
+
+2024-03-25 17:26:48,377: %UNICON-INFO: +++ R4 with via 'vty': executing command 'show version' +++
+show version
+Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), Version 15.9(3)M6, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2022 by Cisco Systems, Inc.
+Compiled Mon 08-Aug-22 15:22 by mcpre
+
+
+ROM: Bootstrap program is IOSv
+
+R4 uptime is 23 hours, 1 minute
+System returned to ROM by reload
+System image file is "flash0:/vios-adventerprisek9-m"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco IOSv (revision 1.0) with  with 373985K/148480K bytes of memory.
+Processor board ID 9XAURT3J5CF9JEDT2K9S5
+11 Gigabit Ethernet interfaces
+DRAM configuration is 72 bits wide with parity disabled.
+256K bytes of non-volatile configuration memory.
+2097152K bytes of ATA System CompactFlash 0 (Read/Write)
+0K bytes of ATA CompactFlash 1 (Read/Write)
+11217K bytes of ATA CompactFlash 2 (Read/Write)
+0K bytes of ATA CompactFlash 3 (Read/Write)
+
+
+
+Configuration register is 0x0
+
+R4#</msg>
+<msg time="2024-03-25T17:26:48.552674" level="TRACE">Return: &lt;Device R4 at 0x7f4c69924eb0&gt;</msg>
+<doc>Connects to the device identified by name (from the testbed file) using the connection information
+specified in the connections-&gt;vty header in the testbed file.</doc>
+<status status="PASS" start="2024-03-25T17:26:46.831993" elapsed="1.720847"/>
+</kw>
+<kw name="run &quot;terminal length 0&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:48.556256" level="TRACE">Arguments: [ 'terminal length 0' ]</msg>
+<msg time="2024-03-25T17:26:48.557685" level="INFO">Executing "terminal length 0" on device "R4" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:48.557985" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:49.002455" level="INFO">2024-03-25 17:26:48,886: %UNICON-INFO: +++ R4 with via 'vty': executing command 'terminal length 0' +++
+terminal length 0
+R4#</msg>
+<msg time="2024-03-25T17:26:49.002668" level="TRACE">Return: ''</msg>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:48.555588" elapsed="0.447177"/>
+</kw>
+<kw name="run &quot;show run&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:49.004833" level="TRACE">Arguments: [ 'show run' ]</msg>
+<msg time="2024-03-25T17:26:49.005860" level="INFO">Executing "show run" on device "R4" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:49.006107" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:51.223959" level="INFO">2024-03-25 17:26:49,333: %UNICON-INFO: +++ R4 with via 'vty': executing command 'show run' +++
+show run
+Building configuration...
+
+  
+Current configuration : 4891 bytes
+!
+! Last configuration change at 17:23:13 UTC Mon Mar 25 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R4
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name cisco.com
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username cisco privilege 15 password 0 cisco
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ no ip address
+ ipv6 address 2:1::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface Loopback2
+ no ip address
+ ipv6 address 2:2::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface Loopback3
+ no ip address
+ ipv6 address 2:3::1/64
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:4::2/64
+ ospfv3 1 ipv6 area 1
+!
+interface GigabitEthernet0/1
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:5::2/64
+ ospfv3 network point-to-point
+ ospfv3 1 ipv6 area 0
+!
+interface GigabitEthernet0/2
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:6::1/64
+ ospfv3 1 ipv6 area 2
+!
+interface GigabitEthernet0/3
+ ip address 3.1.100.4 255.255.0.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/4
+ ip address 10.53.217.21 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/5
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/6
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/7
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/8
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/9
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/10
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 1000:2::1/64
+ ospfv3 1 ipv6 area 2
+!
+router ospfv3 1
+ router-id 4.4.4.4
+ area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1
+ area 1 nssa
+ area 1 encryption ipsec spi 257 esp aes-cbc 256 3402ABF6FD6A4D11BCC93D68C0848C4BB515DBF2359AF8507C884125B839595C sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1
+ area 2 stub no-summary
+ !
+ address-family ipv6 unicast
+  area 0 range 1:1:1::/48
+  area 1 filter-list prefix deny_R3_lo out
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 10.0.0.0 255.0.0.0 10.53.217.1
+ip ssh version 2
+ip scp server enable
+!
+ipv6 ioam timestamp
+!
+!
+ipv6 prefix-list deny_R3_lo seq 5 deny 99::1/128
+ipv6 prefix-list deny_R3_lo seq 10 permit ::/0 le 128
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ logging synchronous
+ login local
+ transport input ssh
+!
+no scheduler allocate
+!
+end
+
+R4#</msg>
+<msg time="2024-03-25T17:26:51.224250" level="TRACE">Return: "Building configuration...\r\n\r\n  \r\nCurrent configuration : 4891 bytes\r\n!\r\n! Last configuration change at 17:23:13 UTC Mon Mar 25 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R4\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 2:1::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface Loopback2\r\n no ip address\r\n ipv6 address 2:2::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface Loopback3\r\n no ip address\r\n ipv6 address 2:3::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:4::2/64\r\n ospfv3 1 ipv6 area 1\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:5::2/64\r\n ospfv3 network point-to-point\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:6::1/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.4 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.21 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/8\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/9\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/10\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 1000:2::1/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\nrouter ospfv3 1\r\n router-id 4.4.4.4\r\n area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n area 1 nssa\r\n area 1 encryption ipsec spi 257 esp aes-cbc 256 3402ABF6FD6A4D11BCC93D68C0848C4BB515DBF2359AF8507C884125B839595C sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n area 2 stub no-summary\r\n !\r\n address-family ipv6 unicast\r\n  area 0 range 1:1:1::/48\r\n  area 1 filter-list prefix deny_R3_lo out\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 ioam timestamp\r\n!\r\n!\r\nipv6 prefix-list deny_R3_lo seq 5 deny 99::1/128\r\nipv6 prefix-list deny_R3_lo seq 10 permit ::/0 le 128\r\n!\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend"</msg>
+<msg time="2024-03-25T17:26:51.224579" level="INFO">${cfg} = Building configuration...
+
+  
+Current configuration : 4891 bytes
+!
+! Last configuration change at 17:23:13 UTC Mon Mar 25 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+s...</msg>
+<var>${cfg}</var>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:49.004355" elapsed="2.220351"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:51.227236" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt' | content="Building configuration...\r\n\r\n  \r\nCurrent configuration : 4891 bytes\r\n!\r\n! Last configuration change at 17:23:13 UTC Mon Mar 25 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R4\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 2:1::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface Loopback2\r\n no ip address\r\n ipv6 address 2:2::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface Loopback3\r\n no ip address\r\n ipv6 address 2:3::1/64\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:4::2/64\r\n ospfv3 1 ipv6 area 1\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:5::2/64\r\n ospfv3 network point-to-point\r\n ospfv3 1 ipv6 area 0\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:6::1/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.4 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.21 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/8\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/9\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/10\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 1000:2::1/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\nrouter ospfv3 1\r\n router-id 4.4.4.4\r\n area 0 authentication ipsec spi 256 sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n area 1 nssa\r\n area 1 encryption ipsec spi 257 esp aes-cbc 256 3402ABF6FD6A4D11BCC93D68C0848C4BB515DBF2359AF8507C884125B839595C sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n area 2 stub no-summary\r\n !\r\n address-family ipv6 unicast\r\n  area 0 range 1:1:1::/48\r\n  area 1 filter-list prefix deny_R3_lo out\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 ioam timestamp\r\n!\r\n!\r\nipv6 prefix-list deny_R3_lo seq 5 deny 99::1/128\r\nipv6 prefix-list deny_R3_lo seq 10 permit ::/0 le 128\r\n!\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend" ]</msg>
+<msg time="2024-03-25T17:26:51.227735" level="INFO" html="true">Created file '&lt;a href="file:///home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt"&gt;/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt&lt;/a&gt;'.</msg>
+<msg time="2024-03-25T17:26:51.227851" level="TRACE">Return: None</msg>
+<arg>${backup_file_path}</arg>
+<arg>content=${cfg}</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2024-03-25T17:26:51.226502" elapsed="0.001419"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:51.229578" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:51.229741" level="TRACE">Return: 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:51.229841" level="INFO">${command} = chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt</msg>
+<var>${command}</var>
+<arg>chmod 664 ${backup_file_path}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:51.229170" elapsed="0.000742"/>
+</kw>
+<kw name="Run" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:51.231367" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:51.232046" level="INFO">Running command 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt 2&gt;&amp;1'.</msg>
+<msg time="2024-03-25T17:26:51.233776" level="TRACE">Return: ''</msg>
+<arg>${command}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<status status="PASS" start="2024-03-25T17:26:51.230975" elapsed="0.002876"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:51.235414" level="TRACE">Arguments: [ 'Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt' | console=True ]</msg>
+<msg time="2024-03-25T17:26:51.235550" level="INFO">Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R4_cfg.txt</msg>
+<msg time="2024-03-25T17:26:51.235696" level="TRACE">Return: None</msg>
+<arg>Created backup cfg file: ${backup_file_path}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:51.234910" elapsed="0.000939"/>
+</kw>
+<msg time="2024-03-25T17:26:51.236271" level="TRACE">Return: None</msg>
+<arg>${device}</arg>
+<arg>${backup_dir}</arg>
+<doc>Grabs the current configuration from each device and creates a directory
+based on the current date to store it.</doc>
+<status status="PASS" start="2024-03-25T17:26:46.825183" elapsed="4.411163"/>
+</kw>
+<var name="${device}">R4</var>
+<status status="PASS" start="2024-03-25T17:26:46.824500" elapsed="4.412145"/>
+</iter>
+<iter>
+<kw name="Take Device Config Backup and Store to Git Repo" owner="keywords">
+<msg time="2024-03-25T17:26:51.238244" level="TRACE">Arguments: [ ${device}='R5' | ${backup_dir}='/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:51.239569" level="TRACE">Arguments: [ 'Backing up current configuration on R5' | console=True ]</msg>
+<msg time="2024-03-25T17:26:51.239716" level="INFO">Backing up current configuration on R5</msg>
+<msg time="2024-03-25T17:26:51.239834" level="TRACE">Return: None</msg>
+<arg>Backing up current configuration on ${device}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:51.239118" elapsed="0.000852"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:51.241364" level="TRACE">Arguments: [ 'R5_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:51.241482" level="TRACE">Return: 'R5_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:51.241577" level="INFO">${device_backup_filename} = R5_cfg.txt</msg>
+<var>${device_backup_filename}</var>
+<arg>${device}_cfg.txt</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:51.241001" elapsed="0.000648"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:51.243034" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:51.243150" level="TRACE">Return: '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:51.243243" level="INFO">${backup_file_path} = /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt</msg>
+<var>${backup_file_path}</var>
+<arg>${backup_dir}/${device_backup_filename}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:51.242655" elapsed="0.000664"/>
+</kw>
+<kw name="Connect to device &quot;${device}&quot;" owner="CXTA.robot.DeviceCli" source_name="connect to device &quot;${device:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:51.245091" level="TRACE">Arguments: [ 'R5' ]</msg>
+<msg time="2024-03-25T17:26:51.245586" level="INFO">Connecting to R5 via vty</msg>
+<msg time="2024-03-25T17:26:51.245893" level="INFO">Connecting to device 'Device R5, type router'</msg>
+<msg time="2024-03-25T17:26:51.246085" level="INFO">kwargs: {'via': 'vty', 'alias': None, 'init_config_commands': [], 'learn_hostname': False, 'settings': {'POST_DISCONNECT_WAIT_SEC': 0, 'ESCAPE_CHAR_PROMPT_WAIT': 2, 'IGNORE_CHATTY_TERM_OUTPUT': True}, 'logfile': '/home/cisco/cxta/out/device_logs/R5-20240325T172651245.log'}</msg>
+<msg time="2024-03-25T17:26:51.249870" level="DEBUG">Connection manager added new connection via vty with alias cli</msg>
+<msg time="2024-03-25T17:26:52.949582" level="INFO">2024-03-25 17:26:51,248: %UNICON-INFO: +++ R5 logfile /home/cisco/cxta/out/device_logs/R5-20240325T172651245.log +++
+
+2024-03-25 17:26:51,248: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+protocol identification string lack carriage return
+
+
+2024-03-25 17:26:51,281: %UNICON-INFO: +++ connection to spawn: ssh -l cisco 10.53.217.22, id: 139967188208992 +++
+
+2024-03-25 17:26:51,282: %UNICON-INFO: connection to R5
+Warning: Permanently added '10.53.217.22' (RSA) to the list of known hosts.
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************(cisco@10.53.217.22) Password: 
+
+
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+R5#
+
+2024-03-25 17:26:51,583: %UNICON-INFO: +++ initializing handle +++
+
+2024-03-25 17:26:51,911: %UNICON-INFO: +++ R5 with via 'vty': executing command 'term length 0' +++
+term length 0
+R5#
+
+2024-03-25 17:26:52,344: %UNICON-INFO: +++ R5 with via 'vty': executing command 'term width 0' +++
+term width 0
+R5#
+
+2024-03-25 17:26:52,776: %UNICON-INFO: +++ R5 with via 'vty': executing command 'show version' +++
+show version
+Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), Version 15.9(3)M6, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2022 by Cisco Systems, Inc.
+Compiled Mon 08-Aug-22 15:22 by mcpre
+
+
+ROM: Bootstrap program is IOSv
+
+R5 uptime is 23 hours, 2 minutes
+System returned to ROM by reload
+System image file is "flash0:/vios-adventerprisek9-m"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco IOSv (revision 1.0) with  with 361697K/160768K bytes of memory.
+Processor board ID 9JD4GRH6BC6LLTX37A0LT
+12 Gigabit Ethernet interfaces
+DRAM configuration is 72 bits wide with parity disabled.
+256K bytes of non-volatile configuration memory.
+2097152K bytes of ATA System CompactFlash 0 (Read/Write)
+0K bytes of ATA CompactFlash 1 (Read/Write)
+11217K bytes of ATA CompactFlash 2 (Read/Write)
+0K bytes of ATA CompactFlash 3 (Read/Write)
+
+
+
+Configuration register is 0x0
+
+R5#</msg>
+<msg time="2024-03-25T17:26:52.950102" level="TRACE">Return: &lt;Device R5 at 0x7f4c69925090&gt;</msg>
+<doc>Connects to the device identified by name (from the testbed file) using the connection information
+specified in the connections-&gt;vty header in the testbed file.</doc>
+<status status="PASS" start="2024-03-25T17:26:51.244562" elapsed="1.705747"/>
+</kw>
+<kw name="run &quot;terminal length 0&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:52.954071" level="TRACE">Arguments: [ 'terminal length 0' ]</msg>
+<msg time="2024-03-25T17:26:52.955554" level="INFO">Executing "terminal length 0" on device "R5" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:52.955883" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:53.399216" level="INFO">2024-03-25 17:26:53,283: %UNICON-INFO: +++ R5 with via 'vty': executing command 'terminal length 0' +++
+terminal length 0
+R5#</msg>
+<msg time="2024-03-25T17:26:53.399423" level="TRACE">Return: ''</msg>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:52.953258" elapsed="0.446259"/>
+</kw>
+<kw name="run &quot;show run&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:53.401677" level="TRACE">Arguments: [ 'show run' ]</msg>
+<msg time="2024-03-25T17:26:53.402748" level="INFO">Executing "show run" on device "R5" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:53.403008" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:55.465107" level="INFO">2024-03-25 17:26:53,731: %UNICON-INFO: +++ R5 with via 'vty': executing command 'show run' +++
+show run
+Building configuration...
+
+  
+Current configuration : 4580 bytes
+!
+! Last configuration change at 17:24:00 UTC Mon Mar 25 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R5
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name cisco.com
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username cisco privilege 15 password 0 cisco
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ no ip address
+ ipv6 address 199::1/64
+ ospfv3 1 ipv6 area 1
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:7::1/64
+ ospfv3 1 ipv6 area 2
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/3
+ ip address 3.1.100.5 255.255.0.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/4
+ ip address 10.53.217.22 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/5
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/6
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/7
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/8
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/9
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/10
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 1000:2::2/64
+ ospfv3 1 ipv6 area 2
+!
+interface GigabitEthernet0/11
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 1000:1::2/64
+ ospfv3 network point-to-point
+ ospfv3 1 ipv6 area 1
+!
+router ospfv3 1
+ router-id 5.5.5.5
+ area 1 nssa
+ area 1 encryption ipsec spi 257 esp aes-cbc 256 3402ABF6FD6A4D11BCC93D68C0848C4BB515DBF2359AF8507C884125B839595C sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1
+ area 2 stub no-summary
+ !
+ address-family ipv6 unicast
+  redistribute static nssa-only
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 10.0.0.0 255.0.0.0 10.53.217.1
+ip ssh version 2
+ip scp server enable
+!
+ipv6 route 172:31:31::/64 Null0
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ logging synchronous
+ login local
+ transport input ssh
+!
+no scheduler allocate
+!
+end
+
+R5#</msg>
+<msg time="2024-03-25T17:26:55.465524" level="TRACE">Return: "Building configuration...\r\n\r\n  \r\nCurrent configuration : 4580 bytes\r\n!\r\n! Last configuration change at 17:24:00 UTC Mon Mar 25 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R5\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 199::1/64\r\n ospfv3 1 ipv6 area 1\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:7::1/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.5 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.22 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/8\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/9\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/10\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 1000:2::2/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/11\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 1000:1::2/64\r\n ospfv3 network point-to-point\r\n ospfv3 1 ipv6 area 1\r\n!\r\nrouter ospfv3 1\r\n router-id 5.5.5.5\r\n area 1 nssa\r\n area 1 encryption ipsec spi 257 esp aes-cbc 256 3402ABF6FD6A4D11BCC93D68C0848C4BB515DBF2359AF8507C884125B839595C sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n area 2 stub no-summary\r\n !\r\n address-family ipv6 unicast\r\n  redistribute static nssa-only\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 route 172:31:31::/64 Null0\r\nipv6 ioam timestamp\r\n!\r\n!\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend"</msg>
+<msg time="2024-03-25T17:26:55.466045" level="INFO">${cfg} = Building configuration...
+
+  
+Current configuration : 4580 bytes
+!
+! Last configuration change at 17:24:00 UTC Mon Mar 25 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+s...</msg>
+<var>${cfg}</var>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:53.401176" elapsed="2.065024"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:55.469593" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt' | content="Building configuration...\r\n\r\n  \r\nCurrent configuration : 4580 bytes\r\n!\r\n! Last configuration change at 17:24:00 UTC Mon Mar 25 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R5\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 199::1/64\r\n ospfv3 1 ipv6 area 1\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:7::1/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.5 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.22 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/8\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/9\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/10\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 1000:2::2/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/11\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 1000:1::2/64\r\n ospfv3 network point-to-point\r\n ospfv3 1 ipv6 area 1\r\n!\r\nrouter ospfv3 1\r\n router-id 5.5.5.5\r\n area 1 nssa\r\n area 1 encryption ipsec spi 257 esp aes-cbc 256 3402ABF6FD6A4D11BCC93D68C0848C4BB515DBF2359AF8507C884125B839595C sha1 A5DEC4DD155A695A8B983AACEAA5A97C6AECB6D1\r\n area 2 stub no-summary\r\n !\r\n address-family ipv6 unicast\r\n  redistribute static nssa-only\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 route 172:31:31::/64 Null0\r\nipv6 ioam timestamp\r\n!\r\n!\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend" ]</msg>
+<msg time="2024-03-25T17:26:55.470276" level="INFO" html="true">Created file '&lt;a href="file:///home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt"&gt;/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt&lt;/a&gt;'.</msg>
+<msg time="2024-03-25T17:26:55.470484" level="TRACE">Return: None</msg>
+<arg>${backup_file_path}</arg>
+<arg>content=${cfg}</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2024-03-25T17:26:55.468617" elapsed="0.001992"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:55.473268" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:55.473490" level="TRACE">Return: 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:55.473661" level="INFO">${command} = chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt</msg>
+<var>${command}</var>
+<arg>chmod 664 ${backup_file_path}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:55.472644" elapsed="0.001132"/>
+</kw>
+<kw name="Run" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:55.476219" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:55.477089" level="INFO">Running command 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt 2&gt;&amp;1'.</msg>
+<msg time="2024-03-25T17:26:55.478725" level="TRACE">Return: ''</msg>
+<arg>${command}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<status status="PASS" start="2024-03-25T17:26:55.475654" elapsed="0.003203"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:55.481415" level="TRACE">Arguments: [ 'Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt' | console=True ]</msg>
+<msg time="2024-03-25T17:26:55.481629" level="INFO">Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R5_cfg.txt</msg>
+<msg time="2024-03-25T17:26:55.481829" level="TRACE">Return: None</msg>
+<arg>Created backup cfg file: ${backup_file_path}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:55.480701" elapsed="0.001237"/>
+</kw>
+<msg time="2024-03-25T17:26:55.482489" level="TRACE">Return: None</msg>
+<arg>${device}</arg>
+<arg>${backup_dir}</arg>
+<doc>Grabs the current configuration from each device and creates a directory
+based on the current date to store it.</doc>
+<status status="PASS" start="2024-03-25T17:26:51.237669" elapsed="4.244987"/>
+</kw>
+<var name="${device}">R5</var>
+<status status="PASS" start="2024-03-25T17:26:51.237051" elapsed="4.246087"/>
+</iter>
+<iter>
+<kw name="Take Device Config Backup and Store to Git Repo" owner="keywords">
+<msg time="2024-03-25T17:26:55.485624" level="TRACE">Arguments: [ ${device}='R6' | ${backup_dir}='/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete' ]</msg>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:55.488498" level="TRACE">Arguments: [ 'Backing up current configuration on R6' | console=True ]</msg>
+<msg time="2024-03-25T17:26:55.488698" level="INFO">Backing up current configuration on R6</msg>
+<msg time="2024-03-25T17:26:55.488891" level="TRACE">Return: None</msg>
+<arg>Backing up current configuration on ${device}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:55.487220" elapsed="0.001777"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:55.491675" level="TRACE">Arguments: [ 'R6_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:55.491815" level="TRACE">Return: 'R6_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:55.491923" level="INFO">${device_backup_filename} = R6_cfg.txt</msg>
+<var>${device_backup_filename}</var>
+<arg>${device}_cfg.txt</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:55.491180" elapsed="0.000818"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:55.493474" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:55.493612" level="TRACE">Return: '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:55.493751" level="INFO">${backup_file_path} = /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt</msg>
+<var>${backup_file_path}</var>
+<arg>${backup_dir}/${device_backup_filename}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:55.493080" elapsed="0.000783"/>
+</kw>
+<kw name="Connect to device &quot;${device}&quot;" owner="CXTA.robot.DeviceCli" source_name="connect to device &quot;${device:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:55.495820" level="TRACE">Arguments: [ 'R6' ]</msg>
+<msg time="2024-03-25T17:26:55.496173" level="INFO">Connecting to R6 via vty</msg>
+<msg time="2024-03-25T17:26:55.496583" level="INFO">Connecting to device 'Device R6, type router'</msg>
+<msg time="2024-03-25T17:26:55.496804" level="INFO">kwargs: {'via': 'vty', 'alias': None, 'init_config_commands': [], 'learn_hostname': False, 'settings': {'POST_DISCONNECT_WAIT_SEC': 0, 'ESCAPE_CHAR_PROMPT_WAIT': 2, 'IGNORE_CHATTY_TERM_OUTPUT': True}, 'logfile': '/home/cisco/cxta/out/device_logs/R6-20240325T172655495.log'}</msg>
+<msg time="2024-03-25T17:26:55.502365" level="DEBUG">Connection manager added new connection via vty with alias cli</msg>
+<msg time="2024-03-25T17:26:57.192072" level="INFO">2024-03-25 17:26:55,499: %UNICON-INFO: +++ R6 logfile /home/cisco/cxta/out/device_logs/R6-20240325T172655495.log +++
+
+2024-03-25 17:26:55,499: %UNICON-INFO: +++ Unicon plugin ios (unicon.plugins.ios) +++
+protocol identification string lack carriage return
+
+
+2024-03-25 17:26:55,537: %UNICON-INFO: +++ connection to spawn: ssh -l cisco 10.53.217.23, id: 139967188328816 +++
+
+2024-03-25 17:26:55,538: %UNICON-INFO: connection to R6
+Warning: Permanently added '10.53.217.23' (RSA) to the list of known hosts.
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************(cisco@10.53.217.23) Password: 
+
+
+
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************
+R6#
+
+2024-03-25 17:26:55,836: %UNICON-INFO: +++ initializing handle +++
+
+2024-03-25 17:26:56,165: %UNICON-INFO: +++ R6 with via 'vty': executing command 'term length 0' +++
+term length 0
+R6#
+
+2024-03-25 17:26:56,591: %UNICON-INFO: +++ R6 with via 'vty': executing command 'term width 0' +++
+term width 0
+R6#
+
+2024-03-25 17:26:57,018: %UNICON-INFO: +++ R6 with via 'vty': executing command 'show version' +++
+show version
+Cisco IOS Software, IOSv Software (VIOS-ADVENTERPRISEK9-M), Version 15.9(3)M6, RELEASE SOFTWARE (fc1)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2022 by Cisco Systems, Inc.
+Compiled Mon 08-Aug-22 15:22 by mcpre
+
+
+ROM: Bootstrap program is IOSv
+
+R6 uptime is 23 hours, 2 minutes
+System returned to ROM by reload
+System image file is "flash0:/vios-adventerprisek9-m"
+Last reload reason: Unknown reason
+
+
+
+This product contains cryptographic features and is subject to United
+States and local country laws governing import, export, transfer and
+use. Delivery of Cisco cryptographic products does not imply
+third-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+
+Cisco IOSv (revision 1.0) with  with 410849K/111616K bytes of memory.
+Processor board ID 9NTNJMJ8I3SARY33275JI
+8 Gigabit Ethernet interfaces
+DRAM configuration is 72 bits wide with parity disabled.
+256K bytes of non-volatile configuration memory.
+2097152K bytes of ATA System CompactFlash 0 (Read/Write)
+0K bytes of ATA CompactFlash 1 (Read/Write)
+11217K bytes of ATA CompactFlash 2 (Read/Write)
+0K bytes of ATA CompactFlash 3 (Read/Write)
+
+
+
+Configuration register is 0x0
+
+R6#</msg>
+<msg time="2024-03-25T17:26:57.192632" level="TRACE">Return: &lt;Device R6 at 0x7f4c699250c0&gt;</msg>
+<doc>Connects to the device identified by name (from the testbed file) using the connection information
+specified in the connections-&gt;vty header in the testbed file.</doc>
+<status status="PASS" start="2024-03-25T17:26:55.495459" elapsed="1.697407"/>
+</kw>
+<kw name="run &quot;terminal length 0&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:57.196959" level="TRACE">Arguments: [ 'terminal length 0' ]</msg>
+<msg time="2024-03-25T17:26:57.198417" level="INFO">Executing "terminal length 0" on device "R6" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:57.198781" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:57.636753" level="INFO">2024-03-25 17:26:57,526: %UNICON-INFO: +++ R6 with via 'vty': executing command 'terminal length 0' +++
+terminal length 0
+R6#</msg>
+<msg time="2024-03-25T17:26:57.637027" level="TRACE">Return: ''</msg>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:57.196207" elapsed="0.440921"/>
+</kw>
+<kw name="run &quot;show run&quot;" owner="CXTA.robot.DeviceCli" source_name="run &quot;${command:[^&quot;]+}&quot;">
+<msg time="2024-03-25T17:26:57.639317" level="TRACE">Arguments: [ 'show run' ]</msg>
+<msg time="2024-03-25T17:26:57.640463" level="INFO">Executing "show run" on device "R6" with connection "cli"...
+</msg>
+<msg time="2024-03-25T17:26:57.640731" level="DEBUG">Using default unicon error checking</msg>
+<msg time="2024-03-25T17:26:59.390791" level="INFO">2024-03-25 17:26:57,967: %UNICON-INFO: +++ R6 with via 'vty': executing command 'show run' +++
+show run
+Building configuration...
+
+  
+Current configuration : 3873 bytes
+!
+! Last configuration change at 18:32:09 UTC Sun Mar 24 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname R6
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+!
+!
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain name cisco.com
+ip cef
+ipv6 unicast-routing
+ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+username cisco privilege 15 password 0 cisco
+!
+redundancy
+!
+!
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback1
+ no ip address
+ ipv6 address 88::1/64
+ ospfv3 1 ipv6 area 2
+!
+interface GigabitEthernet0/0
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:7::2/64
+ ospfv3 1 ipv6 area 2
+!
+interface GigabitEthernet0/1
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/2
+ no ip address
+ duplex auto
+ speed auto
+ media-type rj45
+ ipv6 address 2001:DB8:0:6::2/64
+ ospfv3 1 ipv6 area 2
+!
+interface GigabitEthernet0/3
+ ip address 3.1.100.6 255.255.0.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/4
+ ip address 10.53.217.23 255.255.255.0
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/5
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/6
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+interface GigabitEthernet0/7
+ no ip address
+ shutdown
+ duplex auto
+ speed auto
+ media-type rj45
+!
+router ospfv3 1
+ router-id 6.6.6.6
+ area 2 stub
+ !
+ address-family ipv6 unicast
+ exit-address-family
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip route 10.0.0.0 255.0.0.0 10.53.217.1
+ip ssh version 2
+ip scp server enable
+!
+ipv6 ioam timestamp
+!
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+banner login ^C
+**************************************************************************
+* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
+* education. IOSv is provided as-is and is not supported by Cisco's      *
+* Technical Advisory Center. Any use or disclosure, in whole or in part, *
+* of the IOSv Software or Documentation to any third party for any       *
+* purposes is expressly prohibited except as otherwise authorized by     *
+* Cisco in writing.                                                      *
+**************************************************************************^C
+!
+line con 0
+ exec-timeout 0 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ exec-timeout 0 0
+ logging synchronous
+ login local
+ transport input ssh
+!
+no scheduler allocate
+!
+end
+
+R6#</msg>
+<msg time="2024-03-25T17:26:59.391052" level="TRACE">Return: "Building configuration...\r\n\r\n  \r\nCurrent configuration : 3873 bytes\r\n!\r\n! Last configuration change at 18:32:09 UTC Sun Mar 24 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R6\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 88::1/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:7::2/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:6::2/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.6 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.23 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\nrouter ospfv3 1\r\n router-id 6.6.6.6\r\n area 2 stub\r\n !\r\n address-family ipv6 unicast\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 ioam timestamp\r\n!\r\n!\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend"</msg>
+<msg time="2024-03-25T17:26:59.391517" level="INFO">${cfg} = Building configuration...
+
+  
+Current configuration : 3873 bytes
+!
+! Last configuration change at 18:32:09 UTC Sun Mar 24 2024 by cisco
+!
+version 15.9
+service timestamps debug datetime msec
+s...</msg>
+<var>${cfg}</var>
+<doc>Executes a raw CLI command on the current device set via the ``select device ...`` keywords</doc>
+<status status="PASS" start="2024-03-25T17:26:57.638733" elapsed="1.752876"/>
+</kw>
+<kw name="Create File" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:59.393752" level="TRACE">Arguments: [ '/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt' | content="Building configuration...\r\n\r\n  \r\nCurrent configuration : 3873 bytes\r\n!\r\n! Last configuration change at 18:32:09 UTC Sun Mar 24 2024 by cisco\r\n!\r\nversion 15.9\r\nservice timestamps debug datetime msec\r\nservice timestamps log datetime msec\r\nno service password-encryption\r\n!\r\nhostname R6\r\n!\r\nboot-start-marker\r\nboot-end-marker\r\n!\r\n!\r\n!\r\nno aaa new-model\r\n!\r\n!\r\n!\r\nmmi polling-interval 60\r\nno mmi auto-configure\r\nno mmi pvc\r\nmmi snmp-timeout 180\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\nip domain name cisco.com\r\nip cef\r\nipv6 unicast-routing\r\nipv6 cef\r\n!\r\nmultilink bundle-name authenticated\r\n!\r\n!\r\n!\r\n!\r\nusername cisco privilege 15 password 0 cisco\r\n!\r\nredundancy\r\n!\r\n!\r\n! \r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\n!\r\ninterface Loopback1\r\n no ip address\r\n ipv6 address 88::1/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/0\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:7::2/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/1\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/2\r\n no ip address\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n ipv6 address 2001:DB8:0:6::2/64\r\n ospfv3 1 ipv6 area 2\r\n!\r\ninterface GigabitEthernet0/3\r\n ip address 3.1.100.6 255.255.0.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/4\r\n ip address 10.53.217.23 255.255.255.0\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/5\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/6\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\ninterface GigabitEthernet0/7\r\n no ip address\r\n shutdown\r\n duplex auto\r\n speed auto\r\n media-type rj45\r\n!\r\nrouter ospfv3 1\r\n router-id 6.6.6.6\r\n area 2 stub\r\n !\r\n address-family ipv6 unicast\r\n exit-address-family\r\n!\r\nip forward-protocol nd\r\n!\r\n!\r\nno ip http server\r\nno ip http secure-server\r\nip route 10.0.0.0 255.0.0.0 10.53.217.1\r\nip ssh version 2\r\nip scp server enable\r\n!\r\nipv6 ioam timestamp\r\n!\r\n!\r\n!\r\ncontrol-plane\r\n!\r\nbanner exec ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner incoming ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\nbanner login ^C\r\n**************************************************************************\r\n* IOSv is strictly limited to use for evaluation, demonstration and IOS  *\r\n* education. IOSv is provided as-is and is not supported by Cisco's      *\r\n* Technical Advisory Center. Any use or disclosure, in whole or in part, *\r\n* of the IOSv Software or Documentation to any third party for any       *\r\n* purposes is expressly prohibited except as otherwise authorized by     *\r\n* Cisco in writing.                                                      *\r\n**************************************************************************^C\r\n!\r\nline con 0\r\n exec-timeout 0 0\r\n logging synchronous\r\nline aux 0\r\nline vty 0 4\r\n exec-timeout 0 0\r\n logging synchronous\r\n login local\r\n transport input ssh\r\n!\r\nno scheduler allocate\r\n!\r\nend" ]</msg>
+<msg time="2024-03-25T17:26:59.394223" level="INFO" html="true">Created file '&lt;a href="file:///home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt"&gt;/home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt&lt;/a&gt;'.</msg>
+<msg time="2024-03-25T17:26:59.394347" level="TRACE">Return: None</msg>
+<arg>${backup_file_path}</arg>
+<arg>content=${cfg}</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<status status="PASS" start="2024-03-25T17:26:59.393082" elapsed="0.001363"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2024-03-25T17:26:59.396047" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:59.396182" level="TRACE">Return: 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt'</msg>
+<msg time="2024-03-25T17:26:59.396281" level="INFO">${command} = chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt</msg>
+<var>${command}</var>
+<arg>chmod 664 ${backup_file_path}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2024-03-25T17:26:59.395634" elapsed="0.000716"/>
+</kw>
+<kw name="Run" owner="OperatingSystem">
+<msg time="2024-03-25T17:26:59.398012" level="TRACE">Arguments: [ 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt' ]</msg>
+<msg time="2024-03-25T17:26:59.398692" level="INFO">Running command 'chmod 664 /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt 2&gt;&amp;1'.</msg>
+<msg time="2024-03-25T17:26:59.400289" level="TRACE">Return: ''</msg>
+<arg>${command}</arg>
+<doc>Runs the given command in the system and returns the output.</doc>
+<status status="PASS" start="2024-03-25T17:26:59.397623" elapsed="0.002824"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-03-25T17:26:59.401975" level="TRACE">Arguments: [ 'Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt' | console=True ]</msg>
+<msg time="2024-03-25T17:26:59.402121" level="INFO">Created backup cfg file: /home/cisco/cxta/labs/backup_configs/lab_backup_25-03-2024_ospfv6_almost_complete/R6_cfg.txt</msg>
+<msg time="2024-03-25T17:26:59.402244" level="TRACE">Return: None</msg>
+<arg>Created backup cfg file: ${backup_file_path}</arg>
+<arg>console=True</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-03-25T17:26:59.401497" elapsed="0.000808"/>
+</kw>
+<msg time="2024-03-25T17:26:59.402724" level="TRACE">Return: None</msg>
+<arg>${device}</arg>
+<arg>${backup_dir}</arg>
+<doc>Grabs the current configuration from each device and creates a directory
+based on the current date to store it.</doc>
+<status status="PASS" start="2024-03-25T17:26:55.484741" elapsed="3.918055"/>
+</kw>
+<var name="${device}">R6</var>
+<status status="PASS" start="2024-03-25T17:26:55.483797" elapsed="3.919308"/>
+</iter>
+<var>${device}</var>
+<value>@{lab_devices}</value>
+<status status="PASS" start="2024-03-25T17:26:34.051871" elapsed="25.351522"/>
+</for>
+<tag>lab-backup</tag>
+<status status="PASS" start="2024-03-25T17:26:34.032252" elapsed="25.371725"/>
+</test>
+<doc>Apply baseline config to target lab.</doc>
+<meta name="CXTA Version">24.1</meta>
+<status status="PASS" start="2024-03-25T17:26:29.227858" elapsed="30.177224"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">lab-backup</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Lab Config Backup">Lab Config Backup</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

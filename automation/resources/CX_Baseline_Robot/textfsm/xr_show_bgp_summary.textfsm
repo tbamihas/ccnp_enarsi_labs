@@ -1,0 +1,102 @@
+Value Filldown router_id (\S+)
+Value Filldown local_as (\S+)
+Value Filldown bgp_state (\S+)
+Value Required neighbor ([\d\.:a-fA-F]+)
+Value speaker (\d+)
+Value remote_as (\d+)
+Value messages_received (\d+)
+Value messages_sent (\d+)
+Value table_version (\d+)
+Value in_queue (\S+)
+Value out_queue (\S+)
+Value up_down_time ([\w\d\:]+)
+Value state_prefix ([\w\d]+(\s\(\w+\))?)
+
+Start
+  ^\s*BGP router identifier ${router_id}, local AS number ${local_as}
+  ^\s*BGP table state: ${bgp_state}
+  ^\s*${neighbor}\s+${speaker}\s+${remote_as}\s+${messages_received}\s+${messages_sent}\s+${table_version}\s+${in_queue}\s+${out_queue}\s+${up_down_time}\s+${state_prefix} -> Record
+  ^\s*${neighbor} -> v6_neighbor
+
+v6_neighbor
+  ^\s+${speaker}\s+${remote_as}\s+${messages_received}\s+${messages_sent}\s+${table_version}\s+${in_queue}\s+${out_queue}\s+${up_down_time}\s+${state_prefix} -> Record Start
+  ^. -> Start
+
+EOF
+
+
+
+
+
+################################################################################
+#
+#     example cli output
+#
+# show bgp vpnv4 unicast summary
+# Mon May 31 15:21:42.394 UTC
+# BGP router identifier 10.135.0.105, local AS number 15897
+# BGP generic scan interval 60 secs
+# Non-stop routing is enabled
+# BGP table state: Active
+# Table ID: 0x0   RD version: 0
+# BGP main routing table version 145937
+# BGP NSR Initial initsync version 109 (Reached)
+# BGP NSR/ISSU Sync-Group versions 145937/0
+# BGP scan interval 60 secs
+#
+# BGP is operating in STANDALONE mode.
+#
+#
+# Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+# Speaker          145937     145937     145937     145937      145937      145937
+#
+# Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+# 10.135.0.21       0 15897  395722  361032   145937    0    0 11:35:29       1055
+# 10.135.0.22       0 15897  374280  357256   145937    0    0     3w3d       1055
+#
+#
+#
+#     example returned parsed output
+#
+#[{'router_id': '10.135.0.105', 'local_as': '15897', 'bgp_state': 'Active', 'neighbor': '10.135.0.21', 'speaker': '0', 'remote_as': '15897', 'messages_received': '395722', 'messages_sent': '361032', 'table_version': '145937', 'in_queue': '0', 'out_queue': '0', 'up_down_time': '11:35:29', 'state_prefix': '1055'},
+# {'router_id': '10.135.0.105', 'local_as': '15897', 'bgp_state': 'Active', 'neighbor': '10.135.0.22', 'speaker': '0', 'remote_as': '15897', 'messages_received': '374280', 'messages_sent': '357256', 'table_version': '145937', 'in_queue': '0', 'out_queue': '0', 'up_down_time': '3w3d', 'state_prefix': '1055'}]
+#
+################################################################################
+
+
+################################################################################
+#
+#     example cli output
+#
+# show bgp vrf V800:TST ipv6 unicast summary
+#
+# Wed Aug 18 19:05:03.557 BST
+# BGP VRF V800:TST, state: Active
+# BGP Route Distinguisher: 29406:8000701
+# VRF ID: 0x60000004
+# BGP router identifier 172.16.224.28, local AS number 29406
+# Non-stop routing is enabled
+# BGP table state: Active
+# Table ID: 0xe0800013   RD version: 45
+# BGP main routing table version 45
+# BGP NSR Initial initsync version 26 (Reached)
+# BGP NSR/ISSU Sync-Group versions 45/0
+#
+# BGP is operating in STANDALONE mode.
+#
+#
+# Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+# Speaker              45         45         45         45          45          45
+#
+# Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+# 1000:172:23:3::2
+#                   0 65500     651     649       45    0    0 10:44:19          3
+#
+#
+#
+#
+#     example returned parsed output
+#
+#[{'router_id': '10.135.0.105', 'local_as': '15897', 'bgp_state': 'Active', 'neighbor': '10.135.0.21', 'speaker': '0', 'remote_as': '15897', 'messages_received': '395722', 'messages_sent': '361032', 'table_version': '145937', 'in_queue': '0', 'out_queue': '0', 'up_down_time': '11:35:29', 'state_prefix': '1055'}]
+#
+################################################################################

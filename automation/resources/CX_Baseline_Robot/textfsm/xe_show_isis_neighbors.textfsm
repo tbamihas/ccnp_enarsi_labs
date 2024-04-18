@@ -1,0 +1,35 @@
+Value Filldown sys_id ([\w\.\-]+)
+Value Filldown isisname ([\w\.\-]+)
+Value Required intf ([\w\/\.]+)
+Value type ([\d\w]+)
+Value ip_address (\S+)
+Value state (\w+)
+Value holdtime (\d+)
+Value circuit_id (\w+)
+
+Start
+  ^Tag ${isisname}:
+  ^${sys_id}\s+${type}\s+${intf}\s+${ip_address}\s+${state}\s+${holdtime}\s+${circuit_id} -> Record
+
+
+
+
+################################################################################
+#
+#     example cli output
+#
+# show isis neighbors
+#
+# Tag null:
+# System Id       Type Interface     IP Address      State Holdtime Circuit Id
+# P1              L2   Po13          10.134.103.1    UP    28       00
+# P2              L2   Po23          10.134.203.1    UP    28       00
+#
+#
+#
+#     example returned parsed output
+#
+#[{'sys_id': 'P1', 'intf': 'Po13', 'type': 'L2', 'ip_address': '10.134.103.1', 'state': 'UP', 'holdtime': '28', 'circuit_id': '00'},
+# {'sys_id': 'P2', 'intf': 'Po23', 'type': 'L2', 'ip_address': '10.134.203.1', 'state': 'UP', 'holdtime': '28', 'circuit_id': '00'}]
+#
+################################################################################

@@ -1,0 +1,35 @@
+# TextFSM Template: show_sdwan_control_connections
+# Platform: IOS XE SDWAN
+# Author: Nikhail Venkat (nikvenka)
+#---------------------------------------------------------------------
+# ASR9010 Sample CLI output:
+#---------------------------------------------------------------------
+#Site_100_1001-x#sh sdwan control connections
+#                                                                                       PEER                                          PEER                                          CONTROLLER
+#PEER    PEER PEER            SITE       DOMAIN PEER                                    PRIV  PEER                                    PUB                                           GROUP
+#TYPE    PROT SYSTEM IP       ID         ID     PRIVATE IP                              PORT  PUBLIC IP                               PORT  LOCAL COLOR     PROXY STATE UPTIME      ID
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#vsmart  dtls 1.1.1.5         4294937438 1      10.0.5.226                              12546 54.217.78.22                            12546 private2        No    up     6:18:16:40  0
+#vsmart  dtls 1.1.1.5         4294937438 1      10.0.5.226                              12546 54.217.78.22                            12546 private3        No    up     5:02:27:47  0
+#vsmart  dtls 1.1.1.4         4294937439 1      10.0.2.180                              12546 54.195.115.54                           12546 private2        No    up     6:18:16:44  0
+#vsmart  dtls 1.1.1.4         4294937439 1      10.0.2.180                              12546 54.195.115.54                           12546 private3        No    up     5:02:27:51  0
+#vmanage dtls 1.1.1.6         4294937440 0      10.0.2.234                              12546 54.216.24.149                           12546 private2        No    up     6:18:09:19  0
+#
+Value peer_type (\S+)
+Value peer_protocol (\S+)
+Value peer_system_ip ([\d.]+)
+Value peer_site_id (\d+)
+Value domain_id (\d+)
+Value peer_private_ip ([\d.]+)
+Value peer_private_port (\d+)
+Value peer_public_ip ([\d.]+)
+Value peer_public_port (\d+)
+Value local_color (\S+)
+Value proxy (\S+)
+Value state (\S+)
+Value uptime (\S+)
+Value controller_group_id (\d+)
+
+
+Start
+  ^\s*${peer_type}\s+${peer_protocol}\s+${peer_system_ip}\s+${peer_site_id}\s+${domain_id}\s+${peer_private_ip}\s+${peer_private_port}\s+${peer_public_ip}\s+${peer_public_port}\s+${local_color}\s+${proxy}\s+${state}\s+${uptime}\s+${controller_group_id} -> Record

@@ -1,0 +1,35 @@
+# TextFSM Template: show_sdwan_control_connections
+# Platform: IOS XE SDWAN
+# Author: Nikhail Venkat (nikvenka)
+# Contributor: Swarna Narsapuram (snarsapu)
+#---------------------------------------------------------------------
+# C8500-12X4QC Sample CLI output:
+#---------------------------------------------------------------------
+#c8500-12X4QC-1#show sdwan control connections
+#                                                                                       PEER                                          PEER                                          CONTROLLER
+#PEER    PEER PEER            SITE       DOMAIN PEER                                    PRIV  PEER                                    PUB                                           GROUP
+#TYPE    PROT SYSTEM IP       ID         ID     PRIVATE IP                              PORT  PUBLIC IP                               PORT  ORGANIZATION            LOCAL COLOR     PROXY STATE UPTIME      ID
+#----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#vsmart  dtls 1.1.1.3         4294458055 1      10.0.2.16                               12346 44.239.64.193                           12346 aruno-HSBC_SVS - 629127 private3        No    up     1:05:47:27  0
+#vbond   dtls 0.0.0.0         0          0      52.32.204.88                            12346 52.32.204.88                            12346 aruno-HSBC_SVS - 629127 private3        -     up     1:05:47:31  0
+#vmanage dtls 1.1.1.4         4294458056 0      10.0.2.192                              12746 52.36.107.124                           12746 aruno-HSBC_SVS - 629127 private3        No    up     1:05:47:25  0
+#
+Value peer_type (\S+)
+Value peer_protocol (\S+)
+Value peer_system_ip ([\d.]+)
+Value peer_site_id (\d+)
+Value domain_id (\d+)
+Value peer_private_ip ([\d.]+)
+Value peer_private_port (\d+)
+Value peer_public_ip ([\d.]+)
+Value peer_public_port (\d+)
+Value org_name ([\S\s]+?)
+Value local_color (\S+)
+Value proxy (\S+)
+Value state (\S+)
+Value uptime (\S+)
+Value controller_group_id (\d+)
+
+
+Start
+  ^\s*${peer_type}\s+${peer_protocol}\s+${peer_system_ip}\s+${peer_site_id}\s+${domain_id}\s+${peer_private_ip}\s+${peer_private_port}\s+${peer_public_ip}\s+${peer_public_port}\s+${org_name}\s+${local_color}\s+${proxy}\s+${state}\s+${uptime}\s+${controller_group_id} -> Record

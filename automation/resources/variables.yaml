@@ -1,0 +1,58 @@
+lab_devices:
+  - R1
+  - R2
+  - R3
+  - R4
+  - R5
+  - R6
+
+device_interfaces:
+  R1:
+    - G0/0
+    - G0/1
+    - G0/3
+    - G0/4
+    - Lo1
+    - Lo2
+    - Lo3
+  R2:
+    - G0/0
+    - G0/1
+    - G0/2
+    - G0/3
+    - G0/4
+    - Lo1
+  R3:
+    - G0/0
+    - G0/1
+    - G0/3
+    - G0/4
+    - G0/11
+    - Lo1
+  R4:
+    - G0/0
+    - G0/1
+    - G0/3
+    - G0/4
+    - G0/10
+    - Lo1
+  R5:
+    - G0/0
+    - G0/3
+    - G0/4
+    - G0/10
+    - G0/11
+    - Lo1
+  R6:
+    - G0/0
+    - G0/2
+    - G0/3
+    - G0/4
+    - Lo1
+
+NODES_TYPE:
+  R1: ios
+#  DEVICE_B: eXR
+#  DEVICE_C: iosxe
+#  DEVICE_D: ios
+#  DEVICE_E: nxos

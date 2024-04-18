@@ -1,0 +1,8 @@
+out
+Local
+__pycache__
+
+# HTML Docs
+site/
+docs/libdoc/keyword-index.md
+*.html

@@ -1,0 +1,144 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_ldp.yaml file that needs to be updated and added to your project files, if you want to include LDP related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_LDP_NEIGHBORS
+# BASELINE_LDP_NEIGHBOR_SCALE
+# BASELINE_LDP_LOCAL_BINDINGS_SCALE
+# BASELINE_LDP_REMOTE_BINDINGS_SCALE
+#
+#
+#     Which are used in these keywords from keywords/baseline_ldp.resource
+#
+# baseline ldp validate correct ldp neighbors are up as per defined baseline
+# baseline ldp validate minimum ldp neighbor scale as per defined baseline
+# baseline ldp validate minimum ldp bindings scale as per defined baseline
+# baseline ldp validate minimum ldp remote bindings scale as per defined baseline
+#
+################################################################################
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_LDP_NEIGHBORS
+#     used in: baseline ldp validate correct ldp neighbors are up as per defined baseline
+#
+# BASELINE_LDP_NEIGHBORS:             # This data structure holds the expected LDP neighbors
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     - <NEIGHBOR_ID>                 # Example: 10.135.0.105:0
+#     - <NEIGHBOR_ID>
+#                                     #   For IOSXR, use the Peer values from command 'show mpls ldp neighbor brief'
+#                                     #   For IOSXE, use the Peer LDP Ident values from command 'show mpls ldp neighbor'
+#
+#
+#     Example for BASELINE_LDP_NEIGHBORS
+#
+# BASELINE_LDP_NEIGHBORS:
+#  PE4:
+#    - 10.135.0.1:0
+#    - 10.135.0.105:0
+#    - 10.135.0.2:0
+#    - 10.135.0.79:0
+#
+
+BASELINE_LDP_NEIGHBORS:
+  mnbas-pe-1a:
+    - 172.16.224.168:0
+    - 172.16.224.29:0
+    - 172.16.224.169:0
+  mnbas-pe-1b:
+    - 172.16.224.168:0
+    - 172.16.224.28:0
+    - 172.16.224.169:0
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_LDP_NEIGHBOR_SCALE
+#     used in: baseline ldp validate minimum ldp neighbor scale as per defined baseline
+#
+# BASELINE_LDP_NEIGHBOR_SCALE:           # This data structure holds the expected minimum LDP neighbor count
+#   <DEVICE_HOSTNAME>: <number>          # Example: PE4: 2000
+#                                        #   For IOSXR, use the Neighbors value from command 'show mpls ldp summary'
+#                                        #   For IOSXE, count the entries from command 'show mpls ldp neighbor | include Peer LDP Ident'
+#
+#
+#     Example for BASELINE_LDP_NEIGHBOR_SCALE
+#
+# BASELINE_LDP_NEIGHBOR_SCALE:
+#  PE4: 2000
+#
+
+BASELINE_LDP_NEIGHBOR_SCALE:
+  mnbas-pe-1a: 20
+  mnbas-pe-1b: 20
+  mcbas-p-1a: 20
+  mcbas-p-1b: 20
+  mcbas-pe-2a: 20
+  mcbas-pe-2b: 20
+  mcber-pe-2a: 20
+  mcber-pe-2b: 20
+  mcbas-cape-2a: 2
+  mcber-cape-2a: 2
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_LDP_LOCAL_BINDINGS_SCALE
+#     used in: baseline ldp validate minimum ldp bindings scale as per defined baseline
+#
+# BASELINE_LDP_LOCAL_BINDINGS_SCALE:     # This data structure holds the expected minimum LDP local bindings count
+#   <DEVICE_HOSTNAME>: <number>          # Example: PE4: 2000
+#                                        #   For IOSXR, use the Local Bindings value from command 'show mpls ldp bindings summary'
+#                                        #   For IOSXE, use the Total number of prefixes value from command 'show mpls ldp bindings summary'
+#
+#
+#     Example for BASELINE_LDP_LOCAL_BINDINGS_SCALE
+#
+# BASELINE_LDP_LOCAL_BINDINGS_SCALE:
+#  PE4: 2000
+#
+
+BASELINE_LDP_LOCAL_BINDINGS_SCALE:
+  mnbas-pe-1a: 20
+  mnbas-pe-1b: 20
+  mcbas-p-1a: 20
+  mcbas-p-1b: 20
+  mcbas-pe-2a: 20
+  mcbas-pe-2b: 20
+  mcber-pe-2a: 20
+  mcber-pe-2b: 20
+  mcbas-cape-2a: 2
+  mcber-cape-2a: 2
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_LDP_REMOTE_BINDINGS_SCALE
+#     used in: baseline ldp validate minimum ldp remote bindings scale as per defined baseline
+#
+# BASELINE_LDP_REMOTE_BINDINGS_SCALE:     # This data structure holds the expected minimum LDP remote bindings count
+#   <DEVICE_HOSTNAME>: <number>          # Example: PE4: 2000
+#                                        #   For IOSXR, use the Remote Bindings value from command 'show mpls ldp bindings summary'
+#
+#
+#     Example for BASELINE_LDP_REMOTE_BINDINGS_SCALE
+#
+# BASELINE_LDP_REMOTE_BINDINGS_SCALE:
+#  PE4: 2000
+#
+
+BASELINE_LDP_REMOTE_BINDINGS_SCALE:
+  mnbas-pe-1a: 60
+  mnbas-pe-1b: 60

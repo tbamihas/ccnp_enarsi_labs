@@ -1,0 +1,63 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_mpls_te.yaml file that needs to be updated and added to your project files, if you want to include SRTE related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_SRTE_SCALE
+#
+#
+#     Which are used in these keywords from keywords/baseline_mpls_te.resource
+#
+# baseline mpls_te validate minimum mpls traffic-eng scale as per defined baseline
+#
+################################################################################
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_MPLS_TE_SCALE
+#     used in: baseline mpls_te validate minimum mpls traffic-eng scale as per defined baseline
+#
+# BASELINE_MPLS_TE_SCALE:          # This data structure holds the expected minimum MPLS-TE tunnels
+#   <DEVICE_HOSTNAME>:             # Example: PE4
+#     head: <number>               # Example: 10
+#     midpoint: <number>           # Example: 10
+#     tail: <number>               # Example: 10
+#                                   #   For IOSXR, use the command 'show mpls traffic-eng tunnels brief | utility tail count 2'
+#
+#
+#     Example for BASELINE_MPLS_TE_SCALE
+#
+# BASELINE_MPLS_TE_SCALE:
+#  PEERZ02:
+#    head: 13
+#    midpoint: 16
+#    tail: 7
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:PEERZ02#show mpls traffic-eng tunnels brief | utility tail count 2
+# Tue Oct 26 15:24:42.720 UTC
+# Displayed 13 (of 13) heads, 16 (of 16) midpoints, 7 (of 7) tails
+# Displayed 10 up, 3 down, 0 recovering, 0 recovered heads
+# RP/0/RSP0/CPU0:PEERZ02#
+#
+
+BASELINE_MPLS_TE_SCALE:
+  PE4:
+    head: 11
+    midpoint: 1
+    tail: 5
+  PE5:
+    head: 11
+    midpoint: 1
+    tail: 5
+  PEERZ02:
+    head: 13
+    midpoint: 16
+    tail: 7

@@ -1,0 +1,157 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_l2vpn.yaml file that needs to be updated and added to your project files, if you want to include ISIS related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_L2VPN_XC_SCALE
+# BASELINE_L2VPN_BD_SCALE
+# BASELINE_L2VPN_BD_PW_SCALE
+#
+#
+#     Which are used in these keywords from keywords/baseline_l2vpn.resource
+#
+# baseline l2vpn validate minimum L2VPN XC scale as per defined baseline
+# baseline l2vpn validate minimum L2VPN BD scale as per defined baseline
+# baseline l2vpn validate minimum L2VPN BD PW scale as per defined baseline
+#
+################################################################################
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_L2VPN_XC_SCALE
+#     used in: baseline l2vpn validate minimum L2VPN XC scale as per defined baseline
+#
+# BASELINE_L2VPN_XC_SCALE:            # This data structure holds the minimum expected L2VPN xconnect up count
+#   <DEVICE_HOSTNAME>: <number>       # Example: PE4: 20
+#                                     #   For IOSXR, use the xconnect Up value from command 'show l2vpn xconnect summary'
+#
+#
+#     Example for BASELINE_L2VPN_XC_SCALE
+#
+# BASELINE_L2VPN_XC_SCALE:
+#   PE4: 40
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:PE4#show l2vpn xconnect summary
+# Tue Jul  6 23:23:24.811 UTC
+# Number of groups: 1
+# Number of xconnects: 40
+#   Up: 40  Down: 0  Unresolved: 0 Partially-programmed: 0
+#   AC-PW: 40  AC-AC: 0  PW-PW: 0 Monitor-Session-PW: 0
+# Number of Admin Down segments: 0
+# Number of MP2MP xconnects: 0
+#   Up 0 Down 0
+#   Advertised: 0 Non-Advertised: 0
+# Number of CE Connections: 0
+#   Advertised: 0 Non-Advertised: 0
+# Backup PW:
+#   Configured   : 0
+#   UP           : 0
+#   Down         : 0
+#   Admin Down   : 0
+#   Unresolved   : 0
+#   Standby      : 0
+#   Standby Ready: 0
+# Backup Interface:
+#   Configured   : 0
+#   UP           : 0
+#   Down         : 0
+#   Admin Down   : 0
+#   Unresolved   : 0
+#   Standby      : 0
+#
+
+BASELINE_L2VPN_XC_SCALE:
+  PE4: 40
+  PE5: 40
+  PEERZ01: 40
+  PEERZ02: 40
+  PEDYB01: 40
+  PEDYB02: 40
+
+
+################################################################################
+#
+#     Structure of BASELINE_L2VPN_BD_SCALE
+#     used in: baseline l2vpn validate minimum L2VPN BD scale as per defined baseline
+#
+# BASELINE_L2VPN_BD_SCALE:            # This data structure holds the minimum expected L2VPN bridge-domain up count
+#   <DEVICE_HOSTNAME>: <number>       # Example: PE4: 20
+#                                     #   For IOSXR, use the bridge-domains Up value from command 'show l2vpn bridge-domain summary'
+#
+#
+#     Example for BASELINE_L2VPN_BD_SCALE
+#
+# BASELINE_L2VPN_BD_SCALE:
+#   PE4: 40
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:PE4#show l2vpn bridge-domain summary
+# Tue Jul  6 23:23:30.491 UTC
+# Number of groups: 1, VLAN switches: 0
+# Number of bridge-domains: 10, Up: 10, Shutdown: 0, Partially-
+# programmed: 0
+# Default: 10, pbb-edge: 0, pbb-core: 0
+# Number of ACs: 10 Up: 10, Down: 0, Partially-programmed: 0
+# Number of PWs: 50 Up: 50, Down: 0, Standby: 0, Partially-programmed: 0
+# Number of P2MP PWs: 0, Up: 0, Down: 0, other-state: 0
+# Number of VNIs: 0, Up: 0, Down: 0, Unresolved: 0
+#
+
+BASELINE_L2VPN_BD_SCALE:
+  PE4: 10
+  PE5: 10
+  PEERZ01: 10
+  PEERZ02: 10
+  PEDYB01: 10
+  PEDYB02: 10
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_L2VPN_BD_PW_SCALE
+#     used in: baseline l2vpn validate minimum L2VPN BD PW scale as per defined baseline
+#
+# BASELINE_L2VPN_BD_PW_SCALE:         # This data structure holds the minimum expected L2VPN bridge-domain Psuedowires (PWs) up count
+#   <DEVICE_HOSTNAME>: <number>       # Example: PE4: 20
+#                                     #   For IOSXR, use the PWs Up value from command 'show l2vpn bridge-domain summary'
+#
+#
+#     Example for BASELINE_L2VPN_BD_PW_SCALE
+#
+# BASELINE_L2VPN_BD_PW_SCALE:
+#   PE4: 50
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:PE4#show l2vpn bridge-domain summary
+# Tue Jul  6 23:23:36.167 UTC
+# Number of groups: 1, VLAN switches: 0
+# Number of bridge-domains: 10, Up: 10, Shutdown: 0, Partially-
+# programmed: 0
+# Default: 10, pbb-edge: 0, pbb-core: 0
+# Number of ACs: 10 Up: 10, Down: 0, Partially-programmed: 0
+# Number of PWs: 50 Up: 50, Down: 0, Standby: 0, Partially-programmed: 0
+# Number of P2MP PWs: 0, Up: 0, Down: 0, other-state: 0
+# Number of VNIs: 0, Up: 0, Down: 0, Unresolved: 0
+#
+
+BASELINE_L2VPN_BD_PW_SCALE:
+  PE4: 50
+  PE5: 50
+  PEERZ01: 50
+  PEERZ02: 50
+  PEDYB01: 50
+  PEDYB02: 50

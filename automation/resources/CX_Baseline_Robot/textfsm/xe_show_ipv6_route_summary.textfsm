@@ -1,0 +1,7 @@
+Value Required route_source ([a-zA-Z]+\s[a-zA-Z0-9]+|[a-zA-Z]+)
+Value networks (\d+)
+Value overhead (\d+)
+Value memory (\d+)
+
+Start
+  ^${route_source}\s*${networks}\s+${overhead}\s+${memory} -> Record

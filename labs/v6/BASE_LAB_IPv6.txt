@@ -1,0 +1,56 @@
+Lab Topology and IPv6 Addressing Scheme:
+
+Device Names, Interface IDs and Associated Networks:
+
+R1:
+- MGMT_dirty - G0/3 - 3.1.100.1
+- MGMT_clean - G0/4 - 10.53.217.18
+- Loopback Lo1: 1:1:1:1::1/64
+- Loopback Lo2: 1:1:1:2::1/64
+- Loopback Lo3: 1:1:1:3::1/64
+- Loopback Lo4: 1:1:1:4::1/64
+- Connection to R2: 2001:db8:0:1::/64 (R1 G0/0 IP: ::1)
+- Connection to R3: 2001:db8:0:2::/64 (R1 G0/1 IP: ::1)
+
+R2:
+- MGMT_dirty - G0/3 - 3.1.100.2
+- MGMT_clean - G0/4 - 10.53.217.19
+- Loopback Lo1: 77::1/64
+- Connection to R1: 2001:db8:0:1::/64 (R2 G0/0 IP: ::2)
+- Connection to R3: 2001:db8:0:3::/64 (R2 G0/2 IP: ::1)
+- Connection to R4: 2001:db8:0:5::/64 (R2 G0/1 IP: ::1)
+
+R3:
+- MGMT_dirty - G0/3 - 3.1.100.3
+- MGMT_clean - G0/4 - 10.53.217.20
+- Loopback Lo1: 99::1/64
+- Connection to R1: 2001:db8:0:2::/64 (R3 G0/1 IP: ::2)
+- Connection to R2: 2001:db8:0:3::/64 (R3 G0/2 IP: ::2)
+- Connection to R4: 2001:db8:0:4::/64 (R3 G0/0 IP: ::1)
+- Connection to R5: 1000:1::/64       (R3 G0/11 IP: ::1)
+
+R4:
+- MGMT_dirty - G0/3 - 3.1.100.4
+- MGMT_clean - G0/4 - 10.53.217.21
+- Loopback Lo1: 2:1::1/64
+- Loopback Lo2: 2:2::1/64
+- Loopback Lo3: 2:3::1/64
+- Connection to R2: 2001:db8:0:5::/64 (R4 G0/1 IP: ::2)
+- Connection to R3: 2001:db8:0:4::/64 (R4 G0/0 IP: ::2)
+- Connection to R5: 1000:2::/64       (R4 G0/10 IP: ::1)
+- Connection to R6: 2001:db8:0:6::/64 (R4 G0/2 IP: ::1)
+
+R5:
+- MGMT_dirty - G0/3 - 3.1.100.5
+- MGMT_clean - G0/4 - 10.53.217.22
+- Loopback Lo1: 199::1/64
+- Connection to R3: 1000:1::/64 (R5 G0/11 IP: ::2)
+- Connection to R4: 1000:2::/64 (R5 G0/10 IP: ::2)
+- Connection to R6: 2001:db8:0:7::/64 (R5 G0/0 IP: ::1)
+
+R6:
+- MGMT_dirty - G0/3 - 3.1.100.6
+- MGMT_clean - G0/4 - 10.53.217.23
+- Loopback Lo1: 88::1/64
+- Connection to R4: 2001:db8:0:6::/64 (R6 G0/2 IP: ::2)
+- Connection to R5: 2001:db8:0:7::/64 (R6 G0/0 IP: ::2)

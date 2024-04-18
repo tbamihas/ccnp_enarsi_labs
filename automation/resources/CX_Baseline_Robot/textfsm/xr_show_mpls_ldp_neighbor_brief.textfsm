@@ -1,0 +1,49 @@
+Value Required peer ([\d\:\.]+)
+Value gr ([YN]+)
+Value nsr ([YN]+)
+Value up_time ([\w\d\:]+)
+Value discovery_ipv4 (\d+)
+Value discovery_ipv6 (\d+)
+Value addresses_ipv4 (\d+)
+Value addresses_ipv6 (\d+)
+Value labels_ipv4 (\d+)
+Value labels_ipv6 (\d+)
+
+Start
+  ^${peer}\s+${gr}\s+${nsr}\s+${up_time}\s+${discovery_ipv4}\s+${discovery_ipv6}\s+${addresses_ipv4}\s+${addresses_ipv6}\s+${labels_ipv4}\s+${labels_ipv6} -> Record
+
+
+
+
+
+################################################################################
+#
+#     example cli output
+#
+# show mpls ldp neighbor brief
+# Mon May 31 15:09:54.598 UTC
+#
+# Peer               GR  NSR  Up Time     Discovery   Addresses     Labels
+#                                         ipv4  ipv6  ipv4  ipv6  ipv4   ipv6
+# -----------------  --  ---  ----------  ----------  ----------  ------------
+# 10.135.0.2:0       Y   Y    3w3d        2     0     9     0     2632   0
+# 10.135.0.1:0       Y   Y    3w3d        2     0     9     0     2632   0
+# 10.135.0.222:0     Y   Y    3w3d        1     0     2     0     2632   0
+# 10.135.0.223:0     Y   Y    3w3d        1     0     4     0     2632   0
+# 10.135.0.78:0      Y   Y    3w3d        1     0     2     0     2632   0
+# 10.135.0.79:0      Y   Y    3w3d        1     0     6     0     2632   0
+# 10.135.0.104:0     Y   Y    3w3d        2     0     404   0     2632   0
+#
+#
+#
+#     example returned parsed output
+#
+#[{'peer': '10.135.0.2:0', 'gr': 'Y', 'nsr': 'Y', 'up_time': '3w3d', 'discovery_ipv4': '2', 'discovery_ipv6': '0', 'addresses_ipv4': '9', 'addresses_ipv6': '0', 'labels_ipv4': '2632', 'labels_ipv6': '0'},
+# {'peer': '10.135.0.1:0', 'gr': 'Y', 'nsr': 'Y', 'up_time': '3w3d', 'discovery_ipv4': '2', 'discovery_ipv6': '0', 'addresses_ipv4': '9', 'addresses_ipv6': '0', 'labels_ipv4': '2632', 'labels_ipv6': '0'},
+# {'peer': '10.135.0.222:0', 'gr': 'Y', 'nsr': 'Y', 'up_time': '3w3d', 'discovery_ipv4': '1', 'discovery_ipv6': '0', 'addresses_ipv4': '2', 'addresses_ipv6': '0', 'labels_ipv4': '2632', 'labels_ipv6': '0'},
+# {'peer': '10.135.0.223:0', 'gr': 'Y', 'nsr': 'Y', 'up_time': '3w3d', 'discovery_ipv4': '1', 'discovery_ipv6': '0', 'addresses_ipv4': '4', 'addresses_ipv6': '0', 'labels_ipv4': '2632', 'labels_ipv6': '0'},
+# {'peer': '10.135.0.78:0', 'gr': 'Y', 'nsr': 'Y', 'up_time': '3w3d', 'discovery_ipv4': '1', 'discovery_ipv6': '0', 'addresses_ipv4': '2', 'addresses_ipv6': '0', 'labels_ipv4': '2632', 'labels_ipv6': '0'},
+# {'peer': '10.135.0.79:0', 'gr': 'Y', 'nsr': 'Y', 'up_time': '3w3d', 'discovery_ipv4': '1', 'discovery_ipv6': '0', 'addresses_ipv4': '6', 'addresses_ipv6': '0', 'labels_ipv4': '2632', 'labels_ipv6': '0'},
+# {'peer': '10.135.0.104:0', 'gr': 'Y', 'nsr': 'Y', 'up_time': '3w3d', 'discovery_ipv4': '2', 'discovery_ipv6': '0', 'addresses_ipv4': '404', 'addresses_ipv6': '0', 'labels_ipv4': '2632', 'labels_ipv6': '0'}]
+#
+################################################################################

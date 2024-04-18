@@ -1,0 +1,170 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_isis.yaml file that needs to be updated and added to your project files, if you want to include ISIS related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_ISIS_NEIGHBORS
+# BASELINE_ISIS_NEIGHBOR_SCALE
+# BASELINE_ISIS_LSP_COUNT
+#
+#
+#     Which are used in these keywords from keywords/baseline_isis.resource
+#
+# baseline isis validate correct isis neighbors are up as per defined baseline
+# baseline isis validate minimum isis neighbor scale as per defined baseline
+# baseline isis validate minimum isis lsp scale as per defined baseline
+#
+################################################################################
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_ISIS_NEIGHBORS
+#     used in: baseline isis validate correct isis neighbors are up as per defined baseline
+#
+# BASELINE_ISIS_NEIGHBORS:            # This data structure holds the expected ISIS neighbors
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     <INSTANCE_ID>:                  # Name of the ISIS instance/area. Example: CORE
+#       <NEIGHBOR_NAME>               # Name of the ISIS neighbor system ID. Example: PE5
+#         - <INTERFACE>               # List of interfaces where this neighbor system ID is Up. Example: Gi0/0/0/0
+#                                     #   For IOSXR, use the command 'show isis neighbors'
+#                                     #   For IOSXE, use the command 'show isis neighbors'
+#
+#
+#     Example for BASELINE_ISIS_NEIGHBORS
+#
+# BASELINE_ISIS_NEIGHBORS:
+#  XRV_P01:
+#    CORE:
+#      XRV_PE01:
+#      - Gi0/0/0/0
+#
+
+BASELINE_ISIS_NEIGHBORS:
+  XRV_P01:
+    CORE:
+      XRV_PE01:
+      - Gi0/0/0/0
+      - Gi0/0/0/1
+      CSR1KV_PE05:
+      - Gi0/0/0/5
+    AREA02:
+      XRV_PE03:
+      - Gi0/0/0/3
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_ISIS_NEIGHBOR_SCALE
+#     used in: baseline isis validate minimum isis neighbor scale as per defined baseline
+#
+# BASELINE_ISIS_NEIGHBOR_SCALE:       # This data structure holds the minimum expected ISIS neighbor count
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     <INSTANCE_ID>: <number>         # Name of the ISIS instance/area. Example: CORE: 100
+#                                     #   For IOSXR, use the value derived by adding L1, L2 and L1L2 UP counts from command 'show isis instance ${instance} neighbors summary '
+#                                     #   For IOSXE, count the entries from command 'show isis ${instance} neighbors | include UP'
+#
+#     Example for BASELINE_ISIS_NEIGHBOR_SCALE
+#
+# BASELINE_ISIS_NEIGHBOR_SCALE:
+#   ASR9K-NPE-3:
+#     core: 103
+#   ASR-920SZ-1:
+#     AREA2200: 2
+#
+#
+#    Example CLI
+#
+# RP/0/RP0/CPU0:ASR9K-NPE-3#show isis instance core neighbors summary
+# Wed Apr  6 23:56:07.615 AST
+#
+# IS-IS core neighbor summary:
+# State         L1       L2     L1L2
+# Up             0      103        0
+# Init           0        0        0
+# Failed         0        0        0
+# RP/0/RP0/CPU0:ASR9K-NPE-3#
+#
+# ASR-920SZ-1#show isis AREA2200 neighbors
+# Load for five secs: 2%/0%; one minute: 2%; five minutes: 2%
+# Time source is NTP, 22:19:26.740 BST Wed Apr 6 2022
+#
+#
+# Tag AREA2200:
+# System Id       Type Interface     IP Address      State Holdtime Circuit Id
+# NCS55A1_1       L1   Te0/0/12      22.1.10.1       UP    26       00
+# ASR-903-1       L1   Te0/0/13      22.10.11.11     UP    29       04
+# ASR-920SZ-1#
+#
+
+BASELINE_ISIS_NEIGHBOR_SCALE:
+  P1:
+    core: 100
+    AREA2200: 20
+  P2:
+    core: 100
+    AREA2200: 20
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_ISIS_LSP_COUNT
+#     used in: baseline isis validate minimum isis lsp scale as per defined baseline
+#
+# BASELINE_ISIS_LSP_COUNT:            # This data structure holds the minimum expected ISIS LSP count
+#   <DEVICE_HOSTNAME>: <number>       # Example: PE4: 50
+#                                     #   For IOSXR, use the value of All Fragment Counts (Total) from command 'show isis database summary'
+#                                     #   For IOSXE, count the entries from command 'show isis database'
+#
+#
+#     Example for BASELINE_ISIS_LSP_COUNT
+#
+# BASELINE_ISIS_LSP_COUNT:
+#   PE4: 225
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:PE4#show isis database summary
+# Tue Oct 26 14:08:33.951 UTC
+#
+# IS-IS CORE Database Summary for all LSPs
+#                               Active             Purged              All
+#                          L1    L2   Total   L1    L2   Total   L1    L2   Total
+#                         ----- ----- -----  ----- ----- -----  ----- ----- -----
+# Fragment 0 Counts
+#            Router LSPs:     0   211   211      0     0     0      0   211   211
+#       Pseudo-node LSPs:     0     0     0      0     0     0      0     0     0
+#               All LSPs:     0   211   211      0     0     0      0   211   211
+#
+#   Per Topology
+#     IPv4 Unicast
+#       ATT bit set LSPs:     0     0     0      0     0     0      0     0     0
+#       OVL bit set LSPs:     0     0     0      0     0     0      0     0     0
+#
+# All Fragment Counts
+#            Router LSPs:     0   225   225      0     0     0      0   225   225
+#       Pseudo-node LSPs:     0     0     0      0     0     0      0     0     0
+#               All LSPs:     0   225   225      0     0     0      0   225   225
+#
+
+BASELINE_ISIS_LSP_COUNT:
+  P1: 220
+  P2: 220
+  PE4: 220
+  PE5: 220
+  PEERZ01: 220
+  PEERZ02: 220
+  PEDYB01: 220
+  PEDYB02: 220
+  XTC1: 220
+  XTC2: 220
+  PE1: 220
+  PE3: 220

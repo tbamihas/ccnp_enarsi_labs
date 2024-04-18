@@ -1,0 +1,12 @@
+Value afi (\w+)
+Value safi (\w+)
+Value prefixes (\d+)
+Value paths (\d+)
+Value pathElem (\d+)
+Value Filldown vrf (\S+)
+
+Start
+  ^VRF: ${vrf}
+  ^  ${afi} ${safi} +${prefixes} +${paths} +${pathElem} -> Record
+
+EOF

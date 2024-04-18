@@ -1,0 +1,330 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_hardware.yaml file that needs to be updated and added to your project files, if you want to include hardware related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_HW_PLATFORM
+# BASELINE_HW_MODULES
+#
+#
+#     Which are used in these keywords from keywords/baseline_hardware.resource
+#
+# baseline hardware validate correct hardware platform as per defined baseline
+# baseline hardware validate correct hardware modules are up as per defined baseline
+# baseline hardware validate correct inventory output as per defined baseline
+#
+################################################################################
+
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_HW_PLATFORM
+#     used in: baseline hardware validate correct hardware platform as per defined baseline
+#
+# BASELINE_HW_PLATFORM:               # This data structure holds the expected hardware platforms
+#   <DEVICE_HOSTNAME>: <PLATFORM>     # Example: PE4: ASR-9010-AC
+#                                     #   For IOSXR, use the value from 'admin show inventory chassis'. Examples: ASR-9010-AC-V2 , ASR-9010-AC , R-IOSXRV9000-CC , ASR-9904-AC
+#                                     #   For IOSXE, use the value from 'show inventory'. Examples: ASR1002-X , ASR1006-X , C9300-24P , C9300-48U
+#
+#
+#     Example for BASELINE_HW_PLATFORM
+#
+# BASELINE_HW_PLATFORM:
+#   PE4: ASR-9010-AC
+#   PE1: ASR1002-X
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:PE4#admin show inventory chassis
+# Tue Oct 26 09:14:00.625 UTC
+# NAME: "chassis ASR-9010-AC", DESCR: "ASR 9010 8 Line Card Slot Chassis with V2 AC PEM"
+# PID: ASR-9010-AC, VID: V02, SN: FOX1707G56K
+#
+#
+
+BASELINE_HW_PLATFORM:
+  cnmlw-cat6-1a: WS-C6506-E
+  cnmlw-cat6-1b: WS-C6506-E
+  mnbas-pe-1a: ASR-9010-AC-V2
+  mnbas-pe-1b: ASR-9010-DC-V2
+  mcbas-p-1a: CRS-8-LCC
+  mcbas-p-1b: CRS-8-LCC-B
+  mcbas-pe-2a: ASR-9006-AC
+  mcbas-pe-2b: ASR-9006-AC-V2
+  mcbas-vrr-1: ASR1002-X
+  mcber-pe-2a: ASR-9006-AC-V2
+  mcber-pe-2b: ASR-9006-AC-V2
+  R1: ASR-9904-AC
+  mcbas-pcpe-1a: CISCO7609-S
+  mcbas-pcpe-1b: CISCO7609-S
+  mcber-pcpe-1a: CISCO7609-S
+  mcber-pcpe-1b: CISCO7609-S
+  mcbas-cape-2a: ASR-9010-DC-V2
+  mcber-cape-2a: ASR-9010-DC-V2
+  SW1: WS-C4500X-32
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_HW_MODULES
+#     used in: baseline hardware validate correct hardware modules are up as per defined baseline
+#
+# BASELINE_HW_MODULES:                # This data structure holds the expected hardware modules
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     <NODE/SLOT>: <MODULE>           # Examples: 0/RSP0/CPU0: A9K-RSP880-SE , 0/0/CPU0: A9K-8X100GE-TR
+#     <NODE/SLOT>: <MODULE>
+#                                     #   For cXR (32 bit IOSXR), use the Node and Type values from 'admin show platform'. Examples: 0/RSP0/CPU0: A9K-RSP880-SE , 0/FT0/SP: ASR-9010-FAN-V2 , 0/0/CPU0: A9K-8X100GE-TR , 0/PS0/M0/SP: PWR-3KW-AC-V2
+#                                     #   For eXR (64 bit IOSXR), use the Node and Type values from 'show platform'. Examples: 0/RP0/CPU0: A99-RP2-SE , 0/FT0: ASR-9912-FAN , 0/0/CPU0: A9K-8X100GE-TR , 0/FC0: A99-SFC2 , 0/PT0: A9K-AC-PEM-V2
+#                                     #   For IOSXE, use the Slot and Type values from 'show platform'. Examples: 0: ASR1002-X , 0/1: SPA-1X10GE-L-V2 , R0: ASR1002-X , P0: ASR1002-PWR-AC
+#
+#
+#     Example for BASELINE_HW_MODULES
+#
+# BASELINE_HW_PLATFORM:
+#  PE4:
+#    0/RSP0/CPU0: A9K-RSP880-SE
+#    0/RSP1/CPU0: A9K-RSP880-SE
+#    0/FT0/SP: ASR-9010-FAN-V2
+#    0/FT1/SP: ASR-9010-FAN-V2
+#    0/1/CPU0: A9K-8X100GE-TR
+#    0/2/CPU0: A9K-MOD160-TR
+#    0/2/0: A9K-MPA-8X10GE
+#    0/PS0/M0/SP: PWR-3KW-AC-V2
+#    0/PS0/M1/SP: PWR-3KW-AC-V2
+#    0/PS0/M2/SP: PWR-3KW-AC-V2
+#    0/PS0/M3/SP: PWR-3KW-AC-V2
+#  PE1:
+#    0: ASR1002-X
+#    0/0: 6XGE-BUILT-IN
+#    0/1: SPA-1X10GE-L-V2
+#    0/3: SPA-1X10GE-L-V2
+#    R0: ASR1002-X
+#    F0: ASR1002-X
+#    P0: ASR1002-PWR-AC
+#
+#
+#    Example CLI, IOSXR
+#
+# RP/0/RSP0/CPU0:PE4#admin show platform
+# Tue Oct 26 09:17:18.387 UTC
+# Node            Type                      State            Config State
+# -----------------------------------------------------------------------------
+# 0/RSP0/CPU0     A9K-RSP880-SE(Active)     IOS XR RUN       PWR,NSHUT,MON
+# 0/RSP1/CPU0     A9K-RSP880-SE(Standby)    IOS XR RUN       PWR,NSHUT,MON
+# 0/FT0/SP        ASR-9010-FAN-V2           READY
+# 0/FT1/SP        ASR-9010-FAN-V2           READY
+# 0/1/CPU0        A9K-8X100GE-TR            IOS XR RUN       PWR,NSHUT,MON
+# 0/2/CPU0        A9K-MOD160-TR             IOS XR RUN       PWR,NSHUT,MON
+# 0/2/0           A9K-MPA-8X10GE            OK               PWR,NSHUT,MON
+# 0/PS0/M0/SP     PWR-3KW-AC-V2             READY            PWR,NSHUT,MON
+# 0/PS0/M1/SP     PWR-3KW-AC-V2             READY            PWR,NSHUT,MON
+# 0/PS0/M2/SP     PWR-3KW-AC-V2             READY            PWR,NSHUT,MON
+# 0/PS0/M3/SP     PWR-3KW-AC-V2             READY            PWR,NSHUT,MON
+#
+#
+#    Example CLI, IOSXE
+#
+# PE1#show platform
+# Chassis type: ASR1002-X
+#
+# Slot      Type                State                 Insert time (ago)
+# --------- ------------------- --------------------- -----------------
+# 0         ASR1002-X           ok                    33w0d
+#  0/0      6XGE-BUILT-IN       ok                    33w0d
+#  0/1      SPA-1X10GE-L-V2     ok                    33w0d
+#  0/3      SPA-1X10GE-L-V2     ok                    33w0d
+# R0        ASR1002-X           ok, active            33w0d
+# F0        ASR1002-X           ok, active            33w0d
+# P0        ASR1002-PWR-AC      ok                    33w0d
+# P1        ASR1002-PWR-AC      ps, fail              33w0d
+#
+# Slot      CPLD Version        Firmware Version
+# --------- ------------------- ---------------------------------------
+# 0         13050203            16.3(2r)
+# R0        13050203            16.3(2r)
+# F0        13050203            16.3(2r)
+#
+
+BASELINE_HW_MODULES:
+  PE4:
+    0/RSP0/CPU0: A9K-RSP880-SE
+    0/RSP1/CPU0: A9K-RSP880-SE
+    0/FT0/SP: ASR-9010-FAN-V2
+    0/FT1/SP: ASR-9010-FAN-V2
+    0/1/CPU0: A9K-8X100GE-TR
+    0/2/CPU0: A9K-MOD160-TR
+    0/2/0: A9K-MPA-8X10GE
+    0/PS0/M0/SP: PWR-3KW-AC-V2
+    0/PS0/M1/SP: PWR-3KW-AC-V2
+    0/PS0/M2/SP: PWR-3KW-AC-V2
+    0/PS0/M3/SP: PWR-3KW-AC-V2
+  PE1:
+    0: ASR1002-X
+    0/0: 6XGE-BUILT-IN
+    0/1: SPA-1X10GE-L-V2
+    0/3: SPA-1X10GE-L-V2
+    R0: ASR1002-X
+    F0: ASR1002-X
+    P0: ASR1002-PWR-AC
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_HW_INVENTORY
+#     used in: baseline hardware validate correct inventory output as per defined baseline
+#
+# BASELINE_HW_INVENTORY:                # This data structure holds the expected inventory
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     <name>:                         # Examples: module 0/RSP0/CPU0 , module 0/1/CPU0 , module mau TenGigE0/2/CPU0/5 , fan0 0/FT1/SP
+#       descr: <descr>                # Optional. Examples: ASR9K Route Switch Processor with 880G/slot Fabric and 16GB , ASR9K Generic Fan
+#       pid: <pid>                    # Optional. Examples: A9K-RSP880-TR , ASR-9010-FAN-V2 , CPAK-100G-LR4 , A9K-24X10GE-TR
+#       vid: <vid>                    # Optional. Examples: V03
+#       sn: <sn>                      # Optional. Examples: FBN23221330
+#
+#                                     #   For cXR (32 bit IOSXR), use the values from 'admin show inventory'.
+#                                     #   For eXR (64 bit IOSXR), use the values from 'show inventory'.
+#                                     #   For IOSXE or NXOS, use the values from 'show inventory'.
+#
+#
+#     Example for BASELINE_HW_INVENTORY
+#
+# BASELINE_HW_INVENTORY:
+#  PE4:
+#    module 0/RSP0/CPU0:
+#      descr: ASR9K Route Switch Processor with 880G/slot Fabric and 32GB
+#      pid: A9K-RSP880-SE
+#      vid: V04
+#      sn: FOC2120NX2R
+#    fantray 0/FT0/SP:
+#      descr: ASR 9010 Fan Tray Version 2
+#      pid: ASR-9010-FAN-V2
+#      vid: V03
+#      sn: FOC2117NK4Y
+#    module 0/1/CPU0:
+#      descr: 8x100GE, Transport Edge Optimized LC
+#      pid: A9K-8X100GE-TR
+#      sn: FOC2119NB1N
+#    module mau HundredGigE0/1/CPU0/0:
+#      descr: CPAK 100G SR10
+#      pid: CPAK-100G-SR10
+#      sn: FBN21192156
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:PE4#admin show inventory
+# Tue Oct 26 09:22:50.740 UTC
+# NAME: "module 0/RSP0/CPU0", DESCR: "ASR9K Route Switch Processor with 880G/slot Fabric and 32GB"
+# PID: A9K-RSP880-SE, VID: V04, SN: FOC2120NX2R
+#
+# NAME: "fantray 0/FT0/SP", DESCR: "ASR 9010 Fan Tray Version 2"
+# PID: ASR-9010-FAN-V2, VID: V03 , SN: FOC2117NK4Y
+#
+# NAME: "module 0/1/CPU0", DESCR: "8x100GE, Transport Edge Optimized LC"
+# PID: A9K-8X100GE-TR, VID: V08, SN: FOC2119NB1N
+#
+# NAME: "module mau HundredGigE0/1/CPU0/0", DESCR: "CPAK 100G SR10"
+# PID: CPAK-100G-SR10  , VID: V03 , SN: FBN21192156
+#
+
+
+BASELINE_HW_INVENTORY:
+  mcber-cape-2a:
+    module 0/RSP0/CPU0:
+      descr: ASR9K Route Switch Processor with 880G/slot Fabric and 32GB
+      pid: A9K-RSP880-SE
+      vid: V05
+      sn: FOC2237NQEA
+    module 0/RSP1/CPU0:
+      descr: ASR9K Route Switch Processor with 880G/slot Fabric and 32GB
+      pid: A9K-RSP880-SE
+      vid: V05
+      sn: FOC2241P4RN
+    fantray 0/FT0/SP:
+      descr: ASR-9010 Fan Tray
+      pid: ASR-9010-FAN
+      vid: V02
+      sn: FOX1704XEET
+    fan0 0/FT0/SP:
+      descr: ASR9K Generic Fan
+    fan1 0/FT0/SP:
+      descr: ASR9K Generic Fan
+    module 0/0/CPU0:
+      descr: 80G Modular Linecard, Packet Transport Optimized
+      pid: A9K-MOD80-TR
+      vid: V04
+      sn: FOC1712N6HT
+    module 0/0/0:
+      descr: ASR 9000 4-port 10GE Modular Port Adapter
+      pid: A9K-MPA-4X10GE
+      vid: V03
+      sn: FOC1637N7P5
+    module mau 0/0/0/0:
+      descr: Multirate 10GBASE-LR and OC-192/STM-64 SR-1 XFP, SMF
+      pid: XFP-10GLR-OC192SR
+      vid: V03
+      sn: ONT150510ZF
+    module mau 0/0/0/1:
+      descr: Multirate 10GBASE-LR and OC-192/STM-64 SR-1 XFP, SMF
+      pid: XFP-10GLR-OC192SR
+      vid: V02
+      sn: AGA1236NCC5
+    module mau 0/0/0/3:
+      descr: Multirate 10GBASE-LR and OC-192/STM-64 SR-1 XFP, SMF
+      pid: XFP-10GLR-OC192SR
+      vid: V03
+      sn: ONT143710JX
+    module 0/1/CPU0:
+      descr: 80G Modular Linecard, Service Edge Optimized
+      pid: A9K-MOD80-SE
+      vid: V05
+      sn: FOC1742N4HT
+    module 0/1/0:
+      descr: ASR 9000 20-port 1GE Modular Port Adapter
+      pid: A9K-MPA-20X1GE
+      vid: V02
+      sn: FOC1731NA2K
+    module mau 0/1/0/4:
+      descr: 1000BASE-SX SFP (DOM), MMF, 550/220m
+      pid: SFP-GE-S
+      vid: V01
+      sn: FNS122500FL
+    module mau 0/1/0/6:
+      descr: 1000BASE-SX SFP (DOM), MMF, 550/220m
+      pid: SFP-GE-S
+      vid: V01
+      sn: FNS1539076Y
+    module mau 0/1/0/7:
+      descr: 1000BASE-SX SFP (DOM), MMF, 550/220m
+      pid: SFP-GE-S
+      vid: V01
+      sn: FNS16390KR5
+    module mau 0/1/0/12:
+      descr: 1000BASE-SX SFP (DOM), MMF, 550/220m
+      pid: SFP-GE-S
+      vid: V01
+      sn: FNS124203MB
+    module mau 0/1/0/13:
+      descr: 1000BASE-SX SFP (DOM), MMF, 550/220m
+      pid: SFP-GE-S
+      vid: V01
+      sn: FNS13441AL3
+    power-module 0/PS1/M0/SP:
+      descr: 3kW AC V2 Power Module
+      pid: PWR-3KW-AC-V2
+      vid: V01
+      sn: DTM165104G1
+    chassis ASR-9010-DC-V2:
+      descr: ASR 9010 8 Line Card Slot Chassis with V2 AC PEM
+      pid: ASR-9010-DC-V2
+      vid: V01
+      sn: FOX1736GGZ5

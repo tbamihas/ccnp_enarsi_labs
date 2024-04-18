@@ -1,0 +1,12 @@
+Value Required neighbor (\S+)
+Value Filldown vrf (\S+)
+Value Filldown afi ([\S ]+)
+
+Start
+  ^\s*address-family ${afi} vrf ${vrf} -> Continue.Clearall
+  ^\s*address-family ${afi} vrf ${vrf}
+  ^\s*address-family ${afi} -> Continue.Clearall
+  ^\s*address-family ${afi}
+  ^\s*neighbor ${neighbor} activate -> Record
+
+EOF

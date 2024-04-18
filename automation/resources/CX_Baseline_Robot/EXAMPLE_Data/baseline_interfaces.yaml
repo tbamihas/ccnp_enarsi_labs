@@ -1,0 +1,103 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_interfaces.yaml file that needs to be updated and added to your project files, if you want to include interface related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_INTERFACES_UP
+# BASELINE_INTERFACES_DOWN
+#
+#
+#     Which are used in these keywords from keywords/baseline_interfaces.resource
+#
+# baseline interfaces validate interfaces are up as per defined baseline
+#
+################################################################################
+
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_INTERFACES_UP
+#     used in: baseline interfaces validate interfaces are up as per defined baseline
+#
+# BASELINE_INTERFACES_UP:             # This data structure holds the expected up state interfaces
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     - <INTERFACE>                   # Examples: Bundle-Ether14 , Bundle-Ether10050.750 , Loopback100 , MgmtEth0/RSP0/CPU0/0 , HundredGigE0/1/0/0 , TenGigE0/2/0/0
+#     - <INTERFACE>
+#                                     #   For IOSXR, use the command 'show ipv4 interface brief'
+#                                     #   For IOSXE, use the command 'show ip interface brief'
+#
+#
+#     Example for BASELINE_INTERFACES_UP
+#
+# BASELINE_INTERFACES_UP:
+#   PE4:
+#     - Bundle-Ether14
+#     - Bundle-Ether24
+#     - Loopback0
+#     - TenGigE0/2/0/0
+#
+
+BASELINE_INTERFACES_UP:
+  cnmlw-cat6-1a:
+    - GigabitEthernet6/1
+    - GigabitEthernet2/1
+    - GigabitEthernet2/2
+    - GigabitEthernet2/5
+    - Loopback0
+    - Port-channel3
+    - Port-channel40
+    - Port-channel41
+  mnbas-pe-1a:
+    - BVI1600
+    - Bundle-Ether40
+    - Bundle-Ether41
+    - Bundle-Ether301
+    - Bundle-Ether401
+    - Bundle-Ether901
+    - Bundle-Ether902
+    - Bundle-Ether40.1600
+    - Bundle-Ether41.1600
+    - Bundle-Ether902.1600
+    - Loopback0
+    - MgmtEth0/RSP0/CPU0/0
+    - MgmtEth0/RSP1/CPU0/0
+    - GigabitEthernet0/0/0/0
+    - GigabitEthernet0/0/0/1
+    - GigabitEthernet0/0/0/5
+    - GigabitEthernet0/0/0/5.600
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_INTERFACES_DOWN
+#     used in: baseline interfaces validate interfaces are up as per defined baseline
+#
+# BASELINE_INTERFACES_DOWN:           # This data structure holds the expected down state interfaces
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     - <INTERFACE>                   # Examples: Bundle-Ether14 , Bundle-Ether10050.750 , Loopback100 , MgmtEth0/RSP0/CPU0/0 , HundredGigE0/1/0/0 , TenGigE0/2/0/0
+#     - <INTERFACE>
+#                                     #   For IOSXR, use the command 'show ipv4 interface brief'
+#                                     #   For IOSXE, use the command 'show ip interface brief'
+#
+#
+#     Example for BASELINE_INTERFACES_DOWN
+#
+# BASELINE_INTERFACES_DOWN:
+#   PE4:
+#     - HundredGigE0/1/0/1
+#     - TenGigE0/2/0/1
+#
+
+
+
+BASELINE_INTERFACES_DOWN:
+   PE4:
+     - HundredGigE0/1/0/1
+     - TenGigE0/2/0/1

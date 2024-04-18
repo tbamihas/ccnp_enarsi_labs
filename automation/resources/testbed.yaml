@@ -1,0 +1,105 @@
+testbed:
+  name: tbamihas-enarsi-lab
+devices:
+  R1:
+    type: router
+    os: ios
+    connections:
+      vty:
+        protocol: ssh
+        ip: 10.53.217.18
+        username: cisco
+        password: cisco
+        class: unicon.Unicon
+      defaults:
+        via: vty
+    custom:
+       categories:
+       - ios
+       - xr
+       - xr-v
+  R2:
+    type: router
+    os: ios
+    connections:
+      vty:
+        protocol: ssh
+        ip: 10.53.217.19
+        username: cisco
+        password: cisco
+        class: unicon.Unicon
+      defaults:
+        via: vty
+    custom:
+       categories:
+       - ios
+       - xr
+       - xr-v
+  R3:
+    type: router
+    os: ios
+    connections:
+      vty:
+        protocol: ssh
+        ip: 10.53.217.20
+        username: cisco
+        password: cisco
+        class: unicon.Unicon
+      defaults:
+        via: vty
+    custom:
+       categories:
+       - ios
+       - xr
+       - xr-v
+  R4:
+    type: router
+    os: ios
+    connections:
+      vty:
+        protocol: ssh
+        ip: 10.53.217.21
+        username: cisco
+        password: cisco
+        class: unicon.Unicon
+      defaults:
+        via: vty
+    custom:
+       categories:
+       - ios
+       - xr
+       - xr-v
+  R5:
+    type: router
+    os: ios
+    connections:
+      vty:
+        protocol: ssh
+        ip: 10.53.217.22
+        username: cisco
+        password: cisco
+        class: unicon.Unicon
+      defaults:
+        via: vty
+    custom:
+       categories:
+       - ios
+       - xr
+       - xr-v
+  R6:
+    type: router
+    os: ios
+    connections:
+      vty:
+        protocol: ssh
+        ip: 10.53.217.23
+        username: cisco
+        password: cisco
+        class: unicon.Unicon
+      defaults:
+        via: vty
+    custom:
+       categories:
+       - ios
+       - xr
+       - xr-v

@@ -1,0 +1,27 @@
+Value Filldown router_id (\S+)
+Value Filldown local_as (\S+)
+Value Filldown bgp_state (\S+)
+Value Filldown afi ([\S ]+)
+Value Required neighbor ([\d\.:a-f]+)
+Value speaker (\d+)
+Value remote_as (\d+)
+Value messages_received (\d+)
+Value messages_sent (\d+)
+Value table_version (\d+)
+Value in_queue (\S+)
+Value out_queue (\S+)
+Value up_down_time ([\w\d\:]+)
+Value state_prefix ([\w\d]+(\s\(\w+\))?)
+
+Start
+  ^\s*Address Family: ${afi}
+  ^\s*BGP router identifier ${router_id}, local AS number ${local_as}
+  ^\s*BGP table state: ${bgp_state}
+  ^\s*${neighbor}\s+${speaker}\s+${remote_as}\s+${messages_received}\s+${messages_sent}\s+${table_version}\s+${in_queue}\s+${out_queue}\s+${up_down_time}\s+${state_prefix} -> Record
+  ^\s*${neighbor} -> v6_neighbor
+
+v6_neighbor
+  ^\s+${speaker}\s+${remote_as}\s+${messages_received}\s+${messages_sent}\s+${table_version}\s+${in_queue}\s+${out_queue}\s+${up_down_time}\s+${state_prefix} -> Record Start
+  ^. -> Start
+
+EOF

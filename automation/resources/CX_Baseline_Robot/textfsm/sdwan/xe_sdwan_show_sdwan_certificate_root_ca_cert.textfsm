@@ -1,0 +1,15 @@
+# TextFSM Template: show sdwan certificate root-ca-cert
+# Platform: IOS XE SDWAN
+# Author: Nikhail Venkat (nikvenka)
+#
+Value serial_number (\d+)
+Value not_before_date (\S+\s+\d+\s+\d+:\d+:\d+\s+\d+)
+Value not_after_date (\S+\s+\d+\s+\d+:\d+:\d+\s+\d+)
+Value organization_name (\S+)
+
+Start
+  ^\s*Certificate: -> Record
+  ^\s*Serial Number:\s+${serial_number}
+  ^\s*Not Before\s*:\s*${not_before_date}
+  ^\s*Not After\s*:\s*${not_after_date}
+  ^\s*Subject:.+O\s*=\s*${organization_name},

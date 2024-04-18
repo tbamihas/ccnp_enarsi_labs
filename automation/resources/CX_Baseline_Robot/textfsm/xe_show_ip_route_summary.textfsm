@@ -1,0 +1,42 @@
+Value Required route_source ([a-zA-Z]+\s[a-zA-Z0-9]+|[a-zA-Z]+)
+Value networks (\d+)
+Value subnets (\d+)
+Value replicates (\d+)
+Value overhead (\d+)
+Value memory (\d+)
+
+Start
+  ^${route_source}\s*${networks}\s+${subnets}\s+${replicates}\s+${overhead}\s+${memory} -> Record
+
+
+
+################################################################################
+#
+#     example cli output
+#
+# show ip route summary
+# IP routing table name is default (0x0)
+# IP routing table maximum-paths is 32
+# Route Source    Networks    Subnets     Replicates  Overhead    Memory (bytes)
+# connected       0           5           0           480         1520
+# static          0           0           0           0           0
+# application     0           0           0           0           0
+# isis            0           2629        0           504768      799216
+#   Level 1: 0 Level 2: 2629 Inter-area: 0
+# bgp 15897       0           0           0           0           0
+#   External: 0 Internal: 0 Local: 0
+# internal        104                                             242416
+# Total           104         2634        0           505248      1043152
+#
+#
+#
+#     example returned parsed output
+#
+#[{'route_source': 'connected', 'networks': '0', 'subnets': '5', 'replicates': '0', 'overhead': '480', 'memory': '1520'},
+# {'route_source': 'static', 'networks': '0', 'subnets': '0', 'replicates': '0', 'overhead': '0', 'memory': '0'},
+# {'route_source': 'application', 'networks': '0', 'subnets': '0', 'replicates': '0', 'overhead': '0', 'memory': '0'},
+# {'route_source': 'isis', 'networks': '0', 'subnets': '2629', 'replicates': '0', 'overhead': '504768', 'memory': '799216'},
+# {'route_source': 'bgp 15897', 'networks': '0', 'subnets': '0', 'replicates': '0', 'overhead': '0', 'memory': '0'},
+# {'route_source': 'Total', 'networks': '104', 'subnets': '2634', 'replicates': '0', 'overhead': '505248', 'memory': '1043152'}]
+#
+################################################################################

@@ -1,0 +1,230 @@
+Value Required sno (\d+)
+Value label ([\w\_\-]+)
+Value user ([\w\-\_]+)
+Value line ([\w\:\_]+)
+Value client (\w+)
+Value time_stamp ([\w\:]+[\w\:\s]+)
+
+
+Start
+  ^${sno}\s+${label}\s+${user}\s+${line}\s+${client}\s+${time_stamp} -> Record
+
+
+
+
+
+################################################################################
+#
+#     example cli output
+#
+# show configuration commit list
+# Mon May 31 15:14:04.142 UTC
+# SNo. Label/ID              User      Line                Client      Time Stamp
+# ~~~~ ~~~~~~~~              ~~~~      ~~~~                ~~~~~~      ~~~~~~~~~~
+# 1    1000000366            jasopowe  vty0:node0_RSP0_CP  CLI         Sun May 30 12:14:48 2021
+# 2    1000000365            jasopowe  vty1:node0_RSP0_CP  CLI         Sat May 29 18:42:52 2021
+# 3    1000000364            jasopowe  vty1:node0_RSP0_CP  CLI         Sat May 29 16:03:20 2021
+# 4    1000000363            jasopowe  vty1:node0_RSP0_CP  CLI         Fri May 21 12:17:52 2021
+# 5    1000000362            jasopowe  vty1:node0_RSP0_CP  CLI         Wed May  5 16:13:16 2021
+# 6    1000000361            jasopowe  vty2:node0_RSP0_CP  CLI         Tue May  4 11:45:11 2021
+# 7    1000000360            jasopowe  vty2:node0_RSP0_CP  CLI         Fri Apr 30 10:38:06 2021
+# 8    1000000359            jasopowe  vty0:node0_RSP0_CP  CLI         Wed Apr 28 08:37:49 2021
+# 9    1000000358            jasopowe  vty0:node0_RSP0_CP  CLI         Mon Apr 26 09:19:30 2021
+# 10   1000000357            jasopowe  vty1:node0_RSP0_CP  CLI         Fri Apr 23 13:46:20 2021
+# 11   1000000356            jasopowe  vty0:node0_RSP0_CP  CLI         Fri Apr 23 10:21:08 2021
+# 12   1000000355            jasopowe  vty0:node0_RSP0_CP  CLI         Thu Apr 22 19:47:07 2021
+# 13   1000000354            jasopowe  vty0:node0_RSP0_CP  CLI         Thu Apr 22 18:35:18 2021
+# 14   1000000353            cisco     vty0:node0_RSP0_CP  CLI         Wed Apr 14 09:34:04 2021
+# 15   1000000352            cisco     vty0:node0_RSP0_CP  CLI         Mon Mar 29 16:49:45 2021
+# 16   1000000351            cisco     vty0:node0_RSP0_CP  CLI         Mon Mar 29 14:42:34 2021
+# 17   1000000350            cisco     vty0:node0_RSP0_CP  CLI         Mon Mar 29 14:23:45 2021
+# 18   1000000349            cisco     vty0:node0_RSP0_CP  CLI         Mon Mar 29 13:34:52 2021
+# 19   1000000348            cisco     vty0:node0_RSP0_CP  CLI         Mon Mar 29 13:34:17 2021
+# 20   1000000347            cisco     vty0:node0_RSP0_CP  CLI         Mon Mar 29 13:33:11 2021
+# 21   1000000346            jasopowe  vty0:node0_RSP1_CP  CLI         Tue Mar  9 16:51:35 2021
+# 22   1000000345            jasopowe  vty0:node0_RSP1_CP  CLI         Tue Mar  9 16:41:34 2021
+# 23   1000000344            jasopowe  vty0:node0_RSP1_CP  CLI         Tue Mar  9 16:39:36 2021
+# 24   1000000343            jasopowe  vty0:node0_RSP1_CP  CLI         Tue Mar  9 16:30:44 2021
+# 25   1000000342            jasopowe  vty0:node0_RSP1_CP  CLI         Tue Mar  9 16:29:40 2021
+# 26   1000000341            jasopowe  vty0:node0_RSP1_CP  CLI         Tue Mar  9 16:24:19 2021
+# 27   1000000340            jasopowe  vty0:node0_RSP1_CP  CLI         Tue Mar  9 16:20:44 2021
+# 28   1000000339            jasopowe  vty0:node0_RSP1_CP  CLI         Tue Mar  9 15:39:22 2021
+# 29   1000000338            jasopowe  vty0:node0_RSP1_CP  Rollback    Tue Mar  9 15:38:05 2021
+# 30   1000000337            jasopowe  vty0:node0_RSP1_CP  CLI         Tue Mar  9 14:31:51 2021
+# 31   1000000336            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 14:04:52 2021
+# 32   1000000335            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 13:57:24 2021
+# 33   1000000334            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 13:51:15 2021
+# 34   1000000333            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 13:43:44 2021
+# 35   1000000332            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 13:37:37 2021
+# 36   1000000331            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 13:30:08 2021
+# 37   1000000330            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 13:24:01 2021
+# 38   1000000329            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 13:16:32 2021
+# 39   1000000328            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 13:10:24 2021
+# 40   1000000327            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 13:02:55 2021
+# 41   1000000326            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 12:56:46 2021
+# 42   1000000325            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 12:49:19 2021
+# 43   1000000324            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 12:43:11 2021
+# 44   1000000323            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 12:35:44 2021
+# 45   1000000322            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 12:29:32 2021
+# 46   1000000321            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 12:22:03 2021
+# 47   1000000320            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 12:15:53 2021
+# 48   1000000319            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 12:08:25 2021
+# 49   1000000318            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 12:02:11 2021
+# 50   1000000317            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 11:54:43 2021
+# 51   1000000316            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 11:48:35 2021
+# 52   1000000315            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 11:41:08 2021
+# 53   1000000314            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 11:35:00 2021
+# 54   1000000313            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 11:27:31 2021
+# 55   1000000312            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 11:21:23 2021
+# 56   1000000311            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 11:13:54 2021
+# 57   1000000310            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 11:07:47 2021
+# 58   1000000309            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 11:00:19 2021
+# 59   1000000308            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 10:54:12 2021
+# 60   1000000307            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 10:46:44 2021
+# 61   1000000306            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 10:40:37 2021
+# 62   1000000305            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 10:33:08 2021
+# 63   1000000304            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 10:27:01 2021
+# 64   1000000303            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 10:19:31 2021
+# 65   1000000302            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 10:13:23 2021
+# 66   1000000301            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 10:05:53 2021
+# 67   1000000300            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 09:59:46 2021
+# 68   1000000299            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 09:52:17 2021
+# 69   1000000298            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 09:46:11 2021
+# 70   1000000297            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 09:38:41 2021
+# 71   1000000296            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 09:27:43 2021
+# 72   1000000295            robot     vty0:node0_RSP1_CP  CLI         Tue Mar  9 09:20:13 2021
+# 73   1000000294            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 22:07:03 2021
+# 74   1000000293            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 21:59:38 2021
+# 75   1000000292            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 21:53:31 2021
+# 76   1000000291            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 21:46:06 2021
+# 77   1000000290            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 21:40:05 2021
+# 78   1000000289            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 21:32:40 2021
+# 79   1000000288            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 21:26:33 2021
+# 80   1000000287            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 21:19:08 2021
+# 81   1000000286            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 21:13:05 2021
+# 82   1000000285            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 21:05:40 2021
+# 83   1000000284            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 20:59:32 2021
+# 84   1000000283            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 20:52:08 2021
+# 85   1000000282            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 20:46:05 2021
+# 86   1000000281            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 20:38:41 2021
+# 87   1000000280            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 20:32:34 2021
+# 88   1000000279            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 20:25:10 2021
+# 89   1000000278            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 20:19:07 2021
+# 90   1000000277            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 20:11:43 2021
+# 91   1000000276            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 20:05:36 2021
+# 92   1000000275            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 19:58:10 2021
+# 93   1000000274            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 19:52:07 2021
+# 94   1000000273            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 19:44:41 2021
+# 95   1000000272            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 19:38:35 2021
+# 96   1000000271            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 19:31:12 2021
+# 97   1000000270            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 19:25:09 2021
+# 98   1000000269            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 19:17:44 2021
+# 99   1000000268            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 19:11:40 2021
+# 100  1000000267            robot     vty0:node0_RSP1_CP  CLI         Mon Mar  8 19:04:15 2021
+#
+#
+#
+#     example returned parsed output
+#
+#[{'sno': '1', 'label': '1000000366', 'user': 'jasopowe', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Sun May 30 12:14:48 2021'},
+# {'sno': '2', 'label': '1000000365', 'user': 'jasopowe', 'line': 'vty1:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Sat May 29 18:42:52 2021'},
+# {'sno': '3', 'label': '1000000364', 'user': 'jasopowe', 'line': 'vty1:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Sat May 29 16:03:20 2021'},
+# {'sno': '4', 'label': '1000000363', 'user': 'jasopowe', 'line': 'vty1:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Fri May 21 12:17:52 2021'},
+# {'sno': '5', 'label': '1000000362', 'user': 'jasopowe', 'line': 'vty1:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Wed May  5 16:13:16 2021'},
+# {'sno': '6', 'label': '1000000361', 'user': 'jasopowe', 'line': 'vty2:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Tue May  4 11:45:11 2021'},
+# {'sno': '7', 'label': '1000000360', 'user': 'jasopowe', 'line': 'vty2:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Fri Apr 30 10:38:06 2021'},
+# {'sno': '8', 'label': '1000000359', 'user': 'jasopowe', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Wed Apr 28 08:37:49 2021'},
+# {'sno': '9', 'label': '1000000358', 'user': 'jasopowe', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Mon Apr 26 09:19:30 2021'},
+# {'sno': '10', 'label': '1000000357', 'user': 'jasopowe', 'line': 'vty1:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Fri Apr 23 13:46:20 2021'},
+# {'sno': '11', 'label': '1000000356', 'user': 'jasopowe', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Fri Apr 23 10:21:08 2021'},
+# {'sno': '12', 'label': '1000000355', 'user': 'jasopowe', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Thu Apr 22 19:47:07 2021'},
+# {'sno': '13', 'label': '1000000354', 'user': 'jasopowe', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Thu Apr 22 18:35:18 2021'},
+# {'sno': '14', 'label': '1000000353', 'user': 'cisco', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Wed Apr 14 09:34:04 2021'},
+# {'sno': '15', 'label': '1000000352', 'user': 'cisco', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar 29 16:49:45 2021'},
+# {'sno': '16', 'label': '1000000351', 'user': 'cisco', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar 29 14:42:34 2021'},
+# {'sno': '17', 'label': '1000000350', 'user': 'cisco', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar 29 14:23:45 2021'},
+# {'sno': '18', 'label': '1000000349', 'user': 'cisco', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar 29 13:34:52 2021'},
+# {'sno': '19', 'label': '1000000348', 'user': 'cisco', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar 29 13:34:17 2021'},
+# {'sno': '20', 'label': '1000000347', 'user': 'cisco', 'line': 'vty0:node0_RSP0_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar 29 13:33:11 2021'},
+# {'sno': '21', 'label': '1000000346', 'user': 'jasopowe', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 16:51:35 2021'},
+# {'sno': '22', 'label': '1000000345', 'user': 'jasopowe', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 16:41:34 2021'},
+# {'sno': '23', 'label': '1000000344', 'user': 'jasopowe', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 16:39:36 2021'},
+# {'sno': '24', 'label': '1000000343', 'user': 'jasopowe', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 16:30:44 2021'},
+# {'sno': '25', 'label': '1000000342', 'user': 'jasopowe', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 16:29:40 2021'},
+# {'sno': '26', 'label': '1000000341', 'user': 'jasopowe', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 16:24:19 2021'},
+# {'sno': '27', 'label': '1000000340', 'user': 'jasopowe', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 16:20:44 2021'},
+# {'sno': '28', 'label': '1000000339', 'user': 'jasopowe', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 15:39:22 2021'},
+# {'sno': '29', 'label': '1000000338', 'user': 'jasopowe', 'line': 'vty0:node0_RSP1_CP', 'client': 'Rollback', 'time_stamp': 'Tue Mar  9 15:38:05 2021'},
+# {'sno': '30', 'label': '1000000337', 'user': 'jasopowe', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 14:31:51 2021'},
+# {'sno': '31', 'label': '1000000336', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 14:04:52 2021'},
+# {'sno': '32', 'label': '1000000335', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 13:57:24 2021'},
+# {'sno': '33', 'label': '1000000334', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 13:51:15 2021'},
+# {'sno': '34', 'label': '1000000333', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 13:43:44 2021'},
+# {'sno': '35', 'label': '1000000332', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 13:37:37 2021'},
+# {'sno': '36', 'label': '1000000331', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 13:30:08 2021'},
+# {'sno': '37', 'label': '1000000330', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 13:24:01 2021'},
+# {'sno': '38', 'label': '1000000329', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 13:16:32 2021'},
+# {'sno': '39', 'label': '1000000328', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 13:10:24 2021'},
+# {'sno': '40', 'label': '1000000327', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 13:02:55 2021'},
+# {'sno': '41', 'label': '1000000326', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 12:56:46 2021'},
+# {'sno': '42', 'label': '1000000325', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 12:49:19 2021'},
+# {'sno': '43', 'label': '1000000324', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 12:43:11 2021'},
+# {'sno': '44', 'label': '1000000323', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 12:35:44 2021'},
+# {'sno': '45', 'label': '1000000322', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 12:29:32 2021'},
+# {'sno': '46', 'label': '1000000321', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 12:22:03 2021'},
+# {'sno': '47', 'label': '1000000320', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 12:15:53 2021'},
+# {'sno': '48', 'label': '1000000319', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 12:08:25 2021'},
+# {'sno': '49', 'label': '1000000318', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 12:02:11 2021'},
+# {'sno': '50', 'label': '1000000317', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 11:54:43 2021'},
+# {'sno': '51', 'label': '1000000316', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 11:48:35 2021'},
+# {'sno': '52', 'label': '1000000315', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 11:41:08 2021'},
+# {'sno': '53', 'label': '1000000314', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 11:35:00 2021'},
+# {'sno': '54', 'label': '1000000313', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 11:27:31 2021'},
+# {'sno': '55', 'label': '1000000312', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 11:21:23 2021'},
+# {'sno': '56', 'label': '1000000311', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 11:13:54 2021'},
+# {'sno': '57', 'label': '1000000310', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 11:07:47 2021'},
+# {'sno': '58', 'label': '1000000309', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 11:00:19 2021'},
+# {'sno': '59', 'label': '1000000308', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 10:54:12 2021'},
+# {'sno': '60', 'label': '1000000307', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 10:46:44 2021'},
+# {'sno': '61', 'label': '1000000306', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 10:40:37 2021'},
+# {'sno': '62', 'label': '1000000305', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 10:33:08 2021'},
+# {'sno': '63', 'label': '1000000304', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 10:27:01 2021'},
+# {'sno': '64', 'label': '1000000303', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 10:19:31 2021'},
+# {'sno': '65', 'label': '1000000302', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 10:13:23 2021'},
+# {'sno': '66', 'label': '1000000301', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 10:05:53 2021'},
+# {'sno': '67', 'label': '1000000300', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 09:59:46 2021'},
+# {'sno': '68', 'label': '1000000299', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 09:52:17 2021'},
+# {'sno': '69', 'label': '1000000298', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 09:46:11 2021'},
+# {'sno': '70', 'label': '1000000297', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 09:38:41 2021'},
+# {'sno': '71', 'label': '1000000296', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 09:27:43 2021'},
+# {'sno': '72', 'label': '1000000295', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Tue Mar  9 09:20:13 2021'},
+# {'sno': '73', 'label': '1000000294', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 22:07:03 2021'},
+# {'sno': '74', 'label': '1000000293', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 21:59:38 2021'},
+# {'sno': '75', 'label': '1000000292', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 21:53:31 2021'},
+# {'sno': '76', 'label': '1000000291', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 21:46:06 2021'},
+# {'sno': '77', 'label': '1000000290', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 21:40:05 2021'},
+# {'sno': '78', 'label': '1000000289', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 21:32:40 2021'},
+# {'sno': '79', 'label': '1000000288', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 21:26:33 2021'},
+# {'sno': '80', 'label': '1000000287', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 21:19:08 2021'},
+# {'sno': '81', 'label': '1000000286', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 21:13:05 2021'},
+# {'sno': '82', 'label': '1000000285', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 21:05:40 2021'},
+# {'sno': '83', 'label': '1000000284', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 20:59:32 2021'},
+# {'sno': '84', 'label': '1000000283', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 20:52:08 2021'},
+# {'sno': '85', 'label': '1000000282', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 20:46:05 2021'},
+# {'sno': '86', 'label': '1000000281', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 20:38:41 2021'},
+# {'sno': '87', 'label': '1000000280', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 20:32:34 2021'},
+# {'sno': '88', 'label': '1000000279', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 20:25:10 2021'},
+# {'sno': '89', 'label': '1000000278', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 20:19:07 2021'},
+# {'sno': '90', 'label': '1000000277', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 20:11:43 2021'},
+# {'sno': '91', 'label': '1000000276', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 20:05:36 2021'},
+# {'sno': '92', 'label': '1000000275', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 19:58:10 2021'},
+# {'sno': '93', 'label': '1000000274', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 19:52:07 2021'},
+# {'sno': '94', 'label': '1000000273', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 19:44:41 2021'},
+# {'sno': '95', 'label': '1000000272', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 19:38:35 2021'},
+# {'sno': '96', 'label': '1000000271', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 19:31:12 2021'},
+# {'sno': '97', 'label': '1000000270', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 19:25:09 2021'},
+# {'sno': '98', 'label': '1000000269', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 19:17:44 2021'},
+# {'sno': '99', 'label': '1000000268', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 19:11:40 2021'},
+# {'sno': '100', 'label': '1000000267', 'user': 'robot', 'line': 'vty0:node0_RSP1_CP', 'client': 'CLI', 'time_stamp': 'Mon Mar  8 19:04:15 2021'}]
+#
+################################################################################

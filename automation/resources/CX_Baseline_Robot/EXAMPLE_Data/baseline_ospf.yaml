@@ -1,0 +1,148 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_ospf.yaml file that needs to be updated and added to your project files, if you want to include OSPF related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_OSPF_NEIGHBORS
+#
+#
+#     Which are used in these keywords from keywords/baseline_ospf.resource
+#
+# baseline ospf validate correct ospf neighbors are up as per defined baseline
+# baseline ospf validate correct ospfv3 neighbors are up as per defined baseline
+#
+################################################################################
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_OSPF_NEIGHBORS
+#     used in: baseline ospf validate correct ospf neighbors are up as per defined baseline
+#
+# BASELINE_OSPF_NEIGHBORS:            # This data structure holds the expected OSPF neighbors
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     - <INTERFACE_NAME>               # Example: GigabitEthernet0/0/0/5.700
+#     - <INTERFACE_NAME>
+#                                     #   For IOSXR, use the command 'show ospf vrf all neighbor'
+#
+#
+#     Example for BASELINE_OSPF_NEIGHBORS
+#
+# BASELINE_OSPF_NEIGHBORS:
+#   R1:
+#    - GigabitEthernet0/0/0/4.1700
+#    - GigabitEthernet0/0/0/19.700
+#    - GigabitEthernet0/0/0/4.1800
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:R1#show ospf vrf all neighbor
+# Tue Oct 26 14:27:01.583 UTC
+#
+# * Indicates MADJ interface
+# # Indicates Neighbor awaiting BFD session up
+#
+# Neighbors for OSPF 1700, VRF mnbas-ce-1a_V700
+#
+# Neighbor ID     Pri   State           Dead Time   Address         Interface
+# 192.70.10.1     1     FULL/  -        00:00:39    172.25.2.2      GigabitEthernet0/0/0/4.1700
+#     Neighbor is up for 6d05h
+# 172.23.2.1      1     FULL/  -        00:00:35    172.23.2.1      GigabitEthernet0/0/0/19.700
+#     Neighbor is up for 6d04h
+#
+# Total neighbor count: 2
+#
+#
+# * Indicates MADJ interface
+# # Indicates Neighbor awaiting BFD session up
+#
+# Neighbors for OSPF 1800, VRF mnbas-ce-1a_V800
+#
+# Neighbor ID     Pri   State           Dead Time   Address         Interface
+# 192.80.10.1     1     FULL/  -        00:00:31    172.25.3.2      GigabitEthernet0/0/0/4.1800
+#     Neighbor is up for 6d05h
+#
+# Total neighbor count: 1
+#
+
+BASELINE_OSPF_NEIGHBORS:
+  mnbas-pe-1a:
+    - GigabitEthernet0/0/0/5.700
+  mnbas-pe-1b:
+    - GigabitEthernet0/0/0/5.700
+  R1:
+    - GigabitEthernet0/0/0/4.1700
+    - GigabitEthernet0/0/0/19.700
+    - GigabitEthernet0/0/0/4.1800
+    - GigabitEthernet0/0/0/5.2700
+    - GigabitEthernet0/0/0/18.700
+    - GigabitEthernet0/0/0/5.2800
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_OSPFV3_NEIGHBORS
+#     used in: baseline ospf validate correct ospfv3 neighbors are up as per defined baseline
+#
+# BASELINE_OSPFV3_NEIGHBORS:            # This data structure holds the expected OSPFV3 neighbors
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     - <INTERFACE_NAME>               # Example: GigabitEthernet0/0/0/5.700
+#     - <INTERFACE_NAME>
+#                                     #   For IOSXR, use the command 'show ospfv3 vrf all neighbor'
+#
+#
+#     Example for BASELINE_OSPFV3_NEIGHBORS
+#
+# BASELINE_OSPFV3_NEIGHBORS:
+#   R1:
+#    - GigabitEthernet0/0/0/4.1700
+#    - GigabitEthernet0/0/0/19.700
+#    - GigabitEthernet0/0/0/4.1800
+#
+#
+#    Example CLI
+#
+# RP/0/RSP0/CPU0:R1#show ospfv3 vrf all neighbor
+# Tue Oct 26 14:30:06.109 UTC
+#
+# # Indicates Neighbor awaiting BFD session up
+#
+# Neighbors for OSPFv3 1700, VRF mnbas-ce-1a_V700
+#
+# Neighbor ID     Pri   State           Dead Time   Interface ID    Interface
+# 192.70.10.1     1     FULL/  -        00:00:34    56              GigabitEthernet0/0/0/4.1700
+#     Neighbor is up for 6d05h
+# 172.23.2.1      1     FULL/  -        00:00:34    104             GigabitEthernet0/0/0/19.700
+#     Neighbor is up for 6d04h
+#
+# Total neighbor count: 2
+#
+# # Indicates Neighbor awaiting BFD session up
+#
+# Neighbors for OSPFv3 1800, VRF mnbas-ce-1a_V800
+#
+# Neighbor ID     Pri   State           Dead Time   Interface ID    Interface
+# 192.80.10.1     1     FULL/  -        00:00:37    57              GigabitEthernet0/0/0/4.1800
+#     Neighbor is up for 6d05h
+#
+# Total neighbor count: 1
+#
+
+BASELINE_OSPFV3_NEIGHBORS:
+  mnbas-pe-1a:
+    - GigabitEthernet0/0/0/5.700
+  mnbas-pe-1b:
+    - GigabitEthernet0/0/0/5.700
+  R1:
+    - GigabitEthernet0/0/0/4.1700
+    - GigabitEthernet0/0/0/19.700
+    - GigabitEthernet0/0/0/4.1800
+    - GigabitEthernet0/0/0/5.2700
+    - GigabitEthernet0/0/0/18.700
+    - GigabitEthernet0/0/0/5.2800

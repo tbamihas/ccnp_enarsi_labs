@@ -1,0 +1,114 @@
+Lab Topology and IPv4/v6 Addressing Scheme:
+
+Device Names, Interface IDs and Associated Networks:
+
+R1:
+- MGMT_dirty - G0/3 - 3.1.100.1
+- MGMT_clean - G0/4 - 10.53.217.18
+- Loopback Lo1:
+    - v6: 1:1:1:1::1/64
+    - v4: 1.1.1.1/26
+- Loopback Lo2:
+    - v6: 1:1:1:2::1/64
+    - v4: 1.1.1.65/26
+- Loopback Lo3
+    - v6: 1:1:1:3::1/64
+    - v4: 1.1.1.129/26
+- Loopback Lo4
+    - v6: 1:1:1:4::1/64
+    - v4: 1.1.1.193/26
+- Connection to R2:
+    - v6: 2001:db8:0:1::/64 (R1 G0/0 IP: ::1)
+    - v4: 10.0.0.0/30       (R1 G0/0 IP: 10.0.0.1)
+- Connection to R3:
+    - v6: 2001:db8:0:2::/64 (R1 G0/1 IP: ::1)
+    - v4: 20.0.0.0/30       (R1 G0/1 IP: 20.0.0.1)
+
+R2:
+- MGMT_dirty - G0/3 - 3.1.100.2
+- MGMT_clean - G0/4 - 10.53.217.19
+- Loopback Lo1:
+    - v6: 77::1/64
+    - v4: 77.0.0.1/24
+- Connection to R1:
+    - v6: 2001:db8:0:1::/64 (R2 G0/0 IP: ::2)
+    - v4: 10.0.0.0/30       (R2 G0/0 IP: 10.0.0.2)
+- Connection to R3:
+    - v6: 2001:db8:0:3::/64 (R2 G0/2 IP: ::1)
+    - v4: 30.0.0.0/30       (R2 G0/2 IP: 30.0.0.2)
+- Connection to R4:
+    - v6: 2001:db8:0:5::/64 (R2 G0/1 IP: ::1)
+    - v4: 40.0.0.0/30       (R2 G0/1 IP: 40.0.0.1)
+
+R3:
+- MGMT_dirty - G0/3 - 3.1.100.3
+- MGMT_clean - G0/4 - 10.53.217.20
+- Loopback Lo1:
+    - v6: 99::1/64
+    - v4: 99.0.0.1/24
+- Connection to R1:
+    - v6: 2001:db8:0:2::/64 (R3 G0/1 IP: ::2)
+    - v4: 20.0.0.0/30       (R3 G0/1 IP: 20.0.0.2)
+- Connection to R2:
+    - v6: 2001:db8:0:3::/64 (R3 G0/2 IP: ::2)
+    - v4: 30.0.0.0/30       (R3 G0/2 IP: 30.0.0.1)
+- Connection to R4:
+    - v6: 2001:db8:0:4::/64 (R3 G0/0 IP: ::1)
+    - v4: 50.0.0.0/30       (R3 G0/0 IP: 50.0.0.1)
+- Connection to R5:
+    - v6: 1000:1::/64       (R3 G0/11 IP: ::1)
+    - v4: 172.10.0.0/30     (R3 G0/11 IP: 172.10.0.1)
+
+R4:
+- MGMT_dirty - G0/3 - 3.1.100.4
+- MGMT_clean - G0/4 - 10.53.217.21
+- Loopback Lo1:
+    - v6: 2:1::1/64
+    - v4: 4.4.4.4/24
+- Loopback Lo2:
+    - v6: 2:2::1/64
+    - v4: 5.5.5.5/24
+- Loopback Lo3:
+    - v6: 2:3::1/64
+    - v4: 6.6.6.6/24
+- Connection to R2:
+    - v6: 2001:db8:0:5::/64 (R4 G0/1 IP: ::2)
+    - v4: 40.0.0.0/30       (R4 G0/1 IP: 40.0.0.2)
+- Connection to R3:
+    - v6: 2001:db8:0:4::/64 (R4 G0/0 IP: ::2)
+    - v4: 50.0.0.0/30       (R4 G0/0 IP: 50.0.0.2)
+- Connection to R5:
+    - v6: 1000:2::/64       (R4 G0/10 IP: ::1)
+    - v4: 172.20.0.0/30     (R4 G0/10 IP: 172.20.0.1)
+- Connection to R6:
+    - v6: 2001:db8:0:6::/64 (R4 G0/2 IP: ::1)
+    - v4: 60.0.0./30        (R4 G0/2 IP: 60.0.0.1)
+
+R5:
+- MGMT_dirty - G0/3 - 3.1.100.5
+- MGMT_clean - G0/4 - 10.53.217.22
+- Loopback Lo1:
+    - v6: 199::1/64
+    - v4: 199.0.0.1/24
+- Connection to R3:
+    - v6: 1000:1::/64       (R5 G0/11 IP: ::2)
+    - v4: 172.10.0.0/30     (R5 G0/11 IP: 172.10.0.2)
+- Connection to R4:
+    - v6: 1000:2::/64       (R5 G0/10 IP: ::2)
+    - v4: 172.20.0.0/30     (R5 G0/10 IP: 172.20.0.2)
+- Connection to R6:
+    - v6: 2001:db8:0:7::/64 (R5 G0/0 IP: ::1)
+    - v4: 70.0.0./30        (R5 G0/0 IP: 70.0.0.1)
+
+R6:
+- MGMT_dirty - G0/3 - 3.1.100.6
+- MGMT_clean - G0/4 - 10.53.217.23
+- Loopback Lo1:
+    - v6: 88::1/64
+    - v4: 88.0.0.1/24
+- Connection to R4:
+    - v6: 2001:db8:0:6::/64 (R6 G0/2 IP: ::2)
+    - v4: 60.0.0./30        (R6 G0/2 IP: 60.0.0.2)
+- Connection to R5:
+    - v6: 2001:db8:0:7::/64 (R6 G0/0 IP: ::2)
+    - v4: 70.0.0./30        (R6 G0/0 IP: 70.0.0.2)

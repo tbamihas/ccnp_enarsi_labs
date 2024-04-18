@@ -1,0 +1,45 @@
+Advanced EIGRP Configuration Exercises:
+
+Exercise 1: Classic Config
+1. Configure EIGRP classic mode on R1, R3, and R5 using AS number 100.
+2. Advertise the respective loopback networks and the directly connected networks on these routers within EIGRP.
+
+Exercise 2: Named Config
+1. Configure EIGRP named mode on R2 and R4 with AS number 100.
+2. Ensure the same loopback and directly connected networks are advertised within EIGRP as on R1, R3, and R5.
+
+Exercise 3: Router ID
+1. Configure static Router-IDs on all routers to match their hostname. E.g - R1 should have a RID of 1.1.1.1.
+
+Exercise 4: Passive Interface
+1. On routers using named mode, configure EIGRP to be passive on all loopback interfaces using AF interface configurations.
+2. On routers using classic mode, use the `passive-interface` default command and selectively activate EIGRP on interfaces connecting to other routers.
+
+Exercise 5: Authentication
+1. Set up MD5 authentication between R2 and R4 for the 2001:db8:0:5::/64 network.
+2. Set up MD5 authentication between R1 and R3 for the 2001:db8:0:2::/64 network.
+
+Exercise 6: Wide Metrics
+1. On routers with named mode, activate wide metrics for the respective EIGRP address families.
+
+Exercise 7: Unequal Load Balancing
+1. On R1, manipulate the delay metric on the interfaces towards R2 and configure tha correct variance value to establish unequal-cost load balancing on R3.
+
+Exercise 8: Timers
+1. Modify EIGRP hello and hold timers on R3's interface towards R5 (1000:1::/64 network) to be different from the default, but still keeping the adjacency alive. Also modify the timers on R4 towards R5.
+
+Exercise 9: Route Summarization
+1. On R4, configure an EIGRP summary address for the loopback networks to be advertised to R2.
+
+Exercise 10: Stub Features
+1. Configure R5 as an EIGRP stub, ensuring it only advertises connected and summary routes.
+
+Exercise 11: IP Bandwidth
+1. On R1, adjust the bandwidth on the interfaces connecting to R2 and R3 to influence EIGRP's metric calculations.
+
+Exercise 12: Route Manipulation
+1. On R4, use a prefix-list to prevent loopback networks (2:1::/64, 2:2::/64, 2:3::/64) from being advertised.
+2. On R3, block the R5 loopback network from being received with a prefix-list.
+3. On R2, apply a prefix-list to stop receiving the loopback networks from R3.
+
+Ensure after each exercise to validate the setup using the `show ipv6 eigrp` commands and confirm that the network operates as expected.

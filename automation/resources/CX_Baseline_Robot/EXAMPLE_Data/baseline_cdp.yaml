@@ -1,0 +1,47 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_cdp.yaml file that needs to be updated and added to your project files, if you want to run CDP related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_CDP_NEIGHBORS
+#
+#     Which are used in these keywords from keywords/baseline_cdp.resource
+#
+# baseline cdp validate correct cdp neighbors are up as per defined baseline
+#
+################################################################################
+
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_CDP_NEIGHBORS
+#     used in: baseline cdp validate correct cdp neighbors are up as per defined baseline
+#
+# BASELINE_CDP_NEIGHBORS:             # This data structure holds the expected CDP neighbors
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     <NEIGHBOR_NAME>:                # Name of the CDP neighbor Device ID. Example: PE5
+#       - <INTERFACE>                 # List of interfaces where this neighbor Device ID is Up. Example: Te0/7/1/3
+#                                     #   For IOSXR, use the command 'show cdp neighbors'
+#                                     #   For IOSXE, use the command 'show cdp neighbors'
+#
+#
+#     Example for BASELINE_CDP_NEIGHBORS
+#
+# BASELINE_CDP_NEIGHBORS:
+#  XRV_P01:
+#    XRV_PE01:
+#      - Gi0/0/0/0
+#
+
+BASELINE_CDP_NEIGHBORS:
+  XRV_P01:
+    XRV_PE01:
+      - Te0/7/1/1
+      - Gi200/0/0/1
+    CSR1KV_PE05:
+      - Te0/7/1/3

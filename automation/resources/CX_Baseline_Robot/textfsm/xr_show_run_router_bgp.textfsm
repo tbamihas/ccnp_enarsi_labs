@@ -1,0 +1,11 @@
+Value Filldown,Required neighbor (\S+)
+Value Filldown vrf (\S+)
+Value afi ([\S ]+)
+
+Start
+  ^\s*vrf ${vrf} -> Continue.Clearall
+  ^\s*vrf ${vrf}
+  ^\s*neighbor ${neighbor}
+  ^\s*address-family ${afi} -> Record
+
+EOF

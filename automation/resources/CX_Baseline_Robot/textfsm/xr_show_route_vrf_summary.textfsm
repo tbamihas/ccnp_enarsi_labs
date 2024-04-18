@@ -1,0 +1,43 @@
+Value Filldown vrf (\S+)
+Value routesource (\S+(\s+\S+)*)
+Value routes (\d+)
+Value backup (\d+)
+Value deleted (\d+)
+Value memory (\d+)
+
+Start
+  ^VRF: ${vrf}
+  ^${routesource}\s+${routes}\s+${backup}\s+${deleted}\s+${memory} -> Record
+
+EOF
+
+
+
+################################################################################
+#
+#     example cli output
+#
+# show route vrf TEST_101 summary
+# Mon May 31 15:25:04.041 UTC
+# Route Source                     Routes     Backup     Deleted     Memory(bytes)
+# connected                        1          0          0           168
+# local                            1          0          0           168
+# ospf CPN                         2          0          0           336
+# dagr                             0          0          0           0
+# bgp 15897                        6          0          0           1008
+# static                           0          0          0           0
+# Total                            10         0          0           1680
+#
+#
+#
+#     example returned parsed output
+#
+#[{'vrf': '', 'routesource': 'connected', 'routes': '1', 'backup': '0', 'deleted': '0', 'memory': '168'},
+# {'vrf': '', 'routesource': 'local', 'routes': '1', 'backup': '0', 'deleted': '0', 'memory': '168'},
+# {'vrf': '', 'routesource': 'ospf CPN', 'routes': '2', 'backup': '0', 'deleted': '0', 'memory': '336'},
+# {'vrf': '', 'routesource': 'dagr', 'routes': '0', 'backup': '0', 'deleted': '0', 'memory': '0'},
+# {'vrf': '', 'routesource': 'bgp 15897', 'routes': '6', 'backup': '0', 'deleted': '0', 'memory': '1008'},
+# {'vrf': '', 'routesource': 'static', 'routes': '0', 'backup': '0', 'deleted': '0', 'memory': '0'},
+# {'vrf': '', 'routesource': 'Total', 'routes': '10', 'backup': '0', 'deleted': '0', 'memory': '1680'}]
+#
+################################################################################

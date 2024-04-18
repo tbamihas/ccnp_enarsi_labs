@@ -1,0 +1,205 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_bgp.yaml file that needs to be updated and added to your project files, if you want to include BGP related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_BGP_NEIGHBORS
+# BASELINE_BGP_ROUTE_SCALE
+#
+#
+#     Which are used in these keywords from keywords/baseline_bgp.resource
+#
+# baseline bgp validate correct bgp neighbors are up as per defined baseline
+# baseline bgp validate minimum bgp route scale as per defined baseline
+#
+################################################################################
+
+
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_BGP_NEIGHBORS
+#     used in: baseline bgp validate correct bgp neighbors are up as per defined baseline
+#
+# BASELINE_BGP_NEIGHBORS:         # This data structure holds the expected up BGP neighbors
+#   <DEVICE_HOSTNAME>:            # Example: PE4
+#     <VRF_NAME>:                 # VRF name or 'global'
+#       <AFI>:                    # Examples: ipv4 , vpnv4 , ipv6 , vpnv6
+#         <SAFI>:                 # Examples: unicast , multicast (not tested with multicast)
+#           - <IP_ADDRESS>        # Example: 192.168.0.1
+#           - <IP_ADDRESS>
+#                                 #   For IOSXR, use the commands: 'show bgp <afi> <safi> summary' , 'show bgp vrf <vrf_name> <afi> <safi> summary'
+#                                 #   For IOSXE, use the commands: 'show bgp <afi> <safi> summary' , 'show bgp <afi> <safi> all summary' , 'show bgp <afi> <safi> vrf <vrf_name> summary'
+#
+#     Example for BASELINE_BGP_NEIGHBORS
+#
+# BASELINE_BGP_NEIGHBORS:
+#  mcbas-cape-2a:
+#    global:
+#      vpnv4:
+#        unicast:
+#          - 10.249.0.18
+#      vpnv6:
+#        unicast:
+#          - 10.249.0.18
+#    V100100:
+#      ipv4:
+#        unicast:
+#          - 10.250.0.10
+#          - 10.250.1.2
+#          - 10.250.1.30
+#          - 10.250.70.193
+#
+#
+#    Example CLI output
+#
+# RP/0/RSP0/CPU0:mcbas-cape-2a#show bgp vpnv4 unicast summary
+# Tue Oct 26 09:59:32.233 BST
+# BGP router identifier 10.249.0.17, local AS number 29406
+# BGP generic scan interval 60 secs
+# Non-stop routing is enabled
+# BGP table state: Active
+# Table ID: 0x0   RD version: 0
+# BGP main routing table version 383
+# BGP NSR Initial initsync version 18 (Reached)
+# BGP NSR/ISSU Sync-Group versions 383/0
+# BGP scan interval 60 secs
+#
+# BGP is operating in STANDALONE mode.
+#
+#
+# Process       RcvTblVer   bRIB/RIB   LabelVer  ImportVer  SendTblVer  StandbyVer
+# Speaker             383        383        383        383         383         383
+#
+# Neighbor        Spk    AS MsgRcvd MsgSent   TblVer  InQ OutQ  Up/Down  St/PfxRcd
+# 10.249.0.18       0 29406    8635    8639      383    0    0    5d23h         48
+#
+
+
+BASELINE_BGP_NEIGHBORS:
+  mcbas-cape-2a:
+    global:
+      vpnv4:
+        unicast:
+          - 10.249.0.18
+      vpnv6:
+        unicast:
+          - 10.249.0.18
+    V100100:
+      ipv4:
+        unicast:
+          - 10.250.0.10
+          - 10.250.1.2
+          - 10.250.1.30
+          - 10.250.70.193
+
+  mcber-cape-2a:
+    global:
+      vpnv4:
+        unicast:
+          - 10.249.0.17
+      vpnv6:
+        unicast:
+          - 10.249.0.17
+    V100100:
+      ipv4:
+        unicast:
+          - 10.250.1.58
+          - 10.250.1.86
+          - 10.250.70.193
+          - 10.250.70.193
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_BGP_ROUTE_SCALE
+#     used in: baseline bgp validate minimum bgp route scale as per defined baseline
+#
+# BASELINE_BGP_ROUTE_SCALE:         # This data structure holds the minimum expected BGP routes
+#   <DEVICE_HOSTNAME>:            # Example: PE4
+#     <VRF_NAME>:                 # VRF name or 'global'
+#       <AFI>:                    # Examples: ipv4 , vpnv4 , ipv6 , vpnv6
+#         <SAFI>: <number>        # Example: unicast: 50
+#                                 #   For IOSXR, use the commands: 'show bgp vrf default scale' , 'show bgp vrf <vrf_name> scale'
+#                                 #   For IOSXE, use the commands: 'show bgp <afi> <safi> summary' , 'show bgp <afi> <safi> all summary' , 'show bgp <afi> <safi> vrf <vrf_name> summary'
+#
+#     Example for BASELINE_BGP_ROUTE_SCALE
+#
+# BASELINE_BGP_ROUTE_SCALE:
+#  mnbas-pe-1a:
+#    global:
+#      vpnv4:
+#        unicast: 10000
+#      vpnv6:
+#        unicast: 15
+#    V800:TST:
+#      ipv4:
+#        unicast: 3500
+#      ipv6:
+#        unicast: 7
+#
+#
+#    Example CLI output
+#
+# RP/0/RSP0/CPU0:mnbas-pe-1a#show bgp vrf default scale
+# Tue Oct 26 10:05:38.204 BST
+#
+# VRF: default
+#  Neighbors Configured: 1      Established: 1
+#
+#  Address-Family   Prefixes Paths    PathElem   Prefix     Path       PathElem
+#                                                Memory     Memory     Memory
+#   VPNv4 Unicast   10027    10027    10027      900.86KB   626.69KB   616.90KB
+#   VPNv6 Unicast   15       15       15         1.52KB     960.00     945.00
+#   ------------------------------------------------------------------------------
+#   Total           10042    10042    10042      902.39KB   627.63KB   617.82KB
+#
+# RP/0/RSP0/CPU0:mnbas-pe-1a#show bgp vrf V800:TST scale
+# Tue Oct 26 10:06:00.262 BST
+#
+# VRF: V800:TST
+#  Neighbors Configured: 3      Established: 3
+#
+#  Address-Family   Prefixes Paths    PathElem   Prefix     Path       PathElem
+#                                                Memory     Memory     Memory
+#   IPv4 Unicast    3513     4519     3513       315.62KB   282.44KB   216.13KB
+#    Imported                 3509                           219.31KB
+#   IPv6 Unicast    7        12       7          728.00     768.00     441.00
+#    Imported                 5                              320.00
+#   ------------------------------------------------------------------------------
+#   Total           3520     4531     3520       316.33KB   283.19KB   216.56KB
+#
+# RP/0/RSP0/CPU0:mnbas-pe-1a#
+#
+
+
+BASELINE_BGP_ROUTE_SCALE:
+  mnbas-pe-1a:
+    global:
+      vpnv4:
+        unicast: 10000
+      vpnv6:
+        unicast: 15
+    V800:TST:
+      ipv4:
+        unicast: 3500
+      ipv6:
+        unicast: 7
+  mnbas-pe-1b:
+    global:
+      vpnv4:
+        unicast: 10000
+      vpnv6:
+        unicast: 15
+    V800:TST:
+      ipv4:
+        unicast: 3500
+      ipv6:
+        unicast: 7

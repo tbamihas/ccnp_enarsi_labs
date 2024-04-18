@@ -1,0 +1,119 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_multicast.yaml file that needs to be updated and added to your project files, if you want to include multicast related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_PIM_NEIGHBORS
+# BASELINE_PIM_NEIGHBOR_SCALE
+# BASELINE_MRIB_ROUTE_SCALE
+#
+#
+#     Which are used in these keywords from keywords/baseline_multicast.resource
+#
+# baseline multicast validate correct pim neighbors are up as per defined baseline
+# baseline multicast validate minimum pim neighbor scale as per defined baseline
+# baseline route_scale validate minimum mrib route scale is present as per defined baseline
+#
+################################################################################
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_PIM_NEIGHBORS
+#     used in: baseline multicast validate correct pim neighbors are up as per defined baseline
+#
+# BASELINE_PIM_NEIGHBORS:         # This data structure holds the expected up PIM neighbors
+#   <DEVICE_HOSTNAME>:            # Example: PE4
+#     <VRF_NAME>:                 # VRF name or 'global'
+#       - <IP_ADDRESS>            # Example: 192.168.0.1
+#       - <IP_ADDRESS>            # Example: 192.168.90.10
+#                                 #   For IOSXR, use the commands: 'show pim neighbor | exclude "\\*"' , 'show pim vrf <vrf_name> neighbor | exclude "\\*"'
+#                                 #   For IOSXE, use the commands: 'show ip pim neighbor' , 'show ip pim vrf <vrf_name> neighbor'
+#
+#     Example for BASELINE_PIM_NEIGHBORS
+#
+# BASELINE_PIM_NEIGHBORS:
+#   ASR9K-NPE-3:
+#     global:
+#       - 36.1.1.14
+#       - 36.1.1.30
+#     VPN1-Tomohawk:
+#       - 192.168.90.10
+#
+
+BASELINE_PIM_NEIGHBORS:
+  ASR9K-NPE-3:
+    global:
+      - 36.1.1.14
+      - 36.1.1.30
+    VPN1-Tomohawk:
+      - 192.168.90.10
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_PIM_NEIGHBOR_SCALE
+#     used in: baseline multicast validate minimum pim neighbor scale as per defined baseline
+#
+# BASELINE_PIM_NEIGHBOR_SCALE:        # This data structure holds the minimum expected PIM neighbor count
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     <VRF_NAME>: <number>            # VRF name or 'global'. Example: global: 100
+#                                     #   For IOSXR, use the Total Nbrs value from commands 'show pim neighbor count', 'show pim vrf <vrf_name> neighbor count'
+#                                     #   For IOSXE, count the entries from commands 'show ip pim neighbor' , 'show ip pim vrf <vrf_name> neighbor'
+#
+#     Example for BASELINE_PIM_NEIGHBOR_SCALE
+#
+# BASELINE_PIM_NEIGHBOR_SCALE:
+#   ASR9K-NPE-3:
+#     global: 100
+#     VPN1-Tomohawk: 2
+#
+
+BASELINE_PIM_NEIGHBOR_SCALE:
+  ASR9K-NPE-3:
+    global: 100
+    VPN1-Tomohawk: 2
+
+
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_MRIB_ROUTE_SCALE
+#     used in: baseline route_scale validate minimum mrib route scale is present as per defined baseline
+#
+# BASELINE_MRIB_ROUTE_SCALE:          # This data structure holds the minimum expected PIM neighbor count
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     <VRF_NAME>:                     # VRF name or 'global'
+#       SG: <number>                  # Number of (S,G) routes. Example: SG: 100
+#       G: <number>                   # Number of (*,G) routes. Example: G: 100
+#                                     #   For IOSXR, use the (*,G) and (S,G) values from commands 'show mrib ipv4 route summary', 'show mrib vrf <vrf_name> ipv4 route summary'
+#                                     #   For IOSXE, use the (*,G) and (S,G) values from commands 'show ip mrib route summary', 'show ip mrib vrf <vrf_name> route summary'
+#
+#     Example for BASELINE_MRIB_ROUTE_SCALE
+#
+# BASELINE_MRIB_ROUTE_SCALE:
+#   ASR9K-NPE-3:
+#     global:
+#       SG: 300
+#       G: 1
+#     VPN1-Tomohawk:
+#       SG: 0
+#       G: 1
+#
+
+BASELINE_MRIB_ROUTE_SCALE:
+  ASR9K-NPE-3:
+    global:
+      SG: 300
+      G: 1
+    VPN1-Tomohawk:
+      SG: 0
+      G: 1

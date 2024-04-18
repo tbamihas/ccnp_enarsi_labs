@@ -1,0 +1,33 @@
+# TextFSM Template: show_sdwan_omp_peers
+# Platform: IOS XE SDWAN
+# Author: Nikhail Venkat (nikvenka)
+# Contributor: Swarna Narsapuram (snarsapu)
+#---------------------------------------------------------------------
+# IOS XE Sample CLI output:
+#---------------------------------------------------------------------
+#site200_R1#show sdwan omp peers
+#R -> routes received
+#I -> routes installed
+#S -> routes sent
+#
+#                         DOMAIN    OVERLAY   SITE
+#PEER             TYPE    ID        ID        ID        STATE    UPTIME           R/I/S
+#------------------------------------------------------------------------------------------
+#100.100.100.2    vsmart  1         1         100       up       25:20:53:28      6/4/2
+#2.2.2.2          vsmart  1         1         100       up       0:12:11:53       19/11/3
+#
+#site200_R1#
+#
+Value peer_address ([\d.]+)
+Value peer_type (\S+)
+Value domain_id (\d+)
+Value overlay_id (\d+)
+Value site_id (\d+)
+Value state (\S+)
+Value uptime (\S+)
+Value routes_received (\d+)
+Value routes_installed (\d+)
+Value routes_sent (\d+)
+
+Start
+  ^\s*${peer_address}\s+${peer_type}\s+${domain_id}\s+${overlay_id}\s+${site_id}\s*${state}\s+${uptime}\s+${routes_received}\/${routes_installed}\/${routes_sent} -> Record

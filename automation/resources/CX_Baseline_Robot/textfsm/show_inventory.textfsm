@@ -1,0 +1,82 @@
+Value Required name ([\S ]+)
+Value descr ([\S ]+)
+Value pid ([^, ]+)
+Value vid ([^, ]+)
+Value sn (\S+)
+
+Start
+  ^NAME: "${name}"[ ,]+DESCR: "${descr}"
+  ^PID: ${pid}[ ,]+VID: ${vid}[ ,]+SN: ${sn} -> Record
+  ^PID: ${pid}[ ,]+VID: ${vid}[ ,]+SN: -> Record
+  ^PID: ${pid}[ ,]+VID: [ ,]+SN: -> Record
+
+
+
+# This will work with iosxr, iosxe, nxos
+################################################################################
+#
+#     example cli output
+#
+# show inventory
+# Thu Sep 30 10:38:47.577 BST
+# NAME: "module 0/RSP0/CPU0", DESCR: "ASR9K Route Switch Processor with 880G/slot Fabric and 32GB"
+# PID: A9K-RSP880-SE, VID: V05, SN: FOC2237NQEA
+#
+# NAME: "module 0/RSP1/CPU0", DESCR: "ASR9K Route Switch Processor with 880G/slot Fabric and 32GB"
+# PID: A9K-RSP880-SE, VID: V05, SN: FOC2241P4RN
+#
+# NAME: "module 0/0/CPU0", DESCR: "80G Modular Linecard, Packet Transport Optimized"
+# PID: A9K-MOD80-TR, VID: V04, SN: FOC1712N6HT
+#
+# NAME: "module 0/0/0", DESCR: "ASR 9000 4-port 10GE Modular Port Adapter"
+# PID: A9K-MPA-4X10GE, VID: V03, SN: FOC1637N7P5
+#
+# NAME: "module mau 0/0/0/0", DESCR: "Multirate 10GBASE-LR and OC-192/STM-64 SR-1 XFP, SMF"
+# PID: XFP-10GLR-OC192SR   , VID: V03 , SN: ONT150510ZF
+#
+# NAME: "module mau 0/0/0/1", DESCR: "Multirate 10GBASE-LR and OC-192/STM-64 SR-1 XFP, SMF"
+# PID: XFP-10GLR-OC192SR   , VID: V02 , SN: AGA1236NCC5
+#
+# NAME: "module mau 0/0/0/3", DESCR: "Multirate 10GBASE-LR and OC-192/STM-64 SR-1 XFP, SMF"
+# PID: XFP-10GLR-OC192SR   , VID: V03 , SN: ONT143710JX
+#
+# NAME: "module 0/1/CPU0", DESCR: "80G Modular Linecard, Service Edge Optimized"
+# PID: A9K-MOD80-SE, VID: V05, SN: FOC1742N4HT
+#
+# NAME: "module 0/1/0", DESCR: "ASR 9000 20-port 1GE Modular Port Adapter"
+# PID: A9K-MPA-20X1GE, VID: V02, SN: FOC1731NA2K
+#
+# NAME: "module mau 0/1/0/4", DESCR: "1000BASE-SX SFP (DOM), MMF, 550/220m"
+# PID: SFP-GE-S            , VID: V01 , SN: FNS122500FL
+#
+# NAME: "module mau 0/1/0/6", DESCR: "1000BASE-SX SFP (DOM), MMF, 550/220m"
+# PID: SFP-GE-S            , VID: V01 , SN: FNS1539076Y
+#
+# NAME: "module mau 0/1/0/7", DESCR: "1000BASE-SX SFP (DOM), MMF, 550/220m"
+# PID: SFP-GE-S            , VID: V01 , SN: FNS16390KR5
+#
+# NAME: "module mau 0/1/0/12", DESCR: "1000BASE-SX SFP (DOM), MMF, 550/220m"
+# PID: SFP-GE-S            , VID: V01 , SN: FNS124203MB
+#
+# NAME: "module mau 0/1/0/13", DESCR: "1000BASE-SX SFP (DOM), MMF, 550/220m"
+# PID: SFP-GE-S            , VID: V01 , SN: FNS13441AL3
+#
+#
+#     example returned parsed output
+#
+#[{'name': 'module 0/RSP0/CPU0', 'descr': 'ASR9K Route Switch Processor with 880G/slot Fabric and 32GB', 'pid': 'A9K-RSP880-SE', 'vid': 'V05', 'sn': 'FOC2237NQEA'},
+# {'name': 'module 0/RSP1/CPU0', 'descr': 'ASR9K Route Switch Processor with 880G/slot Fabric and 32GB', 'pid': 'A9K-RSP880-SE', 'vid': 'V05', 'sn': 'FOC2241P4RN'},
+# {'name': 'module 0/0/CPU0', 'descr': '80G Modular Linecard, Packet Transport Optimized', 'pid': 'A9K-MOD80-TR', 'vid': 'V04', 'sn': 'FOC1712N6HT'},
+# {'name': 'module 0/0/0', 'descr': 'ASR 9000 4-port 10GE Modular Port Adapter', 'pid': 'A9K-MPA-4X10GE', 'vid': 'V03', 'sn': 'FOC1637N7P5'},
+# {'name': 'module mau 0/0/0/0', 'descr': 'Multirate 10GBASE-LR and OC-192/STM-64 SR-1 XFP, SMF', 'pid': 'XFP-10GLR-OC192SR', 'vid': 'V03', 'sn': 'ONT150510ZF'},
+# {'name': 'module mau 0/0/0/1', 'descr': 'Multirate 10GBASE-LR and OC-192/STM-64 SR-1 XFP, SMF', 'pid': 'XFP-10GLR-OC192SR', 'vid': 'V02', 'sn': 'AGA1236NCC5'},
+# {'name': 'module mau 0/0/0/3', 'descr': 'Multirate 10GBASE-LR and OC-192/STM-64 SR-1 XFP, SMF', 'pid': 'XFP-10GLR-OC192SR', 'vid': 'V03', 'sn': 'ONT143710JX'},
+# {'name': 'module 0/1/CPU0', 'descr': '80G Modular Linecard, Service Edge Optimized', 'pid': 'A9K-MOD80-SE', 'vid': 'V05', 'sn': 'FOC1742N4HT'},
+# {'name': 'module 0/1/0', 'descr': 'ASR 9000 20-port 1GE Modular Port Adapter', 'pid': 'A9K-MPA-20X1GE', 'vid': 'V02', 'sn': 'FOC1731NA2K'},
+# {'name': 'module mau 0/1/0/4', 'descr': '1000BASE-SX SFP (DOM), MMF, 550/220m', 'pid': 'SFP-GE-S', 'vid': 'V01', 'sn': 'FNS122500FL'},
+# {'name': 'module mau 0/1/0/6', 'descr': '1000BASE-SX SFP (DOM), MMF, 550/220m', 'pid': 'SFP-GE-S', 'vid': 'V01', 'sn': 'FNS1539076Y'},
+# {'name': 'module mau 0/1/0/7', 'descr': '1000BASE-SX SFP (DOM), MMF, 550/220m', 'pid': 'SFP-GE-S', 'vid': 'V01', 'sn': 'FNS16390KR5'},
+# {'name': 'module mau 0/1/0/12', 'descr': '1000BASE-SX SFP (DOM), MMF, 550/220m', 'pid': 'SFP-GE-S', 'vid': 'V01', 'sn': 'FNS124203MB'},
+# {'name': 'module mau 0/1/0/13', 'descr': '1000BASE-SX SFP (DOM), MMF, 550/220m', 'pid': 'SFP-GE-S', 'vid': 'V01', 'sn': 'FNS13441AL3'}]
+#
+################################################################################

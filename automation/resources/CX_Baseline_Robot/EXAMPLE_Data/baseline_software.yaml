@@ -1,0 +1,132 @@
+# DO NOT UPDATE THIS FILE DIRECTLY. Copy it into your project files and update
+# This is an example of baseline_software.yaml file that needs to be updated and added to your project files, if you want to include software related keywords in the baseline checks.
+
+################################################################################
+#
+#     This file contains
+#
+# BASELINE_SW_VERSION
+# BASELINE_SW_PACKAGES
+#
+#
+#     Which are used in these keywords from keywords/baseline_software.resource
+#
+# baseline software validate correct software version is installed as per defined baseline
+# baseline software validate correct software packages are installed as per defined baseline
+#
+################################################################################
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_SW_VERSION
+#     used in: baseline software validate correct software version is installed as per defined baseline
+#
+# BASELINE_SW_VERSION:               # This data structure holds the expected software version
+#   <DEVICE_HOSTNAME>: <version>     # Example: PE4: 6.5.3
+#                                    #   For cXR (32 bit IOSXR), use the command 'show version brief'
+#                                    #   For eXR (64 bit IOSXR), use the command 'show version'
+#                                    #   For IOSXE, use the command 'show version'
+#
+#
+#     Example for BASELINE_SW_VERSION
+#
+# BASELINE_SW_VERSION:
+#   PE4: 6.5.3
+#   PE1: 16.09.04
+#
+
+BASELINE_SW_VERSION:
+  cnmlw-cat6-1a: 15.2(1)SY5
+  cnmlw-cat6-1b: 15.2(1)SY5
+  mnbas-pe-1a: 6.7.3
+  mnbas-pe-1b: 6.7.3
+  mcbas-p-1a: 6.4.2
+  mcbas-p-1b: 6.4.2
+  mcbas-pe-2a: 6.4.2
+  mcbas-pe-2b: 6.4.2
+  mcbas-vrr-1: 03.12.00.S
+  mcber-pe-2a: 6.4.2
+  mcber-pe-2b: 6.4.2
+  R1: 6.4.2
+  mcbas-pcpe-1a: 12.2(33)SRD5
+  mcbas-pcpe-1b: 12.2(33)SRD5
+  mcber-pcpe-1a: 12.2(33)SRD5
+  mcber-pcpe-1b: 12.2(33)SRD5
+  mcbas-cape-2a: 6.7.3
+  mcber-cape-2a: 6.7.3
+  SW1: 03.08.08.E
+
+
+
+
+################################################################################
+#
+#     Structure of BASELINE_SW_PACKAGES
+#     used in: baseline software validate correct software packages are installed as per defined baseline
+#
+# BASELINE_SW_PACKAGES:               # This data structure holds the expected software packages on iosxr
+#   <DEVICE_HOSTNAME>:                # Example: PE4
+#     - <package>                     # Example: asr9k-services-infra-6.5.3
+#     - <package>
+#                                     #   For IOSXR, use the command 'show install active summary'
+#
+#
+#     Example for BASELINE_SW_PACKAGES
+#
+# BASELINE_SW_PACKAGES:
+#   PE4:
+#     - asr9k-services-infra-6.5.3
+#     - asr9k-mini-px-6.5.3
+#     - asr9k-9000v-nV-px-6.5.3
+#     - asr9k-bng-px-6.5.3
+#     - asr9k-doc-px-6.5.3
+#     - asr9k-fpd-px-6.5.3
+#     - asr9k-k9sec-px-6.5.3
+#     - asr9k-li-px-6.5.3
+#     - asr9k-mcast-px-6.5.3
+#     - asr9k-mgbl-px-6.5.3
+#     - asr9k-mpls-px-6.5.3
+#     - asr9k-optic-px-6.5.3
+#     - asr9k-services-px-6.5.3
+#     - asr9k-video-px-6.5.3
+#     - asr9k-px-6.5.3.CSCvn30103-1.0.0
+#     - asr9k-px-6.5.3.CSCvn77286-1.0.0
+#
+
+BASELINE_SW_PACKAGES:
+  mnbas-pe-1a:
+    - asr9k-mini-px-6.7.3
+    - asr9k-doc-px-6.7.3
+    - asr9k-k9sec-px-6.7.3
+    - asr9k-mpls-px-6.7.3
+    - asr9k-mgbl-px-6.7.3
+    - asr9k-fpd-px-6.7.3
+    - asr9k-px-6.7.3.CSCvy66589-1.0.0
+    - asr9k-px-6.7.3.CSCvy10397-1.0.0
+    - asr9k-px-6.7.3.CSCvx41223-1.0.0
+    - asr9k-px-6.7.3.CSCvx02901-1.0.0
+    - asr9k-px-6.7.3.CSCvw82547-1.0.0
+    - asr9k-px-6.7.3.CSCvs10279-1.0.0
+    - asr9k-px-6.7.3.CSCvf74817-1.0.0
+    - asr9k-px-6.7.3.CSCvx48017-1.0.0
+    - asr9k-px-6.7.3.CSCvz58617-1.0.0
+  mcbas-p-1a:
+    - hfr-mini-px-6.4.2
+    - hfr-mpls-px-6.4.2
+    - hfr-mgbl-px-6.4.2
+    - hfr-k9sec-px-6.4.2
+    - hfr-fpd-px-6.4.2
+    - hfr-doc-px-6.4.2
+    - hfr-px-6.4.2.CSCvg26665-1.0.0
+    - hfr-px-6.4.2.CSCvk51963-1.0.0
+    - hfr-px-6.4.2.CSCvm85739-1.0.0
+    - hfr-px-6.4.2.CSCvn09590-1.0.0
+    - hfr-px-6.4.2.CSCvo15522-1.0.0
+    - hfr-px-6.4.2.CSCvo74634-1.0.0
+    - hfr-px-6.4.2.CSCvp43528-1.0.0
+    - hfr-px-6.4.2.CSCvp43845-1.0.0
+    - hfr-px-6.4.2.CSCvo90073-1.0.0
+    - hfr-px-6.4.2.CSCvp49076-1.0.0

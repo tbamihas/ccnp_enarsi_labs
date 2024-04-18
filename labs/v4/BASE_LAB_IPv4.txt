@@ -1,0 +1,68 @@
+Lab Topology and IPv4 Addressing Scheme:
+
+Device Names, Interface IDs and Associated Networks:
+
+R1:
+- MGMT_dirty - G0/3 - 3.1.100.1
+- MGMT_clean - G0/4 - 10.53.217.18
+- Loopback Lo1: 1.1.1.0/26
+- Loopback Lo2: 1.1.1.64/26
+- Loopback Lo3: 1.1.1.128/26
+- Loopback Lo4: 1.1.1.192/26
+- Connection to R2: 10.0.0.0/30 (R1 G0/0 IP: 10.0.0.1)
+- Connection to R3: 20.0.0.0/30 (R1 G0/1 IP: 20.0.0.1)
+
+R2:
+- MGMT_dirty - G0/3 - 3.1.100.2
+- MGMT_clean - G0/4 - 10.53.217.19
+- Loopback Lo1: 77.0.0.1/24
+- Connection to R1: 10.0.0.0/30 (R2 G0/0 IP: 10.0.0.2)
+- Connection to R3: 30.0.0.0/30 (R2 G0/2 IP: 30.0.0.2)
+- Connection to R4: 40.0.0.0/30 (R2 G0/1 IP: 40.0.0.1)
+
+R3:
+- MGMT_dirty - G0/3 - 3.1.100.3
+- MGMT_clean - G0/4 - 10.53.217.20
+- Loopback Lo1: 99.0.0.1/24
+- Connection to R1: 20.0.0.0/30   (R3 G0/1 IP: 20.0.0.2)
+- Connection to R2: 30.0.0.0/30   (R3 G0/2 IP: 30.0.0.1)
+- Connection to R4: 50.0.0.0/30   (R3 G0/0 IP: 50.0.0.1)
+- Connection to R5: 172.10.0.0/30 (R3 G0/11 IP: 172.10.0.1)
+
+R4:
+- MGMT_dirty - G0/3 - 3.1.100.4
+- MGMT_clean - G0/4 - 10.53.217.21
+- Loopback Lo1: 4.4.4.4/24
+- Loopback Lo2: 5.5.5.5/24
+- Loopback Lo3: 6.6.6.6/24
+- Connection to R2: 40.0.0.0/30   (R4 G0/1 IP: 40.0.0.2)
+- Connection to R3: 50.0.0.0/30   (R4 G0/0 IP: 50.0.0.2)
+- Connection to R5: 172.20.0.0/30 (R4 G0/10 IP: 172.20.0.1)
+- Connection to R6: 60.0.0./30    (R4 G0/2 IP: 60.0.0.1)
+
+R5:
+- MGMT_dirty - G0/3 - 3.1.100.5
+- MGMT_clean - G0/4 - 10.53.217.22
+- Loopback Lo1: 199.0.0.1/24
+- Connection to R3: 172.10.0.0/30 (R5 G0/11 IP: 172.10.0.2)
+- Connection to R4: 172.20.0.0/30 (R5 G0/10 IP: 172.20.0.2)
+- Connection to R6: 70.0.0./30    (R5 G0/0 IP: 70.0.0.1)
+
+R6:
+- MGMT_dirty - G0/3 - 3.1.100.6
+- MGMT_clean - G0/4 - 10.53.217.23
+- Loopback Lo1: 88.0.0.1/24
+- Connection to R4: 60.0.0./30 (R6 G0/2 IP: 60.0.0.2)
+- Connection to R5: 70.0.0./30 (R6 G0/0 IP: 70.0.0.2)
+
+
+summary:
+128 64 32 16 8 4 2 1
+ 0   0  0  1 0 1 0 0 -- 20.x.x.x
+ 0   0  0  1 1 1 1 0 -- 30.x.x.x
+
+common bits first 3:
+
+ summary = 20.0.0.0/3  224.0.0.0
+
+result is too broad. revisit ip addressing scheme.
